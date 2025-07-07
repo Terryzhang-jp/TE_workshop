@@ -1,5 +1,6 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import type { PredictionResult } from '../types/index.js';
+import ApiService from '../services/api';
 
 interface Decision {
   id: string;
@@ -15,15 +16,25 @@ interface Decision {
   createdAt: string;
 }
 
+interface UserSession {
+  user_id: string;
+  username: string;
+  session_id: string;
+  created_at: string;
+  last_active: string;
+}
+
 interface DecisionMakingProps {
   className?: string;
   predictions?: PredictionResult[];
   onAdjustmentApplied?: (adjustedPredictions: PredictionResult[]) => void;
   onDecisionStatusChange?: (hasActiveDecision: boolean) => void;
+  userSession?: UserSession | null;
 }
 
 const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
-  onDecisionStatusChange
+  onDecisionStatusChange,
+  userSession
 }, ref) => {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [activeDecision, setActiveDecision] = useState<Decision | null>(null);
@@ -43,35 +54,49 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
 
   // Methods exposed to parent component
   useImperativeHandle(ref, () => ({
-    addAdjustment: (hour: number, originalValue: number, adjustedValue: number) => {
-      if (activeDecision) {
-        const newAdjustment = {
-          hour,
-          originalValue,
-          adjustedValue,
-          timestamp: new Date().toISOString()
-        };
+    addAdjustment: async (hour: number, originalValue: number, adjustedValue: number) => {
+      if (activeDecision && userSession) {
+        try {
+          // 调用后端API创建调整
+          const backendAdjustment = await ApiService.createUserAdjustment(
+            userSession.session_id,
+            activeDecision.id,
+            hour,
+            originalValue,
+            adjustedValue
+          );
 
-        const updatedDecisions = decisions.map(d =>
-          d.id === activeDecision.id
-            ? {
-                ...d,
-                adjustments: [...d.adjustments.filter(adj => adj.hour !== hour), newAdjustment]
-              }
-            : d
-        );
+          const newAdjustment = {
+            hour,
+            originalValue,
+            adjustedValue,
+            timestamp: backendAdjustment.timestamp
+          };
 
-        setDecisions(updatedDecisions);
-        setActiveDecision(prev => prev ? {
-          ...prev,
-          adjustments: [...prev.adjustments.filter(adj => adj.hour !== hour), newAdjustment]
-        } : null);
+          const updatedDecisions = decisions.map(d =>
+            d.id === activeDecision.id
+              ? {
+                  ...d,
+                  adjustments: [...d.adjustments.filter(adj => adj.hour !== hour), newAdjustment]
+                }
+              : d
+          );
+
+          setDecisions(updatedDecisions);
+          setActiveDecision(prev => prev ? {
+            ...prev,
+            adjustments: [...prev.adjustments.filter(adj => adj.hour !== hour), newAdjustment]
+          } : null);
+        } catch (error) {
+          console.error('Failed to create adjustment:', error);
+          setError('Failed to save adjustment. Please try again.');
+        }
       }
     }
-  }), [activeDecision, decisions]);
+  }), [activeDecision, decisions, userSession]);
 
   // Create new decision
-  const createNewDecision = () => {
+  const createNewDecision = async () => {
     if (!newDecisionLabel.trim() || !newDecisionReason.trim()) {
       setError('Please fill in decision title and reason');
       return;
@@ -87,25 +112,42 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
       return;
     }
 
-    const newDecision: Decision = {
-      id: `decision_${Date.now()}`,
-      label: newDecisionLabel.trim(),
-      reason: newDecisionReason.trim(),
-      status: 'active',
-      adjustments: [],
-      createdAt: new Date().toISOString()
-    };
+    if (!userSession) {
+      setError('User session not found');
+      return;
+    }
 
-    // Set previous decisions to completed status
-    const updatedDecisions = decisions.map(d => ({ ...d, status: 'completed' as const }));
+    try {
+      // 调用后端API创建决策
+      const backendDecision = await ApiService.createUserDecision(
+        userSession.session_id,
+        newDecisionLabel.trim(),
+        newDecisionReason.trim()
+      );
 
-    setDecisions([...updatedDecisions, newDecision]);
-    setActiveDecision(newDecision);
-    setNewDecisionLabel('');
-    setNewDecisionReason('');
-    setShowNewDecisionForm(false);
-    setSuccess('Decision created successfully, you can now make prediction adjustments');
-    setError(null);
+      const newDecision: Decision = {
+        id: backendDecision.decision_id,
+        label: backendDecision.label,
+        reason: backendDecision.reason,
+        status: 'active',
+        adjustments: [],
+        createdAt: backendDecision.created_at
+      };
+
+      // Set previous decisions to completed status
+      const updatedDecisions = decisions.map(d => ({ ...d, status: 'completed' as const }));
+
+      setDecisions([...updatedDecisions, newDecision]);
+      setActiveDecision(newDecision);
+      setNewDecisionLabel('');
+      setNewDecisionReason('');
+      setShowNewDecisionForm(false);
+      setSuccess('Decision created successfully, you can now make prediction adjustments');
+      setError(null);
+    } catch (error) {
+      console.error('Failed to create decision:', error);
+      setError('Failed to create decision. Please try again.');
+    }
   };
 
 

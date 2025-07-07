@@ -198,6 +198,65 @@ export class ApiService {
     return response.data;
   }
 
+  // 用户管理相关API
+  static async userLogin(username: string): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/user/login', {
+      username: username
+    });
+    return response.data.data;
+  }
+
+  static async getUserSession(sessionId: string): Promise<any> {
+    const response = await api.get<ApiResponse<any>>(`/user/session/${sessionId}`);
+    return response.data.data;
+  }
+
+  static async createUserDecision(
+    sessionId: string,
+    label: string,
+    reason: string
+  ): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/user/decision', {
+      session_id: sessionId,
+      label: label,
+      reason: reason
+    });
+    return response.data.data;
+  }
+
+  static async createUserAdjustment(
+    sessionId: string,
+    decisionId: string,
+    hour: number,
+    originalValue: number,
+    adjustedValue: number
+  ): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/user/adjustment', {
+      session_id: sessionId,
+      decision_id: decisionId,
+      hour: hour,
+      original_value: originalValue,
+      adjusted_value: adjustedValue
+    });
+    return response.data.data;
+  }
+
+  static async completeExperiment(
+    sessionId: string,
+    finalPredictions: any[]
+  ): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/user/complete-experiment', {
+      session_id: sessionId,
+      final_predictions: finalPredictions
+    });
+    return response.data.data;
+  }
+
+  static async listExperimentResults(): Promise<string[]> {
+    const response = await api.get<ApiResponse<string[]>>('/user/experiment-results');
+    return response.data.data;
+  }
+
   // 获取模型拟合历史
   static async getModelFittingHistory(startDate?: string, endDate?: string): Promise<any> {
     const params: any = {};

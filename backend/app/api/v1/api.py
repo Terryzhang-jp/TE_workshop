@@ -5,7 +5,7 @@ API v1 Router Configuration
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import data, prediction, explanation, adjustment
+from app.api.v1.endpoints import data, prediction, explanation, adjustment, user
 
 api_router = APIRouter()
 
@@ -38,6 +38,14 @@ api_router.include_router(
     adjustment.router,
     prefix="/adjustment",
     tags=["adjustment"],
+    responses={404: {"description": "Not found"}}
+)
+
+# 用户管理相关端点
+api_router.include_router(
+    user.router,
+    prefix="/user",
+    tags=["user"],
     responses={404: {"description": "Not found"}}
 )
 

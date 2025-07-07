@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, AlertCircle, CheckCircle } from 'lucide-react';
 import ExperimentCover from './components/ExperimentCover';
+import UserLogin from './components/UserLogin';
 import ContextInformation from './components/ContextInformation';
 import DataAnalysis from './components/DataAnalysis';
 import ModelInterpretability from './components/ModelInterpretability';
@@ -16,6 +17,14 @@ interface ScreenDimensions {
   availableHeight: number;
 }
 
+interface UserSession {
+  user_id: string;
+  username: string;
+  session_id: string;
+  created_at: string;
+  last_active: string;
+}
+
 function App() {
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +33,9 @@ function App() {
   const [hasActiveDecision, setHasActiveDecision] = useState(false);
   const [decisionMakingRef, setDecisionMakingRef] = useState<any>(null);
   const [showExperiment, setShowExperiment] = useState(false);
+  const [showUserLogin, setShowUserLogin] = useState(false);
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
+  const [experimentStartTime, setExperimentStartTime] = useState<Date | null>(null);
   const [screenDimensions, setScreenDimensions] = useState<ScreenDimensions>({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -96,7 +108,45 @@ function App() {
   };
 
   const handleStartExperiment = () => {
+    setShowUserLogin(true);
+  };
+
+  const handleLoginSuccess = (session: UserSession) => {
+    setUserSession(session);
+    setExperimentStartTime(new Date());
+    setShowUserLogin(false);
     setShowExperiment(true);
+  };
+
+  const handleCompleteExperiment = async () => {
+    if (!userSession) return;
+
+    try {
+      // 收集最终预测结果
+      const finalPredictions = predictions.map(pred => ({
+        hour: pred.hour,
+        predicted_usage: pred.predicted_usage,
+        confidence_interval: pred.confidence_interval,
+        original_prediction: pred.original_prediction
+      }));
+
+      // 发送到后端保存
+      await ApiService.completeExperiment(userSession.session_id, finalPredictions);
+
+      alert('实验已完成！您的结果已保存。感谢您的参与！');
+
+      // 重置应用状态
+      setUserSession(null);
+      setExperimentStartTime(null);
+      setShowExperiment(false);
+      setShowUserLogin(false);
+      setPredictions([]);
+      setHasActiveDecision(false);
+
+    } catch (error) {
+      console.error('完成实验失败:', error);
+      alert('保存实验结果时出现错误，请重试。');
+    }
   };
 
   // 修复布局样式计算
@@ -149,48 +199,131 @@ function App() {
     );
   }
 
-  if (!showExperiment) {
+  if (!showExperiment && !showUserLogin) {
     return <ExperimentCover onStartExperiment={handleStartExperiment} />;
   }
 
+  if (showUserLogin) {
+    return <UserLogin onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
-    <div style={getLayoutStyle()}>
-      {/* 第一行：三个模块 */}
-      <div style={{ gridColumn: '1', gridRow: '1', overflow: 'hidden' }}>
-        <ContextInformation />
-      </div>
-      
-      <div style={{ gridColumn: '2', gridRow: '1', overflow: 'hidden' }}>
-        <DataAnalysis />
-      </div>
-      
-      <div style={{ gridColumn: '3', gridRow: '1', overflow: 'hidden' }}>
-        <ModelInterpretability />
+    <>
+      {/* 用户信息和完成实验按钮 */}
+      <div style={{
+        position: 'fixed',
+        top: '16px',
+        left: '16px',
+        right: '16px',
+        zIndex: 1000,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        background: 'rgba(255, 255, 255, 0.95)',
+        padding: '12px 20px',
+        borderRadius: '8px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+        backdropFilter: 'blur(10px)'
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px'
+        }}>
+          <div style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: '14px',
+            fontWeight: 'bold'
+          }}>
+            {userSession?.username.charAt(0).toUpperCase()}
+          </div>
+          <div>
+            <div style={{ fontSize: '14px', fontWeight: '600', color: '#374151' }}>
+              {userSession?.username}
+            </div>
+            <div style={{ fontSize: '12px', color: '#6b7280' }}>
+              Session: {userSession?.session_id.slice(0, 8)}...
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={handleCompleteExperiment}
+          style={{
+            padding: '10px 20px',
+            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            boxShadow: '0 2px 4px rgba(16, 185, 129, 0.2)'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-1px)';
+            e.currentTarget.style.boxShadow = '0 4px 8px rgba(16, 185, 129, 0.3)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 2px 4px rgba(16, 185, 129, 0.2)';
+          }}
+        >
+          Complete Experiment
+        </button>
       </div>
 
-      {/* 第二行：两个模块 */}
-      <div style={{ gridColumn: '1 / 3', gridRow: '2', overflow: 'hidden' }}>
-        <UserPrediction
-          onPredictionUpdate={handlePredictionUpdate}
-          hasActiveDecision={hasActiveDecision}
-          onAdjustmentMade={handleAdjustmentMade}
-        />
-      </div>
-      
-      <div style={{ gridColumn: '3', gridRow: '2', overflow: 'hidden' }}>
-        <DecisionMaking
-          ref={setDecisionMakingRef}
-          predictions={predictions}
-          onAdjustmentApplied={handleAdjustmentApplied}
-          onDecisionStatusChange={setHasActiveDecision}
-        />
-      </div>
+      {/* 主要内容区域 - 保持原有网格布局，增加顶部边距 */}
+      <div style={{
+        ...getLayoutStyle(),
+        paddingTop: '96px' // 为顶部栏留出空间
+      }}>
+        {/* 第一行：三个模块 */}
+        <div style={{ gridColumn: '1', gridRow: '1', overflow: 'hidden' }}>
+          <ContextInformation />
+        </div>
 
-      {/* 屏幕信息显示 */}
-      <div className="fixed bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-50">
-        {screenDimensions.width} × {screenDimensions.height} (Available: {screenDimensions.availableHeight})
+        <div style={{ gridColumn: '2', gridRow: '1', overflow: 'hidden' }}>
+          <DataAnalysis />
+        </div>
+
+        <div style={{ gridColumn: '3', gridRow: '1', overflow: 'hidden' }}>
+          <ModelInterpretability />
+        </div>
+
+        {/* 第二行：两个模块 */}
+        <div style={{ gridColumn: '1 / 3', gridRow: '2', overflow: 'hidden' }}>
+          <UserPrediction
+            onPredictionUpdate={handlePredictionUpdate}
+            hasActiveDecision={hasActiveDecision}
+            onAdjustmentMade={handleAdjustmentMade}
+          />
+        </div>
+
+        <div style={{ gridColumn: '3', gridRow: '2', overflow: 'hidden' }}>
+          <DecisionMaking
+            ref={setDecisionMakingRef}
+            predictions={predictions}
+            onAdjustmentApplied={handleAdjustmentApplied}
+            onDecisionStatusChange={setHasActiveDecision}
+            userSession={userSession}
+          />
+        </div>
+
+        {/* 屏幕信息显示 */}
+        <div className="fixed bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-50">
+          {screenDimensions.width} × {screenDimensions.height} (Available: {screenDimensions.availableHeight})
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

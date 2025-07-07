@@ -114,3 +114,66 @@ class TrainingInfo(BaseModel):
         json_encoders = {
             datetime: lambda v: v.isoformat()
         }
+
+
+# 用户管理相关模型
+class UserSession(BaseModel):
+    """用户会话模型"""
+    user_id: str = Field(..., description="用户ID")
+    username: str = Field(..., description="用户名")
+    session_id: str = Field(..., description="会话ID")
+    created_at: datetime = Field(default_factory=datetime.now, description="创建时间")
+    last_active: datetime = Field(default_factory=datetime.now, description="最后活跃时间")
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
+
+
+class UserDecision(BaseModel):
+    """用户决策模型"""
+    decision_id: str = Field(..., description="决策ID")
+    label: str = Field(..., description="决策标签")
+    reason: str = Field(..., description="决策理由")
+    status: Literal["active", "completed", "disabled"] = Field(..., description="决策状态")
+    created_at: datetime = Field(default_factory=datetime.now, description="创建时间")
+    completed_at: Optional[datetime] = Field(None, description="完成时间")
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
+
+
+class UserAdjustment(BaseModel):
+    """用户调整模型"""
+    adjustment_id: str = Field(..., description="调整ID")
+    decision_id: str = Field(..., description="关联的决策ID")
+    hour: int = Field(..., ge=0, le=23, description="调整的小时")
+    original_value: float = Field(..., description="原始值")
+    adjusted_value: float = Field(..., description="调整后的值")
+    timestamp: datetime = Field(default_factory=datetime.now, description="调整时间")
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
+
+
+class ExperimentResult(BaseModel):
+    """实验结果模型"""
+    user_id: str = Field(..., description="用户ID")
+    username: str = Field(..., description="用户名")
+    session_id: str = Field(..., description="会话ID")
+    experiment_start_time: datetime = Field(..., description="实验开始时间")
+    experiment_end_time: datetime = Field(..., description="实验结束时间")
+    decisions: List[UserDecision] = Field(default_factory=list, description="用户决策列表")
+    adjustments: List[UserAdjustment] = Field(default_factory=list, description="用户调整列表")
+    final_predictions: List[PredictionResult] = Field(default_factory=list, description="最终预测结果")
+    experiment_duration_minutes: Optional[float] = Field(None, description="实验持续时间（分钟）")
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
