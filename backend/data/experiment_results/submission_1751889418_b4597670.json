@@ -1,0 +1,365 @@
+{
+  "submission_id": "submission_1751889418_b4597670",
+  "submitted_at": "2025-07-07T11:56:58.578230+00:00",
+  "experiment_data": {
+    "user_id": "user_1751889349_f70f03ec",
+    "username": "test1234",
+    "session_id": "session_1751889349_1cab2939",
+    "start_time": "2025-07-07 11:55:49.457000+00:00",
+    "decisions": [
+      {
+        "id": "decision_1751889359333",
+        "label": "1313131313",
+        "reason": "1313131311",
+        "status": "completed",
+        "adjustments": [],
+        "created_at": "2025-07-07 11:55:59.333000+00:00",
+        "completed_at": "2025-07-07 11:56:39.637000+00:00"
+      }
+    ],
+    "adjustments": [
+      {
+        "id": "adjustment_1751889362393_18",
+        "hour": 18,
+        "original_value": 4193.0,
+        "adjusted_value": 3486.0,
+        "timestamp": "2025-07-07 11:56:02.393000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889366906_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 4800.0,
+        "timestamp": "2025-07-07 11:56:06.906000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889372937_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 4307.0,
+        "timestamp": "2025-07-07 11:56:12.937000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889376707_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 4598.0,
+        "timestamp": "2025-07-07 11:56:16.707000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889379235_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 4678.0,
+        "timestamp": "2025-07-07 11:56:19.235000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889380190_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 4804.0,
+        "timestamp": "2025-07-07 11:56:20.190000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889382013_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 5072.0,
+        "timestamp": "2025-07-07 11:56:22.013000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889385660_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 5176.0,
+        "timestamp": "2025-07-07 11:56:25.660000+00:00",
+        "decision_id": "decision_1751889359333"
+      },
+      {
+        "id": "adjustment_1751889388579_6",
+        "hour": 6,
+        "original_value": 4334.0,
+        "adjusted_value": 5433.0,
+        "timestamp": "2025-07-07 11:56:28.579000+00:00",
+        "decision_id": "decision_1751889359333"
+      }
+    ],
+    "interactions": [
+      {
+        "id": "interaction_1751889349457",
+        "type": "page_view",
+        "component": "UserLogin",
+        "action": "user_login",
+        "timestamp": "2025-07-07 11:55:49.457000+00:00",
+        "duration": null,
+        "metadata": {
+          "username": "test1234"
+        }
+      },
+      {
+        "id": "interaction_1751889349460_o89q13ke9",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 11:55:49.460000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751889349460_1aax5bh20",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 11:55:49.460000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751889359333",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "create_decision",
+        "timestamp": "2025-07-07 11:55:59.333000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "label": "1313131313",
+          "predictionDataPoints": 24
+        }
+      },
+      {
+        "id": "interaction_1751889362393",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:02.393000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 18,
+          "originalValue": 4193,
+          "adjustedValue": 3486,
+          "adjustmentChange": -707
+        }
+      },
+      {
+        "id": "interaction_1751889366906",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:06.906000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 4800,
+          "adjustmentChange": 466
+        }
+      },
+      {
+        "id": "interaction_1751889372937",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:12.937000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 4307,
+          "adjustmentChange": -27
+        }
+      },
+      {
+        "id": "interaction_1751889376707",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:16.707000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 4598,
+          "adjustmentChange": 264
+        }
+      },
+      {
+        "id": "interaction_1751889379235",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:19.235000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 4678,
+          "adjustmentChange": 344
+        }
+      },
+      {
+        "id": "interaction_1751889380190",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:20.190000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 4804,
+          "adjustmentChange": 470
+        }
+      },
+      {
+        "id": "interaction_1751889382013",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:22.013000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 5072,
+          "adjustmentChange": 738
+        }
+      },
+      {
+        "id": "interaction_1751889385660",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:25.660000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 5176,
+          "adjustmentChange": 842
+        }
+      },
+      {
+        "id": "interaction_1751889388579",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:56:28.579000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "hour": 6,
+          "originalValue": 4334,
+          "adjustedValue": 5433,
+          "adjustmentChange": 1099
+        }
+      },
+      {
+        "id": "interaction_1751889399638",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "complete_decision",
+        "timestamp": "2025-07-07 11:56:39.638000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751889359333",
+          "adjustmentCount": 2
+        }
+      },
+      {
+        "id": "interaction_1751889403580_wtdb3n2db",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "button_click",
+        "timestamp": "2025-07-07 11:56:43.580000+00:00",
+        "duration": null,
+        "metadata": {
+          "buttonType": "toggle_comparison",
+          "buttonLabel": "Show Comparison"
+        }
+      },
+      {
+        "id": "interaction_1751889408529_xuuz97y7u",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "button_click",
+        "timestamp": "2025-07-07 11:56:48.529000+00:00",
+        "duration": null,
+        "metadata": {
+          "buttonType": "toggle_comparison",
+          "buttonLabel": "Hide Comparison"
+        }
+      },
+      {
+        "id": "interaction_1751889409417_uyo1anes4",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "button_click",
+        "timestamp": "2025-07-07 11:56:49.417000+00:00",
+        "duration": null,
+        "metadata": {
+          "buttonType": "toggle_comparison",
+          "buttonLabel": "Show Comparison"
+        }
+      },
+      {
+        "id": "interaction_1751889415879_8c8bvi9pj",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "show_confirmation",
+        "timestamp": "2025-07-07 11:56:55.879000+00:00",
+        "duration": null,
+        "metadata": {
+          "action": "complete_experiment"
+        }
+      },
+      {
+        "id": "interaction_1751889417638_kxv61cam1",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "button_click",
+        "timestamp": "2025-07-07 11:56:57.638000+00:00",
+        "duration": null,
+        "metadata": {
+          "buttonType": "toggle_comparison",
+          "buttonLabel": "Hide Comparison"
+        }
+      }
+    ],
+    "completion_time": "2025-07-07 11:56:58.576877+00:00",
+    "status": "completed"
+  },
+  "experiment_summary": {
+    "total_decisions": 1,
+    "total_adjustments": 9,
+    "total_interactions": 19,
+    "experiment_duration": 1,
+    "status": "completed",
+    "adjustment_statistics": {
+      "total_adjustments": 9,
+      "hours_adjusted": 2,
+      "average_adjustment": 550.7777777777778,
+      "max_adjustment": 1099.0,
+      "most_adjusted_hour": 6
+    }
+  }
+}

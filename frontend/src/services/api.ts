@@ -14,7 +14,7 @@ import type {
 } from '../types/index.js';
 
 // API基础配置
-const API_BASE_URL = 'http://localhost:8001/api/v1';
+const API_BASE_URL = process.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
 
 // 全局会话ID存储
 let currentSessionId: string | null = null;
@@ -213,7 +213,8 @@ export class ApiService {
 
   // 健康检查
   static async healthCheck(): Promise<any> {
-    const response = await api.get('http://localhost:8001/health');
+    const baseUrl = API_BASE_URL.replace('/api/v1', '');
+    const response = await api.get(`${baseUrl}/health`);
     return response.data;
   }
 

@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     # API配置
     api_prefix: str = "/api/v1"
     allowed_hosts: List[str] = Field(
-        default=["http://localhost:3000", "http://127.0.0.1:3000"],
+        default=["*"],
         env="ALLOWED_HOSTS"
     )
     
@@ -60,7 +60,7 @@ class Settings(BaseSettings):
     
     # 服务器配置
     host: str = Field(default="0.0.0.0", env="HOST")
-    port: int = Field(default=8000, env="PORT")
+    port: int = Field(default=8080, env="PORT")
     
     # 安全配置
     api_rate_limit: str = Field(default="100/minute", env="API_RATE_LIMIT")

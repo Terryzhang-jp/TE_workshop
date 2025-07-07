@@ -10,6 +10,7 @@ import {
   ReferenceLine
 } from 'recharts';
 import { Zap, Thermometer, Maximize2, X } from 'lucide-react';
+import { useUser } from '../context/UserContext';
 
 interface DataAnalysisProps {
   className?: string;
@@ -35,6 +36,9 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
   const [minDate, setMinDate] = useState<string>('');
   const [maxDate, setMaxDate] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 使用UserContext记录交互
+  const { recordViewChange, recordButtonClick, recordModalInteraction, recordInputInteraction } = useUser();
 
   const loadWorstDayData = async () => {
     try {
@@ -151,8 +155,17 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
     };
   }, [isModalOpen]);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+    // 记录模态框打开交互
+    recordModalInteraction('DataAnalysis', 'open', 'fullscreen_view');
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // 记录模态框关闭交互
+    recordModalInteraction('DataAnalysis', 'close', 'fullscreen_view');
+  };
 
   if (loading) {
     return (
@@ -212,7 +225,18 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
       }}>
         <div style={{ display: 'flex', gap: '2px' }}>
           <button
-            onClick={() => setViewType('electricity')}
+            onClick={() => {
+              const previousView = viewType;
+              setViewType('electricity');
+
+              // 记录视图切换交互
+              recordViewChange(
+                'DataAnalysis',
+                'view_type',
+                'electricity',
+                previousView
+              );
+            }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -230,7 +254,18 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
             Power
           </button>
           <button
-            onClick={() => setViewType('weather')}
+            onClick={() => {
+              const previousView = viewType;
+              setViewType('weather');
+
+              // 记录视图切换交互
+              recordViewChange(
+                'DataAnalysis',
+                'view_type',
+                'weather',
+                previousView
+              );
+            }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -261,6 +296,14 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
               if (endDate && newStartDate > endDate) {
                 setEndDate(newStartDate);
               }
+
+              // 记录日期选择交互
+              recordInputInteraction(
+                'DataAnalysis',
+                'date_input',
+                newStartDate,
+                'start_date'
+              );
             }}
             style={{
               fontSize: '9px',
@@ -282,6 +325,14 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
               if (startDate && newEndDate < startDate) {
                 setStartDate(newEndDate);
               }
+
+              // 记录日期选择交互
+              recordInputInteraction(
+                'DataAnalysis',
+                'date_input',
+                newEndDate,
+                'end_date'
+              );
             }}
             style={{
               fontSize: '9px',

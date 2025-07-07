@@ -1,0 +1,191 @@
+{
+  "submission_id": "submission_1751891059_0989b009",
+  "submitted_at": "2025-07-07T12:24:19.635599+00:00",
+  "experiment_data": {
+    "user_id": "user_1751891004_4b32c80c",
+    "username": "test1234",
+    "session_id": "session_1751891004_c32a3f6a",
+    "start_time": "2025-07-07 12:23:24.784000+00:00",
+    "decisions": [
+      {
+        "id": "decision_1751891011727",
+        "label": "123131311313",
+        "reason": "131313131313",
+        "status": "completed",
+        "adjustments": [],
+        "created_at": "2025-07-07 12:23:31.727000+00:00",
+        "completed_at": "2025-07-07 12:23:54.251000+00:00"
+      }
+    ],
+    "adjustments": [
+      {
+        "id": "adjustment_1751891017821_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3223.0,
+        "timestamp": "2025-07-07 12:23:37.821000+00:00",
+        "decision_id": "decision_1751891011727"
+      },
+      {
+        "id": "adjustment_1751891023331_17",
+        "hour": 17,
+        "original_value": 4477.0,
+        "adjusted_value": 4531.0,
+        "timestamp": "2025-07-07 12:23:43.331000+00:00",
+        "decision_id": "decision_1751891011727"
+      },
+      {
+        "id": "adjustment_1751891024616_17",
+        "hour": 17,
+        "original_value": 4477.0,
+        "adjusted_value": 4769.0,
+        "timestamp": "2025-07-07 12:23:44.616000+00:00",
+        "decision_id": "decision_1751891011727"
+      },
+      {
+        "id": "adjustment_1751891027524_17",
+        "hour": 17,
+        "original_value": 4477.0,
+        "adjusted_value": 4987.0,
+        "timestamp": "2025-07-07 12:23:47.524000+00:00",
+        "decision_id": "decision_1751891011727"
+      }
+    ],
+    "interactions": [
+      {
+        "id": "interaction_1751891004787_9dj6ztdz9",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 12:23:24.787000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751891004788_s0m9kb7vd",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 12:23:24.788000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751891011728",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "create_decision",
+        "timestamp": "2025-07-07 12:23:31.728000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751891011727",
+          "label": "123131311313",
+          "predictionDataPoints": 24
+        }
+      },
+      {
+        "id": "interaction_1751891017821",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:23:37.821000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751891011727",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3223,
+          "adjustmentChange": -423
+        }
+      },
+      {
+        "id": "interaction_1751891023331",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:23:43.331000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751891011727",
+          "hour": 17,
+          "originalValue": 4477,
+          "adjustedValue": 4531,
+          "adjustmentChange": 54
+        }
+      },
+      {
+        "id": "interaction_1751891024616",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:23:44.616000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751891011727",
+          "hour": 17,
+          "originalValue": 4477,
+          "adjustedValue": 4769,
+          "adjustmentChange": 292
+        }
+      },
+      {
+        "id": "interaction_1751891027524",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:23:47.524000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751891011727",
+          "hour": 17,
+          "originalValue": 4477,
+          "adjustedValue": 4987,
+          "adjustmentChange": 510
+        }
+      },
+      {
+        "id": "interaction_1751891034251",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "complete_decision",
+        "timestamp": "2025-07-07 12:23:54.251000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751891011727",
+          "adjustmentCount": 2
+        }
+      },
+      {
+        "id": "interaction_1751891058106_luoqy422h",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "show_confirmation",
+        "timestamp": "2025-07-07 12:24:18.106000+00:00",
+        "duration": null,
+        "metadata": {
+          "action": "complete_experiment"
+        }
+      }
+    ],
+    "completion_time": "2025-07-07 12:24:19.634056+00:00",
+    "status": "completed"
+  },
+  "experiment_summary": {
+    "total_decisions": 1,
+    "total_adjustments": 4,
+    "total_interactions": 9,
+    "experiment_duration": 0,
+    "status": "completed",
+    "adjustment_statistics": {
+      "total_adjustments": 4,
+      "hours_adjusted": 2,
+      "average_adjustment": 319.75,
+      "max_adjustment": 510.0,
+      "most_adjusted_hour": 17
+    }
+  }
+}

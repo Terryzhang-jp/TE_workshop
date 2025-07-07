@@ -1,0 +1,31 @@
+{
+  "date": "2022-01-07",
+  "description": "Real electricity usage data for January 7, 2022 (24 hours)",
+  "source": "temp_usage_data.csv",
+  "data": [
+    { "hour": 0, "time": "2022-01-07 00:00:00", "temperature": -1.9, "actual_usage": 3495.0 },
+    { "hour": 1, "time": "2022-01-07 01:00:00", "temperature": -2.2, "actual_usage": 3415.0 },
+    { "hour": 2, "time": "2022-01-07 02:00:00", "temperature": -1.8, "actual_usage": 3385.0 },
+    { "hour": 3, "time": "2022-01-07 03:00:00", "temperature": -2.9, "actual_usage": 3445.0 },
+    { "hour": 4, "time": "2022-01-07 04:00:00", "temperature": -3.1, "actual_usage": 3711.0 },
+    { "hour": 5, "time": "2022-01-07 05:00:00", "temperature": -3.1, "actual_usage": 4215.0 },
+    { "hour": 6, "time": "2022-01-07 06:00:00", "temperature": -1.6, "actual_usage": 4645.0 },
+    { "hour": 7, "time": "2022-01-07 07:00:00", "temperature": 0.3, "actual_usage": 5059.0 },
+    { "hour": 8, "time": "2022-01-07 08:00:00", "temperature": 2.1, "actual_usage": 5173.0 },
+    { "hour": 9, "time": "2022-01-07 09:00:00", "temperature": 3.6, "actual_usage": 5018.0 },
+    { "hour": 10, "time": "2022-01-07 10:00:00", "temperature": 5.1, "actual_usage": 4835.0 },
+    { "hour": 11, "time": "2022-01-07 11:00:00", "temperature": 6.8, "actual_usage": 4526.0 },
+    { "hour": 12, "time": "2022-01-07 12:00:00", "temperature": 7.8, "actual_usage": 4459.0 },
+    { "hour": 13, "time": "2022-01-07 13:00:00", "temperature": 7.9, "actual_usage": 4393.0 },
+    { "hour": 14, "time": "2022-01-07 14:00:00", "temperature": 7.0, "actual_usage": 4440.0 },
+    { "hour": 15, "time": "2022-01-07 15:00:00", "temperature": 6.3, "actual_usage": 4662.0 },
+    { "hour": 16, "time": "2022-01-07 16:00:00", "temperature": 5.5, "actual_usage": 4846.0 },
+    { "hour": 17, "time": "2022-01-07 17:00:00", "temperature": 4.3, "actual_usage": 4822.0 },
+    { "hour": 18, "time": "2022-01-07 18:00:00", "temperature": 4.4, "actual_usage": 4718.0 },
+    { "hour": 19, "time": "2022-01-07 19:00:00", "temperature": 4.3, "actual_usage": 4615.0 },
+    { "hour": 20, "time": "2022-01-07 20:00:00", "temperature": 3.3, "actual_usage": 4398.0 },
+    { "hour": 21, "time": "2022-01-07 21:00:00", "temperature": 3.9, "actual_usage": 4155.0 },
+    { "hour": 22, "time": "2022-01-07 22:00:00", "temperature": 3.3, "actual_usage": 3910.0 },
+    { "hour": 23, "time": "2022-01-07 23:00:00", "temperature": 3.0, "actual_usage": 3593.0 }
+  ]
+}

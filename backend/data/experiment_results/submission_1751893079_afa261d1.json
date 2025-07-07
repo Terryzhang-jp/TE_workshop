@@ -1,0 +1,1359 @@
+{
+  "submission_id": "submission_1751893079_afa261d1",
+  "submitted_at": "2025-07-07T12:57:59.225797+00:00",
+  "experiment_data": {
+    "user_id": "user_1751893025_714c90d3",
+    "username": "123131",
+    "session_id": "session_1751893025_c148dd3b",
+    "start_time": "2025-07-07 12:57:05.365000+00:00",
+    "decisions": [
+      {
+        "id": "decision_1751893036240",
+        "label": "312313123131",
+        "reason": "1313131311",
+        "status": "active",
+        "adjustments": [],
+        "created_at": "2025-07-07 12:57:16.240000+00:00",
+        "completed_at": null
+      },
+      {
+        "id": "decision_1751893062799",
+        "label": "123131313131",
+        "reason": "13131313131",
+        "status": "completed",
+        "adjustments": [],
+        "created_at": "2025-07-07 12:57:42.799000+00:00",
+        "completed_at": "2025-07-07 12:57:54.008000+00:00"
+      }
+    ],
+    "adjustments": [
+      {
+        "id": "adjustment_1751893040900_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3656.0,
+        "timestamp": "2025-07-07 12:57:20.900000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893040901_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3656.0,
+        "timestamp": "2025-07-07 12:57:20.901000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041024_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3806.0,
+        "timestamp": "2025-07-07 12:57:21.024000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041024_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3806.0,
+        "timestamp": "2025-07-07 12:57:21.024000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041133_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4046.0,
+        "timestamp": "2025-07-07 12:57:21.133000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041133_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4046.0,
+        "timestamp": "2025-07-07 12:57:21.133000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041222_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4156.0,
+        "timestamp": "2025-07-07 12:57:21.222000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041222_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4156.0,
+        "timestamp": "2025-07-07 12:57:21.222000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041309_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4226.0,
+        "timestamp": "2025-07-07 12:57:21.309000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041309_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4226.0,
+        "timestamp": "2025-07-07 12:57:21.309000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041410_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4256.0,
+        "timestamp": "2025-07-07 12:57:21.410000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893041410_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4256.0,
+        "timestamp": "2025-07-07 12:57:21.410000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893042668_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4276.0,
+        "timestamp": "2025-07-07 12:57:22.668000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893042668_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4276.0,
+        "timestamp": "2025-07-07 12:57:22.668000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893042756_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4516.0,
+        "timestamp": "2025-07-07 12:57:22.756000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893042756_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4516.0,
+        "timestamp": "2025-07-07 12:57:22.756000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893042841_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4546.0,
+        "timestamp": "2025-07-07 12:57:22.841000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893042841_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4546.0,
+        "timestamp": "2025-07-07 12:57:22.841000+00:00",
+        "decision_id": "decision_1751893036240"
+      },
+      {
+        "id": "adjustment_1751893069539_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3666.0,
+        "timestamp": "2025-07-07 12:57:49.539000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069539_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3666.0,
+        "timestamp": "2025-07-07 12:57:49.539000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069630_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3996.0,
+        "timestamp": "2025-07-07 12:57:49.630000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069630_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 3996.0,
+        "timestamp": "2025-07-07 12:57:49.630000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069744_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4356.0,
+        "timestamp": "2025-07-07 12:57:49.744000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069744_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4356.0,
+        "timestamp": "2025-07-07 12:57:49.744000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069860_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4366.0,
+        "timestamp": "2025-07-07 12:57:49.860000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893069860_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4366.0,
+        "timestamp": "2025-07-07 12:57:49.860000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070130_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4376.0,
+        "timestamp": "2025-07-07 12:57:50.130000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070130_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4376.0,
+        "timestamp": "2025-07-07 12:57:50.130000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070219_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4396.0,
+        "timestamp": "2025-07-07 12:57:50.219000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070219_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4396.0,
+        "timestamp": "2025-07-07 12:57:50.219000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070305_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4406.0,
+        "timestamp": "2025-07-07 12:57:50.305000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070305_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4406.0,
+        "timestamp": "2025-07-07 12:57:50.305000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070522_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4416.0,
+        "timestamp": "2025-07-07 12:57:50.522000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070522_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4416.0,
+        "timestamp": "2025-07-07 12:57:50.522000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070608_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4486.0,
+        "timestamp": "2025-07-07 12:57:50.608000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070608_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4486.0,
+        "timestamp": "2025-07-07 12:57:50.608000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070705_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4506.0,
+        "timestamp": "2025-07-07 12:57:50.705000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070705_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4506.0,
+        "timestamp": "2025-07-07 12:57:50.705000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070821_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4486.0,
+        "timestamp": "2025-07-07 12:57:50.821000+00:00",
+        "decision_id": "decision_1751893062799"
+      },
+      {
+        "id": "adjustment_1751893070821_22",
+        "hour": 22,
+        "original_value": 3646.0,
+        "adjusted_value": 4486.0,
+        "timestamp": "2025-07-07 12:57:50.821000+00:00",
+        "decision_id": "decision_1751893062799"
+      }
+    ],
+    "interactions": [
+      {
+        "id": "interaction_1751893025368_8a07jd76i",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 12:57:05.368000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751893025368_afnz917kt",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 12:57:05.368000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751893036240",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "create_decision",
+        "timestamp": "2025-07-07 12:57:16.240000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "label": "312313123131",
+          "predictionDataPoints": 24
+        }
+      },
+      {
+        "id": "interaction_1751893037979_qaf5d90ic",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "data_point_click",
+        "timestamp": "2025-07-07 12:57:17.979000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "action": "select_point",
+          "currentValue": 3646
+        }
+      },
+      {
+        "id": "interaction_1751893040892_vdf5qslgk",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:20.892000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 10
+        }
+      },
+      {
+        "id": "interaction_1751893040901",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:20.901000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3656,
+          "adjustmentChange": 10
+        }
+      },
+      {
+        "id": "interaction_1751893040901",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:20.901000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3656,
+          "adjustmentChange": 10
+        }
+      },
+      {
+        "id": "interaction_1751893041013_3ainxixes",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:21.013000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 160
+        }
+      },
+      {
+        "id": "interaction_1751893041024",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.024000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3806,
+          "adjustmentChange": 160
+        }
+      },
+      {
+        "id": "interaction_1751893041024",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.024000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3806,
+          "adjustmentChange": 160
+        }
+      },
+      {
+        "id": "interaction_1751893041125_ak78niuu6",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:21.125000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 400
+        }
+      },
+      {
+        "id": "interaction_1751893041133",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.133000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4046,
+          "adjustmentChange": 400
+        }
+      },
+      {
+        "id": "interaction_1751893041133",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.133000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4046,
+          "adjustmentChange": 400
+        }
+      },
+      {
+        "id": "interaction_1751893041215_75vkmrqcc",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:21.215000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 510
+        }
+      },
+      {
+        "id": "interaction_1751893041222",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.222000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4156,
+          "adjustmentChange": 510
+        }
+      },
+      {
+        "id": "interaction_1751893041222",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.222000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4156,
+          "adjustmentChange": 510
+        }
+      },
+      {
+        "id": "interaction_1751893041302_3ow84ub61",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:21.302000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 580
+        }
+      },
+      {
+        "id": "interaction_1751893041309",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.309000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4226,
+          "adjustmentChange": 580
+        }
+      },
+      {
+        "id": "interaction_1751893041309",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.309000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4226,
+          "adjustmentChange": 580
+        }
+      },
+      {
+        "id": "interaction_1751893041403_92x45dn1l",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:21.403000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 610
+        }
+      },
+      {
+        "id": "interaction_1751893041410",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.410000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4256,
+          "adjustmentChange": 610
+        }
+      },
+      {
+        "id": "interaction_1751893041410",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:21.410000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4256,
+          "adjustmentChange": 610
+        }
+      },
+      {
+        "id": "interaction_1751893042661_wa7hdqlzh",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:22.661000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 630
+        }
+      },
+      {
+        "id": "interaction_1751893042668",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:22.668000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4276,
+          "adjustmentChange": 630
+        }
+      },
+      {
+        "id": "interaction_1751893042668",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:22.668000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4276,
+          "adjustmentChange": 630
+        }
+      },
+      {
+        "id": "interaction_1751893042748_387esvegs",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:22.748000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 870
+        }
+      },
+      {
+        "id": "interaction_1751893042756",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:22.756000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4516,
+          "adjustmentChange": 870
+        }
+      },
+      {
+        "id": "interaction_1751893042756",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:22.756000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4516,
+          "adjustmentChange": 870
+        }
+      },
+      {
+        "id": "interaction_1751893042834_ho5je8urv",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:22.834000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 900
+        }
+      },
+      {
+        "id": "interaction_1751893042841",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:22.841000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4546,
+          "adjustmentChange": 900
+        }
+      },
+      {
+        "id": "interaction_1751893042841",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:22.841000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893036240",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4546,
+          "adjustmentChange": 900
+        }
+      },
+      {
+        "id": "interaction_1751893045055_yis54s87i",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "close_adjustment_bar",
+        "timestamp": "2025-07-07 12:57:25.055000+00:00",
+        "duration": null,
+        "metadata": {}
+      },
+      {
+        "id": "interaction_1751893057242_kuqslu6bn",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "button_click",
+        "timestamp": "2025-07-07 12:57:37.242000+00:00",
+        "duration": null,
+        "metadata": {
+          "buttonType": "cancel_experiment",
+          "buttonLabel": "Cancel"
+        }
+      },
+      {
+        "id": "interaction_1751893057245_lknk92l6t",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 12:57:37.245000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751893057245_y02wvdd7b",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 12:57:37.245000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751893062799",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "create_decision",
+        "timestamp": "2025-07-07 12:57:42.799000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "label": "123131313131",
+          "predictionDataPoints": 24
+        }
+      },
+      {
+        "id": "interaction_1751893067816_jqxyl1xzy",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "data_point_click",
+        "timestamp": "2025-07-07 12:57:47.816000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "action": "select_point",
+          "currentValue": 3646
+        }
+      },
+      {
+        "id": "interaction_1751893069535_4mktd4zr5",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:49.535000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 20
+        }
+      },
+      {
+        "id": "interaction_1751893069539",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.539000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3666,
+          "adjustmentChange": 20
+        }
+      },
+      {
+        "id": "interaction_1751893069539",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.539000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3666,
+          "adjustmentChange": 20
+        }
+      },
+      {
+        "id": "interaction_1751893069622_0opq22k5k",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:49.622000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 350
+        }
+      },
+      {
+        "id": "interaction_1751893069630",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.630000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3996,
+          "adjustmentChange": 350
+        }
+      },
+      {
+        "id": "interaction_1751893069630",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.630000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 3996,
+          "adjustmentChange": 350
+        }
+      },
+      {
+        "id": "interaction_1751893069733_wkgvl0l7n",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:49.733000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 710
+        }
+      },
+      {
+        "id": "interaction_1751893069744",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.744000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4356,
+          "adjustmentChange": 710
+        }
+      },
+      {
+        "id": "interaction_1751893069744",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.744000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4356,
+          "adjustmentChange": 710
+        }
+      },
+      {
+        "id": "interaction_1751893069853_m1j2mhu4r",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:49.853000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 720
+        }
+      },
+      {
+        "id": "interaction_1751893069860",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.860000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4366,
+          "adjustmentChange": 720
+        }
+      },
+      {
+        "id": "interaction_1751893069860",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:49.860000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4366,
+          "adjustmentChange": 720
+        }
+      },
+      {
+        "id": "interaction_1751893070122_9r8o2f7sv",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.122000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 730
+        }
+      },
+      {
+        "id": "interaction_1751893070130",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.130000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4376,
+          "adjustmentChange": 730
+        }
+      },
+      {
+        "id": "interaction_1751893070130",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.130000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4376,
+          "adjustmentChange": 730
+        }
+      },
+      {
+        "id": "interaction_1751893070212_wuqzwajzn",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.212000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 750
+        }
+      },
+      {
+        "id": "interaction_1751893070219",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.219000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4396,
+          "adjustmentChange": 750
+        }
+      },
+      {
+        "id": "interaction_1751893070219",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.219000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4396,
+          "adjustmentChange": 750
+        }
+      },
+      {
+        "id": "interaction_1751893070298_y9d64c04g",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.298000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 760
+        }
+      },
+      {
+        "id": "interaction_1751893070305",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.305000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4406,
+          "adjustmentChange": 760
+        }
+      },
+      {
+        "id": "interaction_1751893070305",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.305000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4406,
+          "adjustmentChange": 760
+        }
+      },
+      {
+        "id": "interaction_1751893070515_be30ou0j2",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.515000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 770
+        }
+      },
+      {
+        "id": "interaction_1751893070522",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.522000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4416,
+          "adjustmentChange": 770
+        }
+      },
+      {
+        "id": "interaction_1751893070522",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.522000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4416,
+          "adjustmentChange": 770
+        }
+      },
+      {
+        "id": "interaction_1751893070600_2urb5bws4",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.600000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 840
+        }
+      },
+      {
+        "id": "interaction_1751893070608",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.608000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4486,
+          "adjustmentChange": 840
+        }
+      },
+      {
+        "id": "interaction_1751893070608",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.608000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4486,
+          "adjustmentChange": 840
+        }
+      },
+      {
+        "id": "interaction_1751893070694_sn45x7t2u",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.694000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 860
+        }
+      },
+      {
+        "id": "interaction_1751893070705",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.705000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4506,
+          "adjustmentChange": 860
+        }
+      },
+      {
+        "id": "interaction_1751893070705",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.705000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4506,
+          "adjustmentChange": 860
+        }
+      },
+      {
+        "id": "interaction_1751893070810_v1ofjmg8n",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "slider_adjustment",
+        "timestamp": "2025-07-07 12:57:50.810000+00:00",
+        "duration": null,
+        "metadata": {
+          "hour": 22,
+          "adjustmentValue": 840
+        }
+      },
+      {
+        "id": "interaction_1751893070821",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.821000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4486,
+          "adjustmentChange": 840
+        }
+      },
+      {
+        "id": "interaction_1751893070821",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 12:57:50.821000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "hour": 22,
+          "originalValue": 3646,
+          "adjustedValue": 4486,
+          "adjustmentChange": 840
+        }
+      },
+      {
+        "id": "interaction_1751893072835_6241guoo1",
+        "type": "component_interaction",
+        "component": "UserPrediction",
+        "action": "close_adjustment_bar",
+        "timestamp": "2025-07-07 12:57:52.835000+00:00",
+        "duration": null,
+        "metadata": {}
+      },
+      {
+        "id": "interaction_1751893074008",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "complete_decision",
+        "timestamp": "2025-07-07 12:57:54.008000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751893062799",
+          "adjustmentCount": 1
+        }
+      },
+      {
+        "id": "interaction_1751893078150_i0f3i8j5k",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "show_confirmation",
+        "timestamp": "2025-07-07 12:57:58.150000+00:00",
+        "duration": null,
+        "metadata": {
+          "action": "complete_experiment"
+        }
+      }
+    ],
+    "completion_time": "2025-07-07 12:57:59.222006+00:00",
+    "status": "completed"
+  },
+  "experiment_summary": {
+    "total_decisions": 2,
+    "total_adjustments": 40,
+    "total_interactions": 73,
+    "experiment_duration": 0,
+    "status": "completed",
+    "adjustment_statistics": {
+      "total_adjustments": 40,
+      "hours_adjusted": 1,
+      "average_adjustment": 601.0,
+      "max_adjustment": 900.0,
+      "most_adjusted_hour": 22
+    }
+  }
+}

@@ -7,17 +7,19 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-
+  Dot
 } from 'recharts';
 
 import type { PredictionResult } from '../types/index.js';
 import ApiService from '../services/api';
+import { useUser } from '../context/UserContext';
 
 interface UserPredictionProps {
   className?: string;
   onPredictionUpdate?: (predictions: PredictionResult[]) => void;
   hasActiveDecision?: boolean;
   onAdjustmentMade?: (hour: number, originalValue: number, adjustedValue: number) => void;
+  onPredictionDataChange?: (data: any[]) => void; // 添加数据变化回调
 }
 
 interface ChartData {
@@ -33,17 +35,20 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
   className = '',
   onPredictionUpdate,
   hasActiveDecision = false,
-  onAdjustmentMade
+  onAdjustmentMade,
+  onPredictionDataChange
 }) => {
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [draggedPoint, setDraggedPoint] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
   const [selectedPoint, setSelectedPoint] = useState<number | null>(null);
-  const [dragStartYDomain, setDragStartYDomain] = useState<[number, number] | null>(null);
+  const [adjustmentValue, setAdjustmentValue] = useState<number>(0); // 平衡轴调整值
+  const [showAdjustmentBar, setShowAdjustmentBar] = useState<boolean>(false); // 控制平衡轴显示
+
+  // 使用UserContext记录交互
+  const { recordButtonClick, recordInteraction } = useUser();
 
   // Calculate dynamic Y-axis domain based on current data
   const calculateYAxisDomain = useCallback(() => {
@@ -71,6 +76,13 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
   useEffect(() => {
     loadPredictions();
   }, []);
+
+  // 通知父组件数据变化
+  useEffect(() => {
+    if (onPredictionDataChange && chartData.length > 0) {
+      onPredictionDataChange(chartData);
+    }
+  }, [chartData, onPredictionDataChange]);
 
   const loadPredictions = async () => {
     try {
@@ -205,91 +217,82 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
 
   // Handle point click selection
   const handlePointClick = useCallback((hour: number) => {
-    if (selectedPoint === hour) {
-      // If already selected, start dragging
-      setDraggedPoint(hour);
-      setIsDragging(true);
-    } else {
-      // Select this point
-      setSelectedPoint(hour);
-    }
-  }, [selectedPoint]);
+    if (!hasActiveDecision) return;
 
-  // Handle drag start
-  const handleDragStart = useCallback((hour: number) => {
-    if (!hasActiveDecision) {
-      // If no active decision, don't allow dragging
-      return;
-    }
-    // Store the Y-axis domain at the start of dragging to ensure consistent calculations
-    setDragStartYDomain(calculateYAxisDomain() as [number, number]);
-    setDraggedPoint(hour);
-    setIsDragging(true);
+    // Select the point and show adjustment bar
     setSelectedPoint(hour);
-  }, [hasActiveDecision, calculateYAxisDomain]);
+    setShowAdjustmentBar(true);
+    const currentData = chartData.find(d => d.hour === hour);
+    const originalValue = currentData?.original_prediction || currentData?.predicted_usage || 0;
+    const currentValue = currentData?.predicted_usage || 0;
+    const currentAdjustment = currentValue - originalValue;
+    setAdjustmentValue(currentAdjustment);
 
-  // Handle drag end
-  const handleDragEnd = useCallback(() => {
-    // Update predictions data when drag ends
-    if (draggedPoint !== null) {
-      const pointIndex = chartData.findIndex(item => item.hour === draggedPoint);
+    // 记录数据点点击交互
+    recordInteraction(
+      'UserPrediction',
+      'data_point_click',
+      {
+        hour,
+        action: 'select_point',
+        currentValue: currentData?.predicted_usage
+      }
+    );
+  }, [hasActiveDecision, chartData, recordInteraction]);
+
+  // Handle adjustment slider change
+  const handleAdjustmentChange = useCallback((newAdjustment: number) => {
+    if (selectedPoint === null || !hasActiveDecision) return;
+
+    setAdjustmentValue(newAdjustment);
+
+    // Update chart data immediately
+    setChartData(prevData => {
+      const newData = [...prevData];
+      const pointIndex = newData.findIndex(item => item.hour === selectedPoint);
       if (pointIndex !== -1) {
-        const originalValue = chartData[pointIndex].original_prediction || chartData[pointIndex].predicted_usage;
-        const adjustedValue = chartData[pointIndex].predicted_usage;
+        const originalValue = newData[pointIndex].original_prediction || newData[pointIndex].predicted_usage;
+        const adjustedValue = Math.max(0, originalValue + newAdjustment);
+
+        newData[pointIndex] = {
+          ...newData[pointIndex],
+          predicted_usage: adjustedValue,
+          isAdjusted: newAdjustment !== 0
+        };
 
         // Notify DecisionMaking component of adjustment
-        if (originalValue !== adjustedValue) {
-          onAdjustmentMade?.(draggedPoint, originalValue, adjustedValue);
+        if (newAdjustment !== 0) {
+          onAdjustmentMade?.(selectedPoint, originalValue, adjustedValue);
         }
-
-        const newPredictions = [...predictions];
-        newPredictions[pointIndex] = {
-          ...newPredictions[pointIndex],
-          predicted_usage: chartData[pointIndex].predicted_usage
-        };
-        setPredictions(newPredictions);
-        onPredictionUpdate?.(newPredictions);
       }
-    }
+      return newData;
+    });
 
-    setDraggedPoint(null);
-    setIsDragging(false);
-    setDragStartYDomain(null); // Clear the stored domain
-  }, [draggedPoint, chartData, predictions, onPredictionUpdate, onAdjustmentMade]);
+    // Record interaction
+    recordInteraction(
+      'UserPrediction',
+      'slider_adjustment',
+      {
+        hour: selectedPoint,
+        adjustmentValue: newAdjustment
+      }
+    );
+  }, [selectedPoint, hasActiveDecision, onAdjustmentMade, recordInteraction]);
 
-  // Handle mouse move (dragging) - instant response, no delay
-  const handleMouseMove = useCallback((e: any) => {
-    if (draggedPoint !== null && e && e.activeCoordinate && hasActiveDecision && dragStartYDomain) {
-      const chartHeight = 360; // Chart height
-      const [yMin, yMax] = dragStartYDomain; // Use stored Y-axis range for consistent dragging
-      const marginTop = 20; // Chart top margin
+  // Handle closing adjustment bar
+  const handleCloseAdjustmentBar = useCallback(() => {
+    setShowAdjustmentBar(false);
+    setSelectedPoint(null);
+    setAdjustmentValue(0);
 
-      // Precisely calculate new prediction value - instant response
-      const mouseY = e.activeCoordinate.y;
-      const relativeY = Math.max(0, Math.min(chartHeight, mouseY - marginTop));
-      const valueRatio = 1 - (relativeY / chartHeight); // Invert Y-axis
-      const newValue = yMin + valueRatio * (yMax - yMin);
+    // Record interaction
+    recordInteraction(
+      'UserPrediction',
+      'close_adjustment_bar',
+      {}
+    );
+  }, [recordInteraction]);
 
-      // Allow values beyond current range - don't clamp to current domain
-      const adjustedValue = Math.max(0, Math.round(newValue));
-
-      // Immediately update chartData for instant response
-      setChartData(prevData => {
-        const newData = [...prevData];
-        const pointIndex = newData.findIndex(item => item.hour === draggedPoint);
-        if (pointIndex !== -1 && newData[pointIndex].predicted_usage !== adjustedValue) {
-          newData[pointIndex] = {
-            ...newData[pointIndex],
-            predicted_usage: adjustedValue,
-            isAdjusted: true
-          };
-        }
-        return newData;
-      });
-    }
-  }, [draggedPoint, hasActiveDecision, dragStartYDomain]);
-
-  // Custom dot component with drag support - improved interaction experience
   const CustomDot = (props: any) => {
     const { cx, cy, payload } = props;
     const isAdjusted = payload?.isAdjusted || false;
@@ -305,7 +308,7 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
 
     // Determine interaction capability based on decision status
     const canInteract = hasActiveDecision;
-    const cursorStyle = !canInteract ? 'not-allowed' : (isDragging ? 'grabbing' : 'pointer');
+    const cursorStyle = !canInteract ? 'not-allowed' : 'pointer';
     const opacity = !canInteract ? 0.6 : 1;
 
     return (
@@ -319,7 +322,6 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
           style={{ cursor: cursorStyle }}
           onMouseEnter={() => canInteract && setHoveredPoint(payload.hour)}
           onMouseLeave={() => setHoveredPoint(null)}
-          onMouseDown={() => canInteract && handleDragStart(payload.hour)}
           onClick={() => canInteract && handlePointClick(payload.hour)}
         />
 
@@ -377,7 +379,6 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
           }}
           onMouseEnter={() => canInteract && setHoveredPoint(payload.hour)}
           onMouseLeave={() => setHoveredPoint(null)}
-          onMouseDown={() => canInteract && handleDragStart(payload.hour)}
           onClick={() => canInteract && handlePointClick(payload.hour)}
         />
 
@@ -388,7 +389,7 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
           r={innerRadius}
           fill="#ffffff"
           style={{
-            cursor: isDragging ? 'grabbing' : 'pointer',
+            cursor: 'pointer',
             pointerEvents: 'none' // Avoid interfering with clicks
           }}
         />
@@ -464,13 +465,21 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
         {/* Action buttons moved to top right */}
         <div className="flex gap-2">
           <button
-            onClick={resetPredictions}
+            onClick={() => {
+              resetPredictions();
+              // 记录重置按钮点击
+              recordButtonClick('UserPrediction', 'reset_button', 'Reset');
+            }}
             className="px-3 py-1 text-xs bg-gray-500 text-white border-none rounded cursor-pointer hover:bg-gray-600 transition-colors"
           >
             🔄 Reset
           </button>
           <button
-            onClick={exportResults}
+            onClick={() => {
+              exportResults();
+              // 记录导出按钮点击
+              recordButtonClick('UserPrediction', 'export_button', 'Export');
+            }}
             className="px-3 py-1 text-xs bg-green-500 text-white border-none rounded cursor-pointer hover:bg-green-600 transition-colors"
           >
             📥 Export
@@ -485,9 +494,7 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
             <LineChart
               data={chartData}
               margin={{ top: 20, right: 20, left: 40, bottom: 40 }}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleDragEnd}
-              onMouseLeave={handleDragEnd}
+
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
               <XAxis
@@ -547,27 +554,179 @@ const UserPrediction: React.FC<UserPredictionProps> = ({
             </LineChart>
           </ResponsiveContainer>
 
-          {/* Selected time period indicator - floating above chart */}
-          {selectedPoint !== null && (
-            <div style={{
-              position: 'absolute',
-              top: '10px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              fontSize: '16px',
-              fontWeight: '500',
-              color: '#333',
-              backgroundColor: '#F2F3F5',
-              padding: '6px 12px',
-              borderRadius: '4px',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-              zIndex: 10
-            }}>
-              Currently Selected: {selectedPoint}:00
-            </div>
-          )}
+
         </div>
+
+        {/* 平衡轴调整控件 */}
+        {selectedPoint !== null && hasActiveDecision && showAdjustmentBar && (
+          <div style={{
+            marginTop: '20px',
+            padding: '20px',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '8px',
+            border: '1px solid #e9ecef',
+            position: 'relative'
+          }}>
+            {/* 关闭按钮 */}
+            <button
+              onClick={handleCloseAdjustmentBar}
+              style={{
+                position: 'absolute',
+                top: '8px',
+                right: '8px',
+                width: '24px',
+                height: '24px',
+                border: 'none',
+                borderRadius: '50%',
+                backgroundColor: '#dc3545',
+                color: 'white',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '14px',
+                fontWeight: 'bold',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#c82333';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#dc3545';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+              title="Close adjustment bar"
+            >
+              ×
+            </button>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '15px'
+            }}>
+              {/* 左端标记 */}
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#dc3545',
+                minWidth: '60px',
+                textAlign: 'center'
+              }}>
+                -1000
+              </span>
+
+              {/* 平衡轴滑块 */}
+              <div style={{ position: 'relative', flex: 1, maxWidth: '400px' }}>
+                <input
+                  type="range"
+                  min="-1000"
+                  max="1000"
+                  step="10"
+                  value={adjustmentValue}
+                  onChange={(e) => handleAdjustmentChange(Number(e.target.value))}
+                  style={{
+                    width: '100%',
+                    height: '6px',
+                    borderRadius: '3px',
+                    background: `linear-gradient(to right,
+                      #dc3545 0%,
+                      #dc3545 50%,
+                      #28a745 50%,
+                      #28a745 100%)`,
+                    outline: 'none',
+                    appearance: 'none',
+                    cursor: 'pointer'
+                  }}
+                />
+
+                {/* 中心点标记 */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-2px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '2px',
+                  height: '10px',
+                  backgroundColor: '#6c757d',
+                  borderRadius: '1px'
+                }} />
+
+                {/* 当前数值显示 */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-30px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: adjustmentValue === 0 ? '#6c757d' : (adjustmentValue > 0 ? '#28a745' : '#dc3545'),
+                  backgroundColor: 'white',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  border: '1px solid #dee2e6'
+                }}>
+                  {adjustmentValue > 0 ? '+' : ''}{adjustmentValue}
+                </div>
+              </div>
+
+              {/* 右端标记 */}
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#28a745',
+                minWidth: '60px',
+                textAlign: 'center'
+              }}>
+                +1000
+              </span>
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* 滑块样式 */}
+      <style>{`
+        input[type="range"] {
+          -webkit-appearance: none;
+          appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #007bff;
+          border: 2px solid white;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+          background: #0056b3;
+          transform: scale(1.1);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #007bff;
+          border: 2px solid white;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+          background: #0056b3;
+          transform: scale(1.1);
+        }
+      `}</style>
     </div>
   );
 };

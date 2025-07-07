@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Thermometer, AlertTriangle, ChevronDown } from 'lucide-react';
+import { useUser } from '../context/UserContext';
 import type { WeatherInfo, SpecialEventInfo } from '../types/index.js';
 import ApiService from '../services/api';
 
@@ -14,8 +15,18 @@ const ContextInformation: React.FC<ContextInformationProps> = ({ className = '' 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // 使用UserContext记录交互
+  const { recordViewChange, recordInteraction } = useUser();
+
   useEffect(() => {
     loadContextData();
+
+    // 记录组件加载交互
+    recordInteraction(
+      'ContextInformation',
+      'component_loaded',
+      { initialView: selectedView }
+    );
   }, []);
 
   const loadContextData = async () => {
@@ -100,7 +111,19 @@ const ContextInformation: React.FC<ContextInformationProps> = ({ className = '' 
         <div className="relative">
           <select
             value={selectedView}
-            onChange={(e) => setSelectedView(e.target.value as 'weather' | 'events')}
+            onChange={(e) => {
+              const newValue = e.target.value as 'weather' | 'events';
+              const previousValue = selectedView;
+              setSelectedView(newValue);
+
+              // 记录视图切换交互
+              recordViewChange(
+                'ContextInformation',
+                'dropdown_selection',
+                newValue,
+                previousValue
+              );
+            }}
             className="px-3 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           >
             <option value="weather">Weather Information</option>

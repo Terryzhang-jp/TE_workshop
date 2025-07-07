@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { CheckCircle, Download, Clock, BarChart3, AlertCircle } from 'lucide-react';
+import { useUser } from '../context/UserContext';
+import PredictionComparison from './PredictionComparison';
 import type { UserExperimentData } from '../types/index.js';
 
 interface ExperimentCompletionProps {
   experimentData: UserExperimentData;
   onComplete: () => Promise<void>;
   onCancel: () => void;
+  currentPredictionData?: any[]; // 添加当前预测数据
 }
 
 interface ExperimentStats {
@@ -19,11 +22,16 @@ interface ExperimentStats {
 const ExperimentCompletion: React.FC<ExperimentCompletionProps> = ({
   experimentData,
   onComplete,
-  onCancel
+  onCancel,
+  currentPredictionData = []
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+
+  // 使用UserContext记录交互
+  const { recordButtonClick, recordInteraction } = useUser();
 
   // Calculate experiment statistics
   const calculateStats = (): ExperimentStats => {
@@ -74,11 +82,20 @@ const ExperimentCompletion: React.FC<ExperimentCompletionProps> = ({
   const handleSubmit = async () => {
     if (!showConfirmation) {
       setShowConfirmation(true);
+      // 记录显示确认对话框
+      recordInteraction(
+        'ExperimentCompletion',
+        'show_confirmation',
+        { action: 'complete_experiment' }
+      );
       return;
     }
 
     setIsSubmitting(true);
     setSubmitError(null);
+
+    // 记录最终提交实验
+    recordButtonClick('ExperimentCompletion', 'final_submit', 'Complete Experiment');
 
     try {
       await onComplete();
@@ -91,23 +108,30 @@ const ExperimentCompletion: React.FC<ExperimentCompletionProps> = ({
   const handleCancel = () => {
     if (showConfirmation) {
       setShowConfirmation(false);
+      // 记录取消确认
+      recordButtonClick('ExperimentCompletion', 'cancel_confirmation', 'Back');
     } else {
+      // 记录取消实验完成
+      recordButtonClick('ExperimentCompletion', 'cancel_experiment', 'Cancel');
       onCancel();
     }
   };
 
   const exportData = () => {
+    // 记录导出数据按钮点击
+    recordButtonClick('ExperimentCompletion', 'export_data', 'Export Data');
+
     const dataStr = JSON.stringify(experimentData, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
-    
+
     const link = document.createElement('a');
     link.href = url;
     link.download = `experiment_${experimentData.username}_${experimentData.sessionId}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     URL.revokeObjectURL(url);
   };
 
@@ -302,7 +326,33 @@ const ExperimentCompletion: React.FC<ExperimentCompletionProps> = ({
               Export Data
             </button>
           )}
-          
+
+          {/* 查看对比按钮 - 已禁用 */}
+          {/*
+          <button
+            onClick={() => {
+              setShowComparison(!showComparison);
+              recordButtonClick('ExperimentCompletion', 'toggle_comparison', showComparison ? 'Hide Comparison' : 'Show Comparison');
+            }}
+            style={{
+              padding: '10px 16px',
+              fontSize: '14px',
+              fontWeight: '500',
+              color: '#8b5cf6',
+              backgroundColor: 'white',
+              border: '1px solid #8b5cf6',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <BarChart3 size={14} />
+            {showComparison ? 'Hide Comparison' : 'View vs Reality'}
+          </button>
+          */}
+
           <button
             onClick={handleCancel}
             disabled={isSubmitting}
@@ -355,6 +405,18 @@ const ExperimentCompletion: React.FC<ExperimentCompletionProps> = ({
           </button>
         </div>
       </div>
+
+      {/* 预测对比组件 - 已禁用 */}
+      {/*
+      {showComparison && currentPredictionData.length > 0 && (
+        <div style={{ marginTop: '24px' }}>
+          <PredictionComparison
+            userPredictions={currentPredictionData}
+            className="border-t pt-6"
+          />
+        </div>
+      )}
+      */}
 
       {/* CSS Animation */}
       <style>{`

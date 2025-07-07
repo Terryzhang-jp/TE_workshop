@@ -5,7 +5,7 @@ API v1 Router Configuration
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import data, prediction, explanation, adjustment, users
+from app.api.v1.endpoints import data, prediction, explanation, adjustment, users, csv_export
 
 api_router = APIRouter()
 
@@ -46,6 +46,14 @@ api_router.include_router(
     users.router,
     prefix="/users",
     tags=["users"],
+    responses={404: {"description": "Not found"}}
+)
+
+# CSV导出相关端点
+api_router.include_router(
+    csv_export.router,
+    prefix="/csv",
+    tags=["csv-export"],
     responses={404: {"description": "Not found"}}
 )
 

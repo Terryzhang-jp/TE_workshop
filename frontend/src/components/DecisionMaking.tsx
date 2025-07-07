@@ -8,11 +8,13 @@ interface DecisionMakingProps {
   onAdjustmentApplied?: (adjustedPredictions: PredictionResult[]) => void;
   onDecisionStatusChange?: (hasActiveDecision: boolean) => void;
   onCompleteExperiment?: () => void;
+  currentPredictionData?: any[]; // 添加当前预测数据
 }
 
 const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
   onDecisionStatusChange,
-  onCompleteExperiment
+  onCompleteExperiment,
+  currentPredictionData = []
 }, ref) => {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [activeDecision, setActiveDecision] = useState<Decision | null>(null);
@@ -24,7 +26,7 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
   const [success, setSuccess] = useState<string | null>(null);
 
   // 使用UserContext
-  const { addDecision, updateDecision, addAdjustment, addInteraction } = useUser();
+  const { addDecision, addDecisionWithPredictionData, updateDecision, addAdjustment, addInteraction } = useUser();
 
 
 
@@ -113,15 +115,19 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
     setDecisions([...updatedDecisions, newDecision]);
     setActiveDecision(newDecision);
 
-    // 记录到UserContext
-    addDecision(newDecision);
+    // 记录到UserContext，包含当前预测数据
+    addDecisionWithPredictionData(newDecision, currentPredictionData);
     addInteraction({
       id: `interaction_${Date.now()}`,
       type: 'decision_action',
       component: 'DecisionMaking',
       action: 'create_decision',
       timestamp: new Date().toISOString(),
-      metadata: { decisionId: newDecision.id, label: newDecision.label }
+      metadata: {
+        decisionId: newDecision.id,
+        label: newDecision.label,
+        predictionDataPoints: currentPredictionData.length
+      }
     });
 
     setNewDecisionLabel('');
@@ -194,7 +200,12 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
 
 
   return (
-    <div className="module-box">
+    <div className="module-box decision-making-scroll" style={{
+      maxHeight: '100%',
+      overflowY: 'auto',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -205,7 +216,14 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
 
         {/* Complete Experiment Button */}
         <button
-          onClick={onCompleteExperiment}
+          onClick={() => {
+            console.log('Complete Experiment button clicked');
+            if (onCompleteExperiment) {
+              onCompleteExperiment();
+            } else {
+              console.log('onCompleteExperiment is not defined');
+            }
+          }}
           style={{
             padding: '8px 16px',
             fontSize: '12px',
@@ -469,7 +487,13 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
           <div style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '8px', color: '#495057' }}>
             Decision History
           </div>
-          <div style={{ maxHeight: '120px', overflowY: 'auto' }}>
+          <div className="decision-making-scroll" style={{
+            maxHeight: '200px',
+            overflowY: 'auto',
+            paddingRight: '4px',
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#cbd5e0 #f7fafc'
+          }}>
             {decisions.map((decision) => (
               <div
                 key={decision.id}
@@ -507,7 +531,23 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
         </div>
       )}
 
-
+      {/* 自定义滚动条样式 */}
+      <style>{`
+        .decision-making-scroll::-webkit-scrollbar {
+          width: 6px;
+        }
+        .decision-making-scroll::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 3px;
+        }
+        .decision-making-scroll::-webkit-scrollbar-thumb {
+          background: #cbd5e0;
+          border-radius: 3px;
+        }
+        .decision-making-scroll::-webkit-scrollbar-thumb:hover {
+          background: #a0aec0;
+        }
+      `}</style>
     </div>
   );
 });

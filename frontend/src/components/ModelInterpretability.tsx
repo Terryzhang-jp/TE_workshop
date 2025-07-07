@@ -15,6 +15,7 @@ import {
   Cell
 } from 'recharts';
 import { Brain, TrendingUp, Clock, Thermometer, Calendar, Hash, Maximize2, X } from 'lucide-react';
+import { useUser } from '../context/UserContext';
 
 // Declare global Plotly from CDN
 declare global {
@@ -138,6 +139,9 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 使用UserContext记录交互
+  const { recordViewChange, recordButtonClick, recordModalInteraction, recordInputInteraction } = useUser();
 
   const plotRef = useRef<HTMLDivElement>(null);
   const modalPlotRef = useRef<HTMLDivElement>(null);
@@ -368,6 +372,8 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isModalOpen) {
         setIsModalOpen(false);
+        // 记录ESC键关闭模态框
+        recordModalInteraction('ModelInterpretability', 'close', 'fullscreen_view');
       }
     };
 
@@ -543,7 +549,18 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
           {features.map(({ key, name, icon: Icon }) => (
             <button
               key={key}
-              onClick={() => setSelectedFeature(key)}
+              onClick={() => {
+                const previousFeature = selectedFeature;
+                setSelectedFeature(key);
+
+                // 记录特征标签页切换交互
+                recordViewChange(
+                  'ModelInterpretability',
+                  'feature_tab',
+                  key,
+                  previousFeature
+                );
+              }}
               className={`flex items-center px-3 py-2 text-xs font-medium border-b-2 transition-colors ${
                 selectedFeature === key
                   ? 'border-blue-500 text-blue-600'
@@ -559,7 +576,11 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
         {/* 放大按钮 - 只在3D特征时显示 */}
         {is3DFeature() && (
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              setShowModal(true);
+              // 记录3D可视化放大按钮点击
+              recordModalInteraction('ModelInterpretability', 'open', '3d_visualization');
+            }}
             className="flex items-center px-3 py-1 text-xs font-medium bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             title="Enlarge 3D Visualization"
           >
@@ -661,7 +682,11 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
           justifyContent: 'center',
           padding: '20px'
         }}
-        onClick={() => setShowModal(false)}
+        onClick={() => {
+          setShowModal(false);
+          // 记录3D可视化模态框关闭（背景点击）
+          recordModalInteraction('ModelInterpretability', 'close', '3d_visualization');
+        }}
       >
         <div
           style={{
@@ -698,7 +723,11 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
               ]?.title}
             </h3>
             <button
-              onClick={() => setShowModal(false)}
+              onClick={() => {
+                setShowModal(false);
+                // 记录3D可视化模态框关闭（X按钮）
+                recordModalInteraction('ModelInterpretability', 'close', '3d_visualization');
+              }}
               style={{
                 padding: '8px',
                 backgroundColor: 'transparent',
@@ -761,7 +790,18 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
             <h3 className="text-sm font-medium text-gray-800">LIME Local Explanation</h3>
             <select
               value={selectedHour}
-              onChange={(e) => setSelectedHour(parseInt(e.target.value))}
+              onChange={(e) => {
+                const newHour = parseInt(e.target.value);
+                setSelectedHour(newHour);
+
+                // 记录LIME小时选择交互
+                recordInputInteraction(
+                  'ModelInterpretability',
+                  'lime_hour_selector',
+                  newHour.toString(),
+                  'selected_hour'
+                );
+              }}
               className="px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               {Array.from({length: 24}, (_, i) => (
@@ -861,14 +901,30 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
             <label className="text-xs text-gray-600">Analysis Method:</label>
             <select
               value={selectedMethod}
-              onChange={(e) => setSelectedMethod(e.target.value as 'SHAP' | 'LIME')}
+              onChange={(e) => {
+                const newMethod = e.target.value as 'SHAP' | 'LIME';
+                const previousMethod = selectedMethod;
+                setSelectedMethod(newMethod);
+
+                // 记录分析方法切换交互
+                recordViewChange(
+                  'ModelInterpretability',
+                  'analysis_method',
+                  newMethod,
+                  previousMethod
+                );
+              }}
               className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               <option value="SHAP">SHAP - Global Analysis</option>
               <option value="LIME">LIME - Local Explanation</option>
             </select>
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setIsModalOpen(true);
+                // 记录主模态框打开
+                recordModalInteraction('ModelInterpretability', 'open', 'fullscreen_view');
+              }}
               style={{
                 background: 'none',
                 border: 'none',
@@ -895,7 +951,18 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
             <label className="text-xs text-gray-600">View Type:</label>
             <div className="flex space-x-2">
               <button
-                onClick={() => setSelectedSHAPView('importance')}
+                onClick={() => {
+                  const previousView = selectedSHAPView;
+                  setSelectedSHAPView('importance');
+
+                  // 记录SHAP视图切换交互
+                  recordViewChange(
+                    'ModelInterpretability',
+                    'shap_view_type',
+                    'importance',
+                    previousView
+                  );
+                }}
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   selectedSHAPView === 'importance'
                     ? 'bg-blue-600 text-white'
@@ -905,7 +972,18 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
                 Feature Importance
               </button>
               <button
-                onClick={() => setSelectedSHAPView('dependence')}
+                onClick={() => {
+                  const previousView = selectedSHAPView;
+                  setSelectedSHAPView('dependence');
+
+                  // 记录SHAP视图切换交互
+                  recordViewChange(
+                    'ModelInterpretability',
+                    'shap_view_type',
+                    'dependence',
+                    previousView
+                  );
+                }}
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   selectedSHAPView === 'dependence'
                     ? 'bg-blue-600 text-white'
@@ -960,7 +1038,11 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
             justifyContent: 'center',
             padding: '20px'
           }}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+            setIsModalOpen(false);
+            // 记录主模态框关闭（背景点击）
+            recordModalInteraction('ModelInterpretability', 'close', 'fullscreen_view');
+          }}
         >
           <div
             style={{
@@ -989,7 +1071,11 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
                 Model Interpretability Analysis - Detailed View
               </h2>
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  setIsModalOpen(false);
+                  // 记录主模态框关闭（X按钮）
+                  recordModalInteraction('ModelInterpretability', 'close', 'fullscreen_view');
+                }}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -1028,7 +1114,19 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
                 <label style={{ fontSize: '14px', color: '#6b7280' }}>Analysis Method:</label>
                 <select
                   value={selectedMethod}
-                  onChange={(e) => setSelectedMethod(e.target.value as 'SHAP' | 'LIME')}
+                  onChange={(e) => {
+                    const newMethod = e.target.value as 'SHAP' | 'LIME';
+                    const previousMethod = selectedMethod;
+                    setSelectedMethod(newMethod);
+
+                    // 记录分析方法切换交互（模态框中）
+                    recordViewChange(
+                      'ModelInterpretability',
+                      'analysis_method_modal',
+                      newMethod,
+                      previousMethod
+                    );
+                  }}
                   style={{
                     fontSize: '14px',
                     padding: '6px 8px',
@@ -1098,7 +1196,18 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
                   ].map(({ key, name, icon: Icon }) => (
                     <button
                       key={key}
-                      onClick={() => setSelectedFeature(key)}
+                      onClick={() => {
+                        const previousFeature = selectedFeature;
+                        setSelectedFeature(key);
+
+                        // 记录特征标签页切换交互（模态框中）
+                        recordViewChange(
+                          'ModelInterpretability',
+                          'feature_tab_modal',
+                          key,
+                          previousFeature
+                        );
+                      }}
                       style={{
                         display: 'flex',
                         alignItems: 'center',

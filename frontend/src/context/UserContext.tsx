@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { UserData, UserExperimentData, UserAdjustment, UserInteraction, Decision } from '../types/index.js';
 import ApiService from '../services/api';
 
@@ -6,21 +6,29 @@ interface UserContextType {
   // 用户状态
   currentUser: UserData | null;
   experimentData: UserExperimentData | null;
-  
+
   // 用户操作
   loginUser: (userData: UserData) => void;
   logoutUser: () => void;
-  
+
   // 实验数据操作
   addDecision: (decision: Decision) => void;
+  addDecisionWithPredictionData: (decision: Decision, predictionData: any[]) => void;
   updateDecision: (decisionId: string, updates: Partial<Decision>) => void;
   addAdjustment: (adjustment: UserAdjustment) => void;
   addInteraction: (interaction: UserInteraction) => void;
-  
+
+  // 便捷交互记录方法
+  recordInteraction: (component: string, action: string, metadata?: any, duration?: number) => void;
+  recordViewChange: (component: string, viewType: string, newValue: string, previousValue?: string) => void;
+  recordButtonClick: (component: string, buttonType: string, buttonLabel?: string) => void;
+  recordModalInteraction: (component: string, action: 'open' | 'close', modalType?: string) => void;
+  recordInputInteraction: (component: string, inputType: string, value: string, inputLabel?: string) => void;
+
   // 实验控制
   startExperiment: () => void;
   completeExperiment: () => Promise<void>;
-  
+
   // 数据获取
   getExperimentSummary: () => ExperimentSummary;
 }
@@ -123,10 +131,33 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   const addDecision = (decision: Decision) => {
     if (!experimentData) return;
-    
+
     setExperimentData(prev => prev ? {
       ...prev,
       decisions: [...prev.decisions, decision]
+    } : null);
+  };
+
+  // 添加决策时保存完整的24小时预测数据
+  const addDecisionWithPredictionData = (decision: Decision, predictionData: any[]) => {
+    if (!experimentData) return;
+
+    // 创建包含完整24小时数据的决策记录
+    const decisionWithData = {
+      ...decision,
+      prediction_data: predictionData.map(item => ({
+        hour: item.hour,
+        original_prediction: item.original_prediction || item.predicted_usage,
+        current_prediction: item.predicted_usage,
+        confidence_min: item.confidence_min,
+        confidence_max: item.confidence_max,
+        is_adjusted: item.isAdjusted || false
+      }))
+    };
+
+    setExperimentData(prev => prev ? {
+      ...prev,
+      decisions: [...prev.decisions, decisionWithData]
     } : null);
   };
 
@@ -152,11 +183,80 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   const addInteraction = (interaction: UserInteraction) => {
     if (!experimentData) return;
-    
+
     setExperimentData(prev => prev ? {
       ...prev,
       interactions: [...prev.interactions, interaction]
     } : null);
+  };
+
+  // 便捷的交互记录方法
+  const recordInteraction = (
+    component: string,
+    action: string,
+    metadata?: any,
+    duration?: number
+  ) => {
+    addInteraction({
+      id: `interaction_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      type: 'component_interaction',
+      component,
+      action,
+      timestamp: new Date().toISOString(),
+      duration: duration,
+      metadata: metadata || {}
+    });
+  };
+
+  // 记录组件视图切换
+  const recordViewChange = (
+    component: string,
+    viewType: string,
+    newValue: string,
+    previousValue?: string
+  ) => {
+    recordInteraction(component, 'view_change', {
+      viewType,
+      newValue,
+      previousValue
+    });
+  };
+
+  // 记录按钮点击
+  const recordButtonClick = (
+    component: string,
+    buttonType: string,
+    buttonLabel?: string
+  ) => {
+    recordInteraction(component, 'button_click', {
+      buttonType,
+      buttonLabel
+    });
+  };
+
+  // 记录模态框交互
+  const recordModalInteraction = (
+    component: string,
+    action: 'open' | 'close',
+    modalType?: string
+  ) => {
+    recordInteraction(component, `modal_${action}`, {
+      modalType
+    });
+  };
+
+  // 记录输入交互
+  const recordInputInteraction = (
+    component: string,
+    inputType: string,
+    value: string,
+    inputLabel?: string
+  ) => {
+    recordInteraction(component, 'input_change', {
+      inputType,
+      value,
+      inputLabel
+    });
   };
 
   const startExperiment = () => {
@@ -242,9 +342,15 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     loginUser,
     logoutUser,
     addDecision,
+    addDecisionWithPredictionData,
     updateDecision,
     addAdjustment,
     addInteraction,
+    recordInteraction,
+    recordViewChange,
+    recordButtonClick,
+    recordModalInteraction,
+    recordInputInteraction,
     startExperiment,
     completeExperiment,
     getExperimentSummary

@@ -1,0 +1,261 @@
+{
+  "submission_id": "submission_1751888690_39771c82",
+  "submitted_at": "2025-07-07T11:44:50.023282+00:00",
+  "experiment_data": {
+    "user_id": "user_1751888641_0b8352fa",
+    "username": "test123",
+    "session_id": "session_1751888641_87f70e6c",
+    "start_time": "2025-07-07 11:44:01.177000+00:00",
+    "decisions": [
+      {
+        "id": "decision_1751888674810",
+        "label": "1313113131313",
+        "reason": "1313131313131",
+        "status": "completed",
+        "adjustments": [],
+        "created_at": "2025-07-07 11:44:34.810000+00:00",
+        "completed_at": "2025-07-07 11:44:39.895000+00:00"
+      }
+    ],
+    "adjustments": [
+      {
+        "id": "adjustment_1751888677612_18",
+        "hour": 18,
+        "original_value": 4193.0,
+        "adjusted_value": 3431.0,
+        "timestamp": "2025-07-07 11:44:37.612000+00:00",
+        "decision_id": "decision_1751888674810"
+      }
+    ],
+    "interactions": [
+      {
+        "id": "interaction_1751888641181_ocy5w79gs",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 11:44:01.181000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751888641181_vvf23kl31",
+        "type": "component_interaction",
+        "component": "ContextInformation",
+        "action": "component_loaded",
+        "timestamp": "2025-07-07 11:44:01.181000+00:00",
+        "duration": null,
+        "metadata": {
+          "initialView": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751888646841_x6c9bvm5z",
+        "type": "component_interaction",
+        "component": "DataAnalysis",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:06.841000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "view_type",
+          "newValue": "weather",
+          "previousValue": "electricity"
+        }
+      },
+      {
+        "id": "interaction_1751888647484_zqnais78h",
+        "type": "component_interaction",
+        "component": "DataAnalysis",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:07.484000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "view_type",
+          "newValue": "electricity",
+          "previousValue": "weather"
+        }
+      },
+      {
+        "id": "interaction_1751888649532_6jmdnsvhr",
+        "type": "component_interaction",
+        "component": "DataAnalysis",
+        "action": "input_change",
+        "timestamp": "2025-07-07 11:44:09.532000+00:00",
+        "duration": null,
+        "metadata": {
+          "inputType": "date_input",
+          "value": "2021-12-22",
+          "inputLabel": "start_date"
+        }
+      },
+      {
+        "id": "interaction_1751888651552_ngu8thqgb",
+        "type": "component_interaction",
+        "component": "DataAnalysis",
+        "action": "input_change",
+        "timestamp": "2025-07-07 11:44:11.552000+00:00",
+        "duration": null,
+        "metadata": {
+          "inputType": "date_input",
+          "value": "2022-01-04",
+          "inputLabel": "end_date"
+        }
+      },
+      {
+        "id": "interaction_1751888653941_7q35u5p9j",
+        "type": "component_interaction",
+        "component": "DataAnalysis",
+        "action": "modal_open",
+        "timestamp": "2025-07-07 11:44:13.941000+00:00",
+        "duration": null,
+        "metadata": {
+          "modalType": "fullscreen_view"
+        }
+      },
+      {
+        "id": "interaction_1751888657606_cuwp06i4x",
+        "type": "component_interaction",
+        "component": "DataAnalysis",
+        "action": "modal_close",
+        "timestamp": "2025-07-07 11:44:17.606000+00:00",
+        "duration": null,
+        "metadata": {
+          "modalType": "fullscreen_view"
+        }
+      },
+      {
+        "id": "interaction_1751888659132_fwek4e8oq",
+        "type": "component_interaction",
+        "component": "ModelInterpretability",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:19.132000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "shap_view_type",
+          "newValue": "dependence",
+          "previousValue": "importance"
+        }
+      },
+      {
+        "id": "interaction_1751888660145_oju7fpr7f",
+        "type": "component_interaction",
+        "component": "ModelInterpretability",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:20.145000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "feature_tab",
+          "newValue": "Temperature_Hour",
+          "previousValue": "Hour"
+        }
+      },
+      {
+        "id": "interaction_1751888660672_vaaekf9hr",
+        "type": "component_interaction",
+        "component": "ModelInterpretability",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:20.672000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "feature_tab",
+          "newValue": "Temperature_Hour",
+          "previousValue": "Temperature_Hour"
+        }
+      },
+      {
+        "id": "interaction_1751888661251_12ipk7drc",
+        "type": "component_interaction",
+        "component": "ModelInterpretability",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:21.251000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "feature_tab",
+          "newValue": "Day_of_Week_Hour",
+          "previousValue": "Temperature_Hour"
+        }
+      },
+      {
+        "id": "interaction_1751888665166_x9iiuubdp",
+        "type": "component_interaction",
+        "component": "ModelInterpretability",
+        "action": "view_change",
+        "timestamp": "2025-07-07 11:44:25.166000+00:00",
+        "duration": null,
+        "metadata": {
+          "viewType": "feature_tab",
+          "newValue": "Week_of_Month_Hour",
+          "previousValue": "Day_of_Week_Hour"
+        }
+      },
+      {
+        "id": "interaction_1751888674810",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "create_decision",
+        "timestamp": "2025-07-07 11:44:34.810000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751888674810",
+          "label": "1313113131313",
+          "predictionDataPoints": 24
+        }
+      },
+      {
+        "id": "interaction_1751888677612",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "add_adjustment",
+        "timestamp": "2025-07-07 11:44:37.612000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751888674810",
+          "hour": 18,
+          "originalValue": 4193,
+          "adjustedValue": 3431,
+          "adjustmentChange": -762
+        }
+      },
+      {
+        "id": "interaction_1751888679895",
+        "type": "decision_action",
+        "component": "DecisionMaking",
+        "action": "complete_decision",
+        "timestamp": "2025-07-07 11:44:39.895000+00:00",
+        "duration": null,
+        "metadata": {
+          "decisionId": "decision_1751888674810",
+          "adjustmentCount": 1
+        }
+      },
+      {
+        "id": "interaction_1751888684121_1mw6onbka",
+        "type": "component_interaction",
+        "component": "ExperimentCompletion",
+        "action": "show_confirmation",
+        "timestamp": "2025-07-07 11:44:44.121000+00:00",
+        "duration": null,
+        "metadata": {
+          "action": "complete_experiment"
+        }
+      }
+    ],
+    "completion_time": "2025-07-07 11:44:50.021610+00:00",
+    "status": "completed"
+  },
+  "experiment_summary": {
+    "total_decisions": 1,
+    "total_adjustments": 1,
+    "total_interactions": 17,
+    "experiment_duration": 0,
+    "status": "completed",
+    "adjustment_statistics": {
+      "total_adjustments": 1,
+      "hours_adjusted": 1,
+      "average_adjustment": 762.0,
+      "max_adjustment": 762.0,
+      "most_adjusted_hour": 18
+    }
+  }
+}

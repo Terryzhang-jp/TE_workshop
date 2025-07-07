@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, AlertCircle, CheckCircle } from 'lucide-react';
+import ComparisonPreview from './components/ComparisonPreview';
+import ExperimentResultsPage from './components/ExperimentResultsPage';
 import ExperimentCover from './components/ExperimentCover';
 import UserLogin from './components/UserLogin';
 import ExperimentCompletion from './components/ExperimentCompletion';
@@ -21,7 +23,11 @@ interface ScreenDimensions {
 
 // 内部应用组件，使用UserContext
 function AppContent() {
+  // 检查是否是预览模式
+  const isPreviewMode = window.location.search.includes('preview=comparison');
+
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
+  const [currentPredictionData, setCurrentPredictionData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [systemStatus, setSystemStatus] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -32,6 +38,7 @@ function AppContent() {
   // 用户状态管理 - 使用UserContext
   const [showUserLogin, setShowUserLogin] = useState(false);
   const [showExperimentCompletion, setShowExperimentCompletion] = useState(false);
+  const [showResultsPage, setShowResultsPage] = useState(false);
 
   // 使用UserContext
   const {
@@ -112,6 +119,10 @@ function AppContent() {
     }
   };
 
+  const handlePredictionDataChange = (data: any[]) => {
+    setCurrentPredictionData(data);
+  };
+
   const handleStartExperiment = () => {
     setShowExperiment(true);
   };
@@ -145,8 +156,24 @@ function AppContent() {
 
   // 处理完成实验
   const handleCompleteExperiment = () => {
+    console.log('handleCompleteExperiment called');
+    console.log('experimentData:', experimentData);
+    console.log('currentPredictionData:', currentPredictionData);
+    console.log('currentUser:', currentUser);
+
+    if (!currentUser) {
+      alert('Please login first to complete the experiment!');
+      setShowUserLogin(true);
+      return;
+    }
+
     if (experimentData) {
+      console.log('Setting showExperimentCompletion to true');
       setShowExperimentCompletion(true);
+    } else {
+      console.log('No experimentData available - this should not happen after login');
+      alert('Experiment data not found. Please try logging in again.');
+      setShowUserLogin(true);
     }
   };
 
@@ -161,9 +188,9 @@ function AppContent() {
       await completeUserExperiment();
       console.log('Experiment submitted successfully');
 
-      // 实验完成后重置状态
+      // 实验完成后跳转到结果页面
       setShowExperimentCompletion(false);
-      setShowExperiment(false);
+      setShowResultsPage(true);
 
     } catch (error) {
       console.error('Failed to submit experiment:', error);
@@ -175,6 +202,30 @@ function AppContent() {
   const handleCancelCompletion = () => {
     setShowExperimentCompletion(false);
   };
+
+  // 从结果页面返回
+  const handleBackFromResults = () => {
+    setShowResultsPage(false);
+    setShowExperiment(false);
+    setShowUserLogin(false);
+  };
+
+  // 预览模式
+  if (isPreviewMode) {
+    return <ComparisonPreview />;
+  }
+
+  // 显示结果页面
+  if (showResultsPage && experimentData) {
+    return (
+      <ExperimentResultsPage
+        userPredictions={currentPredictionData}
+        userAdjustments={experimentData.adjustments || []}
+        experimentData={experimentData}
+        onBack={handleBackFromResults}
+      />
+    );
+  }
 
   // 修复布局样式计算
   const getLayoutStyle = () => {
@@ -227,10 +278,18 @@ function AppContent() {
   }
 
   // 显示实验完成界面
+  console.log('Checking ExperimentCompletion display:', {
+    showExperimentCompletion,
+    hasExperimentData: !!experimentData,
+    currentPredictionDataLength: currentPredictionData.length
+  });
+
   if (showExperimentCompletion && experimentData) {
+    console.log('Rendering ExperimentCompletion component');
     return (
       <ExperimentCompletion
         experimentData={experimentData}
+        currentPredictionData={currentPredictionData}
         onComplete={handleExperimentSubmission}
         onCancel={handleCancelCompletion}
       />
@@ -268,6 +327,7 @@ function AppContent() {
             onPredictionUpdate={handlePredictionUpdate}
             hasActiveDecision={hasActiveDecision}
             onAdjustmentMade={handleAdjustmentMade}
+            onPredictionDataChange={handlePredictionDataChange}
           />
         </div>
 
@@ -275,6 +335,7 @@ function AppContent() {
           <DecisionMaking
             ref={setDecisionMakingRef}
             predictions={predictions}
+            currentPredictionData={currentPredictionData}
             onAdjustmentApplied={handleAdjustmentApplied}
             onDecisionStatusChange={setHasActiveDecision}
             onCompleteExperiment={handleCompleteExperiment}
