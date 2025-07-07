@@ -47,6 +47,13 @@ class UserAdjustment(BaseModel):
     adjusted_value: float
     timestamp: str
 
+class UserInteraction(BaseModel):
+    interaction_id: str
+    component: str
+    action_type: str
+    action_details: Dict
+    timestamp: str
+
 class StandardResponse(BaseModel):
     success: bool
     data: Optional[Dict] = None
@@ -87,6 +94,7 @@ async def user_login(request: Dict):
         "user_session": user_session,
         "decisions": [],
         "adjustments": [],
+        "interactions": [],
         "experiment_start_time": datetime.now().isoformat(),
         "final_predictions": []
     }
@@ -189,6 +197,37 @@ async def create_user_adjustment(request: Dict):
         message="调整创建成功"
     )
 
+@app.post("/api/v1/user/interaction")
+async def record_user_interaction(request: Dict):
+    session_id = request.get("session_id")
+    component = request.get("component")
+    action_type = request.get("action_type")
+    action_details = request.get("action_details", {})
+
+    if session_id not in user_experiments:
+        raise HTTPException(status_code=404, detail="会话不存在")
+
+    if not component or not action_type:
+        raise HTTPException(status_code=400, detail="组件名称和操作类型不能为空")
+
+    interaction_id = f"int_{int(datetime.now().timestamp())}_{uuid.uuid4().hex[:8]}"
+
+    user_interaction = UserInteraction(
+        interaction_id=interaction_id,
+        component=component,
+        action_type=action_type,
+        action_details=action_details,
+        timestamp=datetime.now().isoformat()
+    )
+
+    user_experiments[session_id]["interactions"].append(user_interaction)
+
+    return StandardResponse(
+        success=True,
+        data=user_interaction.dict(),
+        message="交互记录成功"
+    )
+
 @app.post("/api/v1/user/complete-experiment")
 async def complete_experiment(request: Dict):
     session_id = request.get("session_id")
@@ -210,6 +249,7 @@ async def complete_experiment(request: Dict):
         "experiment_end_time": experiment_end_time,
         "decisions": [d.dict() if hasattr(d, 'dict') else d for d in experiment_data["decisions"]],
         "adjustments": [a.dict() if hasattr(a, 'dict') else a for a in experiment_data["adjustments"]],
+        "interactions": [i.dict() if hasattr(i, 'dict') else i for i in experiment_data["interactions"]],
         "final_predictions": final_predictions,
         "experiment_duration_minutes": 0  # 简化计算
     }
@@ -219,7 +259,18 @@ async def complete_experiment(request: Dict):
     
     with open(result_filename, 'w', encoding='utf-8') as f:
         json.dump(experiment_result, f, ensure_ascii=False, indent=2)
-    
+
+    # 自动转换为CSV
+    try:
+        import sys
+        sys.path.append('scripts')
+        from json_to_csv_converter import ExperimentDataConverter
+        converter = ExperimentDataConverter()
+        converter.convert_to_csv()
+        print(f"✅ 自动转换CSV完成")
+    except Exception as e:
+        print(f"⚠️ CSV转换失败: {e}")
+
     # 清理会话数据
     if session_id in user_sessions:
         del user_sessions[session_id]

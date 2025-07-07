@@ -1,0 +1,148 @@
+{
+  "user_id": "user_张三_1751885572",
+  "username": "张三",
+  "session_id": "4a4221f4-961e-49c0-a5b0-5aecbccfd2ac",
+  "experiment_start_time": "2025-07-07T10:52:52.236150",
+  "experiment_end_time": "2025-07-07T11:15:30.445123",
+  "experiment_duration_minutes": 22.63,
+  "decisions": [
+    {
+      "decision_id": "decision_1751885800_a1b2c3d4",
+      "label": "调整早高峰时段电力预测以应对极寒天气",
+      "reason": "根据天气预报，明天将有-15°C的极寒天气，预计早上6-9点供暖需求会大幅增加，需要上调预测值",
+      "status": "completed",
+      "created_at": "2025-07-07T10:56:40.123456",
+      "completed_at": "2025-07-07T11:05:20.789012"
+    },
+    {
+      "decision_id": "decision_1751886100_e5f6g7h8",
+      "label": "优化晚高峰时段预测考虑节假日因素",
+      "reason": "考虑到明天是周五且临近春节，预计晚高峰时段居民用电会有所增加，商业用电可能减少",
+      "status": "completed",
+      "created_at": "2025-07-07T11:05:00.234567",
+      "completed_at": "2025-07-07T11:12:15.345678"
+    },
+    {
+      "decision_id": "decision_1751886400_i9j0k1l2",
+      "label": "最终微调深夜时段预测值",
+      "reason": "基于历史数据分析，深夜时段的基础负荷可能被低估了，需要适当上调",
+      "status": "active",
+      "created_at": "2025-07-07T11:12:20.456789",
+      "completed_at": null
+    }
+  ],
+  "adjustments": [
+    {
+      "adjustment_id": "adj_1751885850_m3n4o5p6",
+      "decision_id": "decision_1751885800_a1b2c3d4",
+      "hour": 6,
+      "original_value": 3200.5,
+      "adjusted_value": 3650.0,
+      "timestamp": "2025-07-07T10:57:30.123456"
+    },
+    {
+      "adjustment_id": "adj_1751885890_q7r8s9t0",
+      "decision_id": "decision_1751885800_a1b2c3d4",
+      "hour": 7,
+      "original_value": 3450.2,
+      "adjusted_value": 3850.0,
+      "timestamp": "2025-07-07T10:58:10.234567"
+    },
+    {
+      "adjustment_id": "adj_1751885920_u1v2w3x4",
+      "decision_id": "decision_1751885800_a1b2c3d4",
+      "hour": 8,
+      "original_value": 3380.8,
+      "adjusted_value": 3750.0,
+      "timestamp": "2025-07-07T10:58:40.345678"
+    },
+    {
+      "adjustment_id": "adj_1751886150_y5z6a7b8",
+      "decision_id": "decision_1751886100_e5f6g7h8",
+      "hour": 18,
+      "original_value": 3800.3,
+      "adjusted_value": 3950.0,
+      "timestamp": "2025-07-07T11:05:50.456789"
+    },
+    {
+      "adjustment_id": "adj_1751886180_c9d0e1f2",
+      "decision_id": "decision_1751886100_e5f6g7h8",
+      "hour": 19,
+      "original_value": 3750.7,
+      "adjusted_value": 3900.0,
+      "timestamp": "2025-07-07T11:06:20.567890"
+    },
+    {
+      "adjustment_id": "adj_1751886450_g3h4i5j6",
+      "decision_id": "decision_1751886400_i9j0k1l2",
+      "hour": 23,
+      "original_value": 2100.4,
+      "adjusted_value": 2250.0,
+      "timestamp": "2025-07-07T11:13:10.678901"
+    },
+    {
+      "adjustment_id": "adj_1751886480_k7l8m9n0",
+      "decision_id": "decision_1751886400_i9j0k1l2",
+      "hour": 0,
+      "original_value": 1950.2,
+      "adjusted_value": 2100.0,
+      "timestamp": "2025-07-07T11:13:40.789012"
+    }
+  ],
+  "final_predictions": [
+    {
+      "hour": 0,
+      "predicted_usage": 2100.0,
+      "confidence_interval": [1950.0, 2250.0],
+      "original_prediction": 1950.2
+    },
+    {
+      "hour": 1,
+      "predicted_usage": 1850.5,
+      "confidence_interval": [1700.0, 2000.0],
+      "original_prediction": 1850.5
+    },
+    {
+      "hour": 2,
+      "predicted_usage": 1750.3,
+      "confidence_interval": [1600.0, 1900.0],
+      "original_prediction": 1750.3
+    },
+    {
+      "hour": 6,
+      "predicted_usage": 3650.0,
+      "confidence_interval": [3400.0, 3900.0],
+      "original_prediction": 3200.5
+    },
+    {
+      "hour": 7,
+      "predicted_usage": 3850.0,
+      "confidence_interval": [3600.0, 4100.0],
+      "original_prediction": 3450.2
+    },
+    {
+      "hour": 8,
+      "predicted_usage": 3750.0,
+      "confidence_interval": [3500.0, 4000.0],
+      "original_prediction": 3380.8
+    },
+    {
+      "hour": 18,
+      "predicted_usage": 3950.0,
+      "confidence_interval": [3700.0, 4200.0],
+      "original_prediction": 3800.3
+    },
+    {
+      "hour": 19,
+      "predicted_usage": 3900.0,
+      "confidence_interval": [3650.0, 4150.0],
+      "original_prediction": 3750.7
+    },
+    {
+      "hour": 23,
+      "predicted_usage": 2250.0,
+      "confidence_interval": [2100.0, 2400.0],
+      "original_prediction": 2100.4
+    }
+  ]
+}

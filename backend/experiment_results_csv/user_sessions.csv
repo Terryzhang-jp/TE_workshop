@@ -1,0 +1,2 @@
+user_id,username,session_id,experiment_start_time,experiment_end_time,experiment_duration_minutes,source_file,total_decisions,total_adjustments,total_interactions,total_predictions
+user_张三_1751885572,张三,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,2025-07-07T10:52:52.236150,2025-07-07T11:15:30.445123,22.63,example_experiment_data.json,3,7,0,9

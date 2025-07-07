@@ -1,0 +1,10 @@
+user_id,session_id,hour,predicted_usage,original_prediction,confidence_interval_lower,confidence_interval_upper,adjustment_amount,was_adjusted,source_file
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,0,2100.0,1950.2,1950.0,2250.0,149.79999999999995,True,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,1,1850.5,1850.5,1700.0,2000.0,0.0,False,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,2,1750.3,1750.3,1600.0,1900.0,0.0,False,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,6,3650.0,3200.5,3400.0,3900.0,449.5,True,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,7,3850.0,3450.2,3600.0,4100.0,399.8000000000002,True,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,8,3750.0,3380.8,3500.0,4000.0,369.1999999999998,True,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,18,3950.0,3800.3,3700.0,4200.0,149.69999999999982,True,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,19,3900.0,3750.7,3650.0,4150.0,149.30000000000018,True,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,23,2250.0,2100.4,2100.0,2400.0,149.5999999999999,True,example_experiment_data.json

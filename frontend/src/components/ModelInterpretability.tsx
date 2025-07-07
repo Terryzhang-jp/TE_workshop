@@ -25,6 +25,7 @@ declare global {
 
 interface ModelInterpretabilityProps {
   className?: string;
+  onInteraction?: (actionType: string, details: any) => void;
 }
 
 interface FeatureImportance {
@@ -127,7 +128,7 @@ interface SHAPData {
   lime_analysis: LIMEData;
 }
 
-const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className = '' }) => {
+const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className = '', onInteraction }) => {
   const [shapData, setSHAPData] = useState<SHAPData | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<'SHAP' | 'LIME'>('SHAP');
   const [selectedSHAPView, setSelectedSHAPView] = useState<'importance' | 'dependence'>('importance');
@@ -861,7 +862,14 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
             <label className="text-xs text-gray-600">Analysis Method:</label>
             <select
               value={selectedMethod}
-              onChange={(e) => setSelectedMethod(e.target.value as 'SHAP' | 'LIME')}
+              onChange={(e) => {
+                const newMethod = e.target.value as 'SHAP' | 'LIME';
+                setSelectedMethod(newMethod);
+                onInteraction?.('method_change', {
+                  method: newMethod,
+                  previous_method: selectedMethod
+                });
+              }}
               className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               <option value="SHAP">SHAP - Global Analysis</option>
@@ -895,7 +903,13 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
             <label className="text-xs text-gray-600">View Type:</label>
             <div className="flex space-x-2">
               <button
-                onClick={() => setSelectedSHAPView('importance')}
+                onClick={() => {
+                  setSelectedSHAPView('importance');
+                  onInteraction?.('shap_view_change', {
+                    view: 'importance',
+                    previous_view: selectedSHAPView
+                  });
+                }}
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   selectedSHAPView === 'importance'
                     ? 'bg-blue-600 text-white'
@@ -905,7 +919,13 @@ const ModelInterpretability: React.FC<ModelInterpretabilityProps> = ({ className
                 Feature Importance
               </button>
               <button
-                onClick={() => setSelectedSHAPView('dependence')}
+                onClick={() => {
+                  setSelectedSHAPView('dependence');
+                  onInteraction?.('shap_view_change', {
+                    view: 'dependence',
+                    previous_view: selectedSHAPView
+                  });
+                }}
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   selectedSHAPView === 'dependence'
                     ? 'bg-blue-600 text-white'

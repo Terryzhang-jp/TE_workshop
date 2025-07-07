@@ -1,0 +1,4 @@
+user_id,session_id,decision_id,label,reason,status,created_at,completed_at,source_file
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,decision_1751885800_a1b2c3d4,调整早高峰时段电力预测以应对极寒天气,根据天气预报，明天将有-15°C的极寒天气，预计早上6-9点供暖需求会大幅增加，需要上调预测值,completed,2025-07-07T10:56:40.123456,2025-07-07T11:05:20.789012,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,decision_1751886100_e5f6g7h8,优化晚高峰时段预测考虑节假日因素,考虑到明天是周五且临近春节，预计晚高峰时段居民用电会有所增加，商业用电可能减少,completed,2025-07-07T11:05:00.234567,2025-07-07T11:12:15.345678,example_experiment_data.json
+user_张三_1751885572,4a4221f4-961e-49c0-a5b0-5aecbccfd2ac,decision_1751886400_i9j0k1l2,最终微调深夜时段预测值,基于历史数据分析，深夜时段的基础负荷可能被低估了，需要适当上调,active,2025-07-07T11:12:20.456789,,example_experiment_data.json

@@ -161,6 +161,20 @@ class UserAdjustment(BaseModel):
         }
 
 
+class UserInteraction(BaseModel):
+    """用户交互记录模型"""
+    interaction_id: str = Field(..., description="交互ID")
+    component: str = Field(..., description="组件名称")
+    action_type: str = Field(..., description="操作类型")
+    action_details: Dict[str, Any] = Field(..., description="操作详情")
+    timestamp: datetime = Field(default_factory=datetime.now, description="操作时间戳")
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
+
+
 class ExperimentResult(BaseModel):
     """实验结果模型"""
     user_id: str = Field(..., description="用户ID")
@@ -170,6 +184,7 @@ class ExperimentResult(BaseModel):
     experiment_end_time: datetime = Field(..., description="实验结束时间")
     decisions: List[UserDecision] = Field(default_factory=list, description="用户决策列表")
     adjustments: List[UserAdjustment] = Field(default_factory=list, description="用户调整列表")
+    interactions: List[UserInteraction] = Field(default_factory=list, description="用户交互记录列表")
     final_predictions: List[PredictionResult] = Field(default_factory=list, description="最终预测结果")
     experiment_duration_minutes: Optional[float] = Field(None, description="实验持续时间（分钟）")
 

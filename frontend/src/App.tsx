@@ -9,6 +9,7 @@ import UserPrediction from './components/UserPrediction';
 import DecisionMaking from './components/DecisionMaking';
 import type { PredictionResult } from './types/index.js';
 import ApiService from './services/api';
+import { useInteractionLogger } from './hooks/useInteractionLogger';
 import './styles/ExperimentCover.css';
 
 interface ScreenDimensions {
@@ -41,6 +42,9 @@ function App() {
     height: window.innerHeight,
     availableHeight: window.innerHeight - 32 // 增加padding空间
   });
+
+  // 交互记录Hook
+  const interactionLogger = useInteractionLogger(userSession);
 
   // 屏幕尺寸检测和响应
   useEffect(() => {
@@ -288,15 +292,21 @@ function App() {
       }}>
         {/* 第一行：三个模块 */}
         <div style={{ gridColumn: '1', gridRow: '1', overflow: 'hidden' }}>
-          <ContextInformation />
+          <ContextInformation
+            onInteraction={interactionLogger.logContextInformationInteraction}
+          />
         </div>
 
         <div style={{ gridColumn: '2', gridRow: '1', overflow: 'hidden' }}>
-          <DataAnalysis />
+          <DataAnalysis
+            onInteraction={interactionLogger.logDataAnalysisInteraction}
+          />
         </div>
 
         <div style={{ gridColumn: '3', gridRow: '1', overflow: 'hidden' }}>
-          <ModelInterpretability />
+          <ModelInterpretability
+            onInteraction={interactionLogger.logModelInterpretabilityInteraction}
+          />
         </div>
 
         {/* 第二行：两个模块 */}
@@ -305,6 +315,7 @@ function App() {
             onPredictionUpdate={handlePredictionUpdate}
             hasActiveDecision={hasActiveDecision}
             onAdjustmentMade={handleAdjustmentMade}
+            onInteraction={interactionLogger.logUserPredictionInteraction}
           />
         </div>
 
@@ -315,6 +326,7 @@ function App() {
             onAdjustmentApplied={handleAdjustmentApplied}
             onDecisionStatusChange={setHasActiveDecision}
             userSession={userSession}
+            onInteraction={interactionLogger.logDecisionMakingInteraction}
           />
         </div>
 

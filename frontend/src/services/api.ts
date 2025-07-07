@@ -252,6 +252,21 @@ export class ApiService {
     return response.data.data;
   }
 
+  static async recordUserInteraction(
+    sessionId: string,
+    component: string,
+    actionType: string,
+    actionDetails: any = {}
+  ): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/user/interaction', {
+      session_id: sessionId,
+      component: component,
+      action_type: actionType,
+      action_details: actionDetails
+    });
+    return response.data.data;
+  }
+
   static async listExperimentResults(): Promise<string[]> {
     const response = await api.get<ApiResponse<string[]>>('/user/experiment-results');
     return response.data.data;

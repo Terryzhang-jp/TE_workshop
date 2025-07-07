@@ -13,6 +13,7 @@ import { Zap, Thermometer, Maximize2, X } from 'lucide-react';
 
 interface DataAnalysisProps {
   className?: string;
+  onInteraction?: (actionType: string, details: any) => void;
 }
 
 interface ChartData {
@@ -24,7 +25,7 @@ interface ChartData {
   isTargetDay: boolean;
 }
 
-const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
+const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '', onInteraction }) => {
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [filteredData, setFilteredData] = useState<ChartData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -212,7 +213,13 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
       }}>
         <div style={{ display: 'flex', gap: '2px' }}>
           <button
-            onClick={() => setViewType('electricity')}
+            onClick={() => {
+              setViewType('electricity');
+              onInteraction?.('view_change', {
+                view_type: 'electricity',
+                previous_view: viewType
+              });
+            }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -230,7 +237,13 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
             Power
           </button>
           <button
-            onClick={() => setViewType('weather')}
+            onClick={() => {
+              setViewType('weather');
+              onInteraction?.('view_change', {
+                view_type: 'weather',
+                previous_view: viewType
+              });
+            }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -261,6 +274,11 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
               if (endDate && newStartDate > endDate) {
                 setEndDate(newStartDate);
               }
+              onInteraction?.('date_change', {
+                date_type: 'start_date',
+                new_value: newStartDate,
+                previous_value: startDate
+              });
             }}
             style={{
               fontSize: '9px',
@@ -282,6 +300,11 @@ const DataAnalysis: React.FC<DataAnalysisProps> = ({ className = '' }) => {
               if (startDate && newEndDate < startDate) {
                 setStartDate(newEndDate);
               }
+              onInteraction?.('date_change', {
+                date_type: 'end_date',
+                new_value: newEndDate,
+                previous_value: endDate
+              });
             }}
             style={{
               fontSize: '9px',
