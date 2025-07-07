@@ -5,7 +5,7 @@ API v1 Main Router
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import data, prediction, explanation, adjustment
+from app.api.v1.endpoints import data, prediction, explanation, adjustment, users
 
 # 创建v1路由器
 api_router = APIRouter()
@@ -33,4 +33,10 @@ api_router.include_router(
     adjustment.router,
     prefix="/adjustment",
     tags=["预测调整"]
+)
+
+api_router.include_router(
+    users.router,
+    prefix="/users",
+    tags=["用户管理"]
 )

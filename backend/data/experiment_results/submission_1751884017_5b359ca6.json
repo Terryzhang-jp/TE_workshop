@@ -1,0 +1,29 @@
+{
+  "submission_id": "submission_1751884017_5b359ca6",
+  "submitted_at": "2025-07-07T10:26:57.732208+00:00",
+  "experiment_data": {
+    "user_id": "user_1751883993_42e88599",
+    "username": "test2",
+    "session_id": "session_1751883993_2ca247b2",
+    "start_time": "2025-07-07 10:26:33.867000+00:00",
+    "decisions": [],
+    "adjustments": [],
+    "interactions": [],
+    "completion_time": "2025-07-07 10:26:57.730994+00:00",
+    "status": "completed"
+  },
+  "experiment_summary": {
+    "total_decisions": 0,
+    "total_adjustments": 0,
+    "total_interactions": 0,
+    "experiment_duration": 0,
+    "status": "completed",
+    "adjustment_statistics": {
+      "total_adjustments": 0,
+      "hours_adjusted": 0,
+      "average_adjustment": 0,
+      "max_adjustment": 0,
+      "most_adjusted_hour": null
+    }
+  }
+}

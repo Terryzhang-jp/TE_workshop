@@ -137,10 +137,65 @@ export interface ChartDataPoint {
   color?: string;
 }
 
+// 用户数据类型
+export interface UserData {
+  userId: string;
+  username: string;
+  sessionId: string;
+  loginTime: string;
+}
+
+// 用户实验数据类型
+export interface UserExperimentData {
+  userId: string;
+  username: string;
+  sessionId: string;
+  startTime: string;
+  decisions: Decision[];
+  adjustments: UserAdjustment[];
+  interactions: UserInteraction[];
+  completionTime?: string;
+  status: 'in_progress' | 'completed';
+}
+
+// 用户调整记录类型
+export interface UserAdjustment {
+  id: string;
+  hour: number;
+  originalValue: number;
+  adjustedValue: number;
+  timestamp: string;
+  decisionId?: string;
+}
+
+// 用户交互记录类型
+export interface UserInteraction {
+  id: string;
+  type: 'page_view' | 'component_interaction' | 'decision_action';
+  component?: string;
+  action?: string;
+  timestamp: string;
+  duration?: number;
+  metadata?: Record<string, any>;
+}
+
+// 决策类型
+export interface Decision {
+  id: string;
+  label: string;
+  reason: string;
+  status: 'active' | 'completed' | 'disabled';
+  adjustments: UserAdjustment[];
+  createdAt: string;
+  completedAt?: string;
+}
+
 // 应用状态类型
 export interface AppState {
   loading: boolean;
   error: string | null;
+  user: UserData | null;
+  experimentData: UserExperimentData | null;
   historicalData: HistoricalData[];
   predictions: PredictionResult[];
   contextInfo: ContextInfo[];

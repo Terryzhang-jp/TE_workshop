@@ -53,9 +53,10 @@ interface ExperimentDocumentation {
 
 interface ExperimentCoverProps {
   onStartExperiment: () => void;
+  onUserReady?: (showLogin: boolean) => void;
 }
 
-const ExperimentCover: React.FC<ExperimentCoverProps> = ({ onStartExperiment }) => {
+const ExperimentCover: React.FC<ExperimentCoverProps> = ({ onStartExperiment, onUserReady }) => {
   const [documentation, setDocumentation] = useState<ExperimentDocumentation | null>(null);
   const [activeSection, setActiveSection] = useState<string>('overview');
   const [loading, setLoading] = useState(true);
@@ -324,11 +325,11 @@ const ExperimentCover: React.FC<ExperimentCoverProps> = ({ onStartExperiment }) 
           <p>Estimated time: <strong>{documentation.experiment_metadata.estimated_duration}</strong></p>
         </div>
         
-        <button 
+        <button
           className="start-experiment-btn"
-          onClick={onStartExperiment}
+          onClick={() => onUserReady?.(true)}
         >
-          Start Experiment
+          Proceed to User Login
         </button>
       </div>
     </div>

@@ -120,11 +120,71 @@ class FileProcessingError(BaseAPIException):
 
 class ConfigurationError(BaseAPIException):
     """配置错误"""
-    
+
     def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
         super().__init__(
             message=message,
             code="CONFIGURATION_ERROR",
             status_code=500,
+            details=details
+        )
+
+
+class UserError(BaseAPIException):
+    """用户相关错误"""
+
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            message=message,
+            code="USER_ERROR",
+            status_code=400,
+            details=details
+        )
+
+
+class SessionError(BaseAPIException):
+    """会话相关错误"""
+
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            message=message,
+            code="SESSION_ERROR",
+            status_code=401,
+            details=details
+        )
+
+
+class DataStorageError(BaseAPIException):
+    """数据存储错误"""
+
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            message=message,
+            code="DATA_STORAGE_ERROR",
+            status_code=500,
+            details=details
+        )
+
+
+class ValidationError(BaseAPIException):
+    """数据验证错误"""
+
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            message=message,
+            code="VALIDATION_ERROR",
+            status_code=422,
+            details=details
+        )
+
+
+class ExperimentError(BaseAPIException):
+    """实验相关错误"""
+
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            message=message,
+            code="EXPERIMENT_ERROR",
+            status_code=400,
             details=details
         )

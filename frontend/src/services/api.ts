@@ -8,11 +8,16 @@ import type {
   ContextInfo,
   GlobalAdjustment,
   LocalAdjustment,
-  ModelMetrics
+  ModelMetrics,
+  UserData,
+  UserExperimentData
 } from '../types/index.js';
 
 // API基础配置
 const API_BASE_URL = 'http://localhost:8001/api/v1';
+
+// 全局会话ID存储
+let currentSessionId: string | null = null;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -22,10 +27,24 @@ const api = axios.create({
   },
 });
 
+// 设置会话ID
+export const setSessionId = (sessionId: string | null) => {
+  currentSessionId = sessionId;
+};
+
+// 获取当前会话ID
+export const getCurrentSessionId = () => currentSessionId;
+
 // 请求拦截器
 api.interceptors.request.use(
   (config) => {
     console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`);
+
+    // 自动添加会话ID到请求头
+    if (currentSessionId && !config.headers['X-Session-Id']) {
+      config.headers['X-Session-Id'] = currentSessionId;
+    }
+
     return config;
   },
   (error) => {
@@ -196,6 +215,121 @@ export class ApiService {
   static async healthCheck(): Promise<any> {
     const response = await api.get('http://localhost:8001/health');
     return response.data;
+  }
+
+  // ===== 用户管理相关API =====
+
+  // 用户登录
+  static async loginUser(username: string): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/users/login', {
+      username: username
+    });
+
+    // 自动设置会话ID
+    if (response.data.data?.user_data?.session_id) {
+      setSessionId(response.data.data.user_data.session_id);
+    }
+
+    // 转换字段名称从下划线到驼峰命名
+    if (response.data.data?.user_data) {
+      const userData = response.data.data.user_data;
+      response.data.data.user_data = {
+        userId: userData.user_id,
+        username: userData.username,
+        sessionId: userData.session_id,
+        loginTime: userData.login_time
+      };
+    }
+
+    return response.data.data;
+  }
+
+  // 获取会话信息
+  static async getSessionInfo(): Promise<any> {
+    const response = await api.get<ApiResponse<any>>('/users/session');
+    return response.data.data;
+  }
+
+  // 更新会话活动
+  static async updateSessionActivity(): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/users/session/activity');
+    return response.data.data;
+  }
+
+  // 用户登出
+  static async logoutUser(): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/users/logout');
+    setSessionId(null); // 清除会话ID
+    return response.data.data;
+  }
+
+  // 开始实验
+  static async startExperiment(): Promise<UserExperimentData> {
+    const response = await api.post<ApiResponse<UserExperimentData>>('/users/experiment/start');
+    return response.data.data;
+  }
+
+  // 保存实验数据
+  static async saveExperimentData(experimentData: UserExperimentData): Promise<any> {
+    const response = await api.post<ApiResponse<any>>('/users/experiment/save', experimentData);
+    return response.data.data;
+  }
+
+  // 完成实验
+  static async completeExperiment(experimentData: UserExperimentData): Promise<any> {
+    // 转换字段名称从驼峰命名到下划线
+    const backendExperimentData = {
+      user_id: experimentData.userId,
+      username: experimentData.username,
+      session_id: experimentData.sessionId,
+      start_time: experimentData.startTime,
+      decisions: experimentData.decisions.map(decision => ({
+        id: decision.id,
+        label: decision.label,
+        reason: decision.reason,
+        status: decision.status,
+        adjustments: decision.adjustments.map(adj => ({
+          id: adj.id,
+          hour: adj.hour,
+          original_value: adj.originalValue,
+          adjusted_value: adj.adjustedValue,
+          timestamp: adj.timestamp,
+          decision_id: adj.decisionId
+        })),
+        created_at: decision.createdAt,
+        completed_at: decision.completedAt
+      })),
+      adjustments: experimentData.adjustments.map(adj => ({
+        id: adj.id,
+        hour: adj.hour,
+        original_value: adj.originalValue,
+        adjusted_value: adj.adjustedValue,
+        timestamp: adj.timestamp,
+        decision_id: adj.decisionId
+      })),
+      interactions: experimentData.interactions.map(interaction => ({
+        id: interaction.id,
+        type: interaction.type,
+        component: interaction.component,
+        action: interaction.action,
+        timestamp: interaction.timestamp,
+        duration: interaction.duration,
+        metadata: interaction.metadata
+      })),
+      completion_time: experimentData.completionTime,
+      status: experimentData.status
+    };
+
+    const response = await api.post<ApiResponse<any>>('/users/experiment/complete', {
+      experiment_data: backendExperimentData
+    });
+    return response.data.data;
+  }
+
+  // 获取实验数据
+  static async getExperimentData(): Promise<UserExperimentData | null> {
+    const response = await api.get<ApiResponse<UserExperimentData | null>>('/users/experiment/data');
+    return response.data.data;
   }
 
   // 获取模型拟合历史

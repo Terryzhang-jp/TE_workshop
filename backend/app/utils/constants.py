@@ -114,7 +114,15 @@ SUCCESS_MESSAGES: Dict[str, str] = {
     "prediction_generated": "预测生成成功",
     "explanation_generated": "可解释性分析生成成功",
     "adjustment_applied": "预测调整应用成功",
-    "export_completed": "数据导出完成"
+    "export_completed": "数据导出完成",
+    # 用户管理相关成功消息
+    "user_login_success": "用户登录成功",
+    "user_logout_success": "用户登出成功",
+    "session_updated": "会话更新成功",
+    "experiment_started": "实验开始成功",
+    "experiment_saved": "实验数据保存成功",
+    "experiment_completed": "实验完成成功",
+    "data_exported": "数据导出成功"
 }
 
 ERROR_MESSAGES: Dict[str, str] = {
@@ -124,7 +132,15 @@ ERROR_MESSAGES: Dict[str, str] = {
     "prediction_failed": "预测生成失败",
     "explanation_failed": "可解释性分析失败",
     "adjustment_failed": "预测调整失败",
-    "export_failed": "数据导出失败"
+    "export_failed": "数据导出失败",
+    # 用户管理相关错误消息
+    "invalid_username": "用户名格式无效",
+    "session_not_found": "会话不存在",
+    "session_expired": "会话已过期",
+    "experiment_not_found": "实验数据不存在",
+    "data_save_failed": "数据保存失败",
+    "invalid_request": "请求参数无效",
+    "internal_error": "内部服务器错误"
 }
 
 # HTTP状态码
@@ -137,4 +153,29 @@ HTTP_STATUS_CODES: Dict[str, int] = {
     "NOT_FOUND": 404,
     "UNPROCESSABLE_ENTITY": 422,
     "INTERNAL_SERVER_ERROR": 500
+}
+
+# 用户管理配置
+USER_CONFIG: Dict[str, Any] = {
+    "username_min_length": 3,
+    "username_max_length": 20,
+    "session_timeout_hours": 2,
+    "max_sessions_per_user": 1,
+    "auto_save_interval_seconds": 30
+}
+
+# 实验配置
+EXPERIMENT_CONFIG: Dict[str, Any] = {
+    "max_decisions": 10,
+    "max_adjustments": 100,
+    "max_interactions": 1000,
+    "max_experiment_duration_hours": 4
+}
+
+# 文件存储路径
+STORAGE_PATHS: Dict[str, str] = {
+    "user_experiments": "data/user_experiments",
+    "user_sessions": "data/user_sessions",
+    "experiment_results": "data/experiment_results",
+    "exports": "data/exports"
 }

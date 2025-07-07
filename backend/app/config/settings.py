@@ -36,6 +36,10 @@ class Settings(BaseSettings):
         default="data/models/",
         env="MODEL_SAVE_PATH"
     )
+    data_dir: str = Field(
+        default="data",
+        env="DATA_DIR"
+    )
     
     # 机器学习配置
     xgboost_params: Dict[str, Any] = {

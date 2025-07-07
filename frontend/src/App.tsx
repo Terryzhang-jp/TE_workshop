@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, AlertCircle, CheckCircle } from 'lucide-react';
 import ExperimentCover from './components/ExperimentCover';
+import UserLogin from './components/UserLogin';
+import ExperimentCompletion from './components/ExperimentCompletion';
 import ContextInformation from './components/ContextInformation';
 import DataAnalysis from './components/DataAnalysis';
 import ModelInterpretability from './components/ModelInterpretability';
 import UserPrediction from './components/UserPrediction';
 import DecisionMaking from './components/DecisionMaking';
-import type { PredictionResult } from './types/index.js';
+import { UserProvider, useUser } from './context/UserContext';
+import type { PredictionResult, UserData, UserExperimentData } from './types/index.js';
 import ApiService from './services/api';
 import './styles/ExperimentCover.css';
 
@@ -16,7 +19,8 @@ interface ScreenDimensions {
   availableHeight: number;
 }
 
-function App() {
+// 内部应用组件，使用UserContext
+function AppContent() {
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,6 +28,19 @@ function App() {
   const [hasActiveDecision, setHasActiveDecision] = useState(false);
   const [decisionMakingRef, setDecisionMakingRef] = useState<any>(null);
   const [showExperiment, setShowExperiment] = useState(false);
+
+  // 用户状态管理 - 使用UserContext
+  const [showUserLogin, setShowUserLogin] = useState(false);
+  const [showExperimentCompletion, setShowExperimentCompletion] = useState(false);
+
+  // 使用UserContext
+  const {
+    currentUser,
+    experimentData,
+    loginUser,
+    completeExperiment: completeUserExperiment,
+    addInteraction
+  } = useUser();
   const [screenDimensions, setScreenDimensions] = useState<ScreenDimensions>({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -99,6 +116,66 @@ function App() {
     setShowExperiment(true);
   };
 
+  // 处理用户登录
+  const handleUserLogin = async (userData: UserData) => {
+    try {
+      // 调用后端登录API
+      const loginResponse = await ApiService.loginUser(userData.username);
+
+      // 使用后端返回的用户数据
+      const backendUserData = loginResponse.user_data;
+
+      // 使用UserContext登录用户
+      loginUser(backendUserData);
+
+      setShowUserLogin(false);
+      setShowExperiment(true);
+
+      console.log('User logged in:', backendUserData);
+    } catch (error) {
+      console.error('Login failed:', error);
+      setError('登录失败，请重试');
+    }
+  };
+
+  // 处理用户准备状态
+  const handleUserReady = (showLogin: boolean) => {
+    setShowUserLogin(showLogin);
+  };
+
+  // 处理完成实验
+  const handleCompleteExperiment = () => {
+    if (experimentData) {
+      setShowExperimentCompletion(true);
+    }
+  };
+
+  // 处理实验完成提交
+  const handleExperimentSubmission = async (): Promise<void> => {
+    if (!experimentData) {
+      throw new Error('No experiment data to submit');
+    }
+
+    try {
+      // 使用UserContext的完成实验方法
+      await completeUserExperiment();
+      console.log('Experiment submitted successfully');
+
+      // 实验完成后重置状态
+      setShowExperimentCompletion(false);
+      setShowExperiment(false);
+
+    } catch (error) {
+      console.error('Failed to submit experiment:', error);
+      throw error;
+    }
+  };
+
+  // 取消实验完成
+  const handleCancelCompletion = () => {
+    setShowExperimentCompletion(false);
+  };
+
   // 修复布局样式计算
   const getLayoutStyle = () => {
     const { availableHeight } = screenDimensions;
@@ -149,48 +226,75 @@ function App() {
     );
   }
 
+  // 显示实验完成界面
+  if (showExperimentCompletion && experimentData) {
+    return (
+      <ExperimentCompletion
+        experimentData={experimentData}
+        onComplete={handleExperimentSubmission}
+        onCancel={handleCancelCompletion}
+      />
+    );
+  }
+
+  // 显示用户登录界面
+  if (showUserLogin) {
+    return <UserLogin onUserLogin={handleUserLogin} />;
+  }
+
+  // 显示实验封面
   if (!showExperiment) {
-    return <ExperimentCover onStartExperiment={handleStartExperiment} />;
+    return <ExperimentCover onStartExperiment={handleStartExperiment} onUserReady={handleUserReady} />;
   }
 
   return (
     <div style={getLayoutStyle()}>
-      {/* 第一行：三个模块 */}
-      <div style={{ gridColumn: '1', gridRow: '1', overflow: 'hidden' }}>
-        <ContextInformation />
-      </div>
-      
-      <div style={{ gridColumn: '2', gridRow: '1', overflow: 'hidden' }}>
-        <DataAnalysis />
-      </div>
-      
-      <div style={{ gridColumn: '3', gridRow: '1', overflow: 'hidden' }}>
-        <ModelInterpretability />
-      </div>
+        {/* 第一行：三个模块 */}
+        <div style={{ gridColumn: '1', gridRow: '1', overflow: 'hidden' }}>
+          <ContextInformation />
+        </div>
 
-      {/* 第二行：两个模块 */}
-      <div style={{ gridColumn: '1 / 3', gridRow: '2', overflow: 'hidden' }}>
-        <UserPrediction
-          onPredictionUpdate={handlePredictionUpdate}
-          hasActiveDecision={hasActiveDecision}
-          onAdjustmentMade={handleAdjustmentMade}
-        />
-      </div>
-      
-      <div style={{ gridColumn: '3', gridRow: '2', overflow: 'hidden' }}>
-        <DecisionMaking
-          ref={setDecisionMakingRef}
-          predictions={predictions}
-          onAdjustmentApplied={handleAdjustmentApplied}
-          onDecisionStatusChange={setHasActiveDecision}
-        />
-      </div>
+        <div style={{ gridColumn: '2', gridRow: '1', overflow: 'hidden' }}>
+          <DataAnalysis />
+        </div>
 
-      {/* 屏幕信息显示 */}
-      <div className="fixed bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-50">
-        {screenDimensions.width} × {screenDimensions.height} (Available: {screenDimensions.availableHeight})
-      </div>
+        <div style={{ gridColumn: '3', gridRow: '1', overflow: 'hidden' }}>
+          <ModelInterpretability />
+        </div>
+
+        {/* 第二行：两个模块 */}
+        <div style={{ gridColumn: '1 / 3', gridRow: '2', overflow: 'hidden' }}>
+          <UserPrediction
+            onPredictionUpdate={handlePredictionUpdate}
+            hasActiveDecision={hasActiveDecision}
+            onAdjustmentMade={handleAdjustmentMade}
+          />
+        </div>
+
+        <div style={{ gridColumn: '3', gridRow: '2', overflow: 'hidden' }}>
+          <DecisionMaking
+            ref={setDecisionMakingRef}
+            predictions={predictions}
+            onAdjustmentApplied={handleAdjustmentApplied}
+            onDecisionStatusChange={setHasActiveDecision}
+            onCompleteExperiment={handleCompleteExperiment}
+          />
+        </div>
+
+        {/* 屏幕信息显示 */}
+        <div className="fixed bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-50">
+          {screenDimensions.width} × {screenDimensions.height} (Available: {screenDimensions.availableHeight})
+        </div>
     </div>
+  );
+}
+
+// 主App组件，提供UserContext
+function App() {
+  return (
+    <UserProvider>
+      <AppContent />
+    </UserProvider>
   );
 }
 

@@ -1,29 +1,18 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import type { PredictionResult } from '../types/index.js';
-
-interface Decision {
-  id: string;
-  label: string;
-  reason: string;
-  status: 'active' | 'completed' | 'disabled';
-  adjustments: Array<{
-    hour: number;
-    originalValue: number;
-    adjustedValue: number;
-    timestamp: string;
-  }>;
-  createdAt: string;
-}
+import { useUser } from '../context/UserContext';
+import type { PredictionResult, Decision, UserAdjustment } from '../types/index.js';
 
 interface DecisionMakingProps {
   className?: string;
   predictions?: PredictionResult[];
   onAdjustmentApplied?: (adjustedPredictions: PredictionResult[]) => void;
   onDecisionStatusChange?: (hasActiveDecision: boolean) => void;
+  onCompleteExperiment?: () => void;
 }
 
 const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
-  onDecisionStatusChange
+  onDecisionStatusChange,
+  onCompleteExperiment
 }, ref) => {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [activeDecision, setActiveDecision] = useState<Decision | null>(null);
@@ -33,6 +22,9 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
   const loading = false;
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  // 使用UserContext
+  const { addDecision, updateDecision, addAdjustment, addInteraction } = useUser();
 
 
 
@@ -45,11 +37,13 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
   useImperativeHandle(ref, () => ({
     addAdjustment: (hour: number, originalValue: number, adjustedValue: number) => {
       if (activeDecision) {
-        const newAdjustment = {
+        const newAdjustment: UserAdjustment = {
+          id: `adjustment_${Date.now()}_${hour}`,
           hour,
           originalValue,
           adjustedValue,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          decisionId: activeDecision.id
         };
 
         const updatedDecisions = decisions.map(d =>
@@ -66,6 +60,23 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
           ...prev,
           adjustments: [...prev.adjustments.filter(adj => adj.hour !== hour), newAdjustment]
         } : null);
+
+        // 记录到UserContext
+        addAdjustment(newAdjustment);
+        addInteraction({
+          id: `interaction_${Date.now()}`,
+          type: 'decision_action',
+          component: 'DecisionMaking',
+          action: 'add_adjustment',
+          timestamp: new Date().toISOString(),
+          metadata: {
+            decisionId: activeDecision.id,
+            hour,
+            originalValue,
+            adjustedValue,
+            adjustmentChange: adjustedValue - originalValue
+          }
+        });
       }
     }
   }), [activeDecision, decisions]);
@@ -101,6 +112,18 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
 
     setDecisions([...updatedDecisions, newDecision]);
     setActiveDecision(newDecision);
+
+    // 记录到UserContext
+    addDecision(newDecision);
+    addInteraction({
+      id: `interaction_${Date.now()}`,
+      type: 'decision_action',
+      component: 'DecisionMaking',
+      action: 'create_decision',
+      timestamp: new Date().toISOString(),
+      metadata: { decisionId: newDecision.id, label: newDecision.label }
+    });
+
     setNewDecisionLabel('');
     setNewDecisionReason('');
     setShowNewDecisionForm(false);
@@ -121,6 +144,24 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
     );
 
     setDecisions(updatedDecisions);
+
+    // 更新UserContext中的决策状态
+    updateDecision(activeDecision.id, {
+      status: 'completed',
+      completedAt: new Date().toISOString()
+    });
+    addInteraction({
+      id: `interaction_${Date.now()}`,
+      type: 'decision_action',
+      component: 'DecisionMaking',
+      action: 'complete_decision',
+      timestamp: new Date().toISOString(),
+      metadata: {
+        decisionId: activeDecision.id,
+        adjustmentCount: activeDecision.adjustments.length
+      }
+    });
+
     setActiveDecision(null);
     setSuccess('Decision completed');
     setError(null);
@@ -154,7 +195,44 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
 
   return (
     <div className="module-box">
-      <div className="module-title">Decision-Making Area</div>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '16px'
+      }}>
+        <div className="module-title" style={{ margin: 0 }}>Decision-Making Area</div>
+
+        {/* Complete Experiment Button */}
+        <button
+          onClick={onCompleteExperiment}
+          style={{
+            padding: '8px 16px',
+            fontSize: '12px',
+            fontWeight: '600',
+            color: 'white',
+            backgroundColor: '#dc2626',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            whiteSpace: 'nowrap'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#b91c1c';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#dc2626';
+          }}
+          title="Complete and submit your experiment"
+        >
+          <span>🏁</span>
+          Complete Experiment
+        </button>
+      </div>
 
       {/* Current decision status display */}
       {activeDecision ? (
@@ -428,6 +506,8 @@ const DecisionMaking = forwardRef<any, DecisionMakingProps>(({
           </div>
         </div>
       )}
+
+
     </div>
   );
 });

@@ -1,0 +1,81 @@
+{
+  "user_id": "user_1751884950_5799dda8",
+  "username": "test234",
+  "session_id": "session_1751884950_173df955",
+  "start_time": "2025-07-07 10:42:30.590000+00:00",
+  "decisions": [
+    {
+      "id": "decision_1751884957001",
+      "label": "dadadadadada",
+      "reason": "adadadadadad",
+      "status": "completed",
+      "adjustments": [],
+      "created_at": "2025-07-07 10:42:37.001000+00:00",
+      "completed_at": "2025-07-07 10:42:41.179000+00:00"
+    }
+  ],
+  "adjustments": [
+    {
+      "id": "adjustment_1751884959616_22",
+      "hour": 22,
+      "original_value": 3646.0,
+      "adjusted_value": 3119.0,
+      "timestamp": "2025-07-07 10:42:39.616000+00:00",
+      "decision_id": "decision_1751884957001"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "interaction_1751884950590",
+      "type": "page_view",
+      "component": "UserLogin",
+      "action": "user_login",
+      "timestamp": "2025-07-07 10:42:30.590000+00:00",
+      "duration": null,
+      "metadata": {
+        "username": "test234"
+      }
+    },
+    {
+      "id": "interaction_1751884957001",
+      "type": "decision_action",
+      "component": "DecisionMaking",
+      "action": "create_decision",
+      "timestamp": "2025-07-07 10:42:37.001000+00:00",
+      "duration": null,
+      "metadata": {
+        "decisionId": "decision_1751884957001",
+        "label": "dadadadadada"
+      }
+    },
+    {
+      "id": "interaction_1751884959616",
+      "type": "decision_action",
+      "component": "DecisionMaking",
+      "action": "add_adjustment",
+      "timestamp": "2025-07-07 10:42:39.616000+00:00",
+      "duration": null,
+      "metadata": {
+        "decisionId": "decision_1751884957001",
+        "hour": 22,
+        "originalValue": 3646,
+        "adjustedValue": 3119,
+        "adjustmentChange": -527
+      }
+    },
+    {
+      "id": "interaction_1751884961179",
+      "type": "decision_action",
+      "component": "DecisionMaking",
+      "action": "complete_decision",
+      "timestamp": "2025-07-07 10:42:41.179000+00:00",
+      "duration": null,
+      "metadata": {
+        "decisionId": "decision_1751884957001",
+        "adjustmentCount": 1
+      }
+    }
+  ],
+  "completion_time": "2025-07-07 10:42:44.813263+00:00",
+  "status": "completed"
+}

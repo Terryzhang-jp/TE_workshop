@@ -14,8 +14,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.config import settings
 from app.api.v1.api import api_router
 from app.utils.exceptions import (
-    DataLoadError, DataValidationError, ModelTrainingError, 
-    ModelNotFoundError, PredictionError, ExplanationError, AdjustmentError
+    DataLoadError, DataValidationError, ModelTrainingError,
+    ModelNotFoundError, PredictionError, ExplanationError, AdjustmentError,
+    UserError, SessionError, DataStorageError
 )
 from app.utils.logging_config import setup_logging
 
@@ -125,6 +126,36 @@ async def adjustment_error_handler(request: Request, exc: AdjustmentError):
     return JSONResponse(
         status_code=400,
         content={"success": False, "message": str(exc), "error_type": "AdjustmentError"}
+    )
+
+
+@app.exception_handler(UserError)
+async def user_error_handler(request: Request, exc: UserError):
+    """用户错误处理"""
+    logger.error(f"用户错误: {str(exc)}")
+    return JSONResponse(
+        status_code=400,
+        content={"success": False, "message": str(exc), "error_type": "UserError"}
+    )
+
+
+@app.exception_handler(SessionError)
+async def session_error_handler(request: Request, exc: SessionError):
+    """会话错误处理"""
+    logger.error(f"会话错误: {str(exc)}")
+    return JSONResponse(
+        status_code=401,
+        content={"success": False, "message": str(exc), "error_type": "SessionError"}
+    )
+
+
+@app.exception_handler(DataStorageError)
+async def data_storage_error_handler(request: Request, exc: DataStorageError):
+    """数据存储错误处理"""
+    logger.error(f"数据存储错误: {str(exc)}")
+    return JSONResponse(
+        status_code=500,
+        content={"success": False, "message": str(exc), "error_type": "DataStorageError"}
     )
 
 
