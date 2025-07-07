@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "title": "Model Interpretability Analysis Data",
+    "description": "SHAP and LIME analysis results for XGBoost power consumption prediction model",
+    "target_date": "2022-01-07",
+    "model_type": "XGBoost Regressor",
+    "features": ["Temperature", "Hour", "Day_of_Week", "Week_of_Month"],
+    "base_prediction_mw": 3502.63,
+    "total_prediction_hours": 24,
+    "analysis_methods": ["SHAP TreeExplainer", "LIME Local Explanation"]
+  },
+  "shap_analysis": {
+    "feature_importance_ranking": [
+      {
+        "feature": "Hour",
+        "importance_score": 465.41,
+        "rank": 1,
+        "percentage": 44.6,
+        "description": "Time of day is the most influential factor in power consumption prediction"
+      },
+      {
+        "feature": "Day_of_Week", 
+        "importance_score": 323.91,
+        "rank": 2,
+        "percentage": 31.0,
+        "description": "Day of week captures weekday vs weekend consumption patterns"
+      },
+      {
+        "feature": "Week_of_Month",
+        "importance_score": 220.52,
+        "rank": 3,
+        "percentage": 21.1,
+        "description": "Week within month reflects monthly consumption cycles"
+      },
+      {
+        "feature": "Temperature",
+        "importance_score": 35.41,
+        "rank": 4,
+        "percentage": 3.4,
+        "description": "Temperature has limited importance due to constrained winter-only data range"
+      }
+    ],
+    "feature_dependence_patterns": {
+      "hour": {
+        "peak_hours": [7, 8, 9, 18, 19, 20],
+        "low_hours": [1, 2, 3, 4, 5],
+        "pattern": "Clear morning (7-9 AM) and evening (6-8 PM) peaks",
+        "shap_value_range": [-800, 1200]
+      },
+      "day_of_week": {
+        "high_consumption_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "low_consumption_days": ["Saturday", "Sunday"],
+        "pattern": "Weekdays show higher consumption than weekends",
+        "shap_value_range": [-400, 600]
+      },
+      "week_of_month": {
+        "pattern": "Gradual variation across weeks within month",
+        "shap_value_range": [-300, 400]
+      },
+      "temperature": {
+        "range_celsius": [2.8, 14.6],
+        "pattern": "Limited impact due to narrow winter temperature range",
+        "shap_value_range": [-16, 194]
+      }
+    },
+    "key_insights": [
+      "Temporal features (hour, day) dominate prediction importance",
+      "Temperature impact is constrained by seasonal data limitations",
+      "Morning and evening peaks clearly captured by hour feature",
+      "Weekday vs weekend patterns strongly influence predictions"
+    ]
+  },
+  "lime_analysis": {
+    "local_explanation_examples": [
+      {
+        "hour": 8,
+        "prediction_mw": 4200,
+        "feature_contributions": {
+          "hour": 650,
+          "day_of_week": 200,
+          "week_of_month": 150,
+          "temperature": 25
+        },
+        "explanation": "Morning peak hour (8 AM) drives high prediction with strong positive contribution from time features"
+      },
+      {
+        "hour": 14,
+        "prediction_mw": 3800,
+        "feature_contributions": {
+          "hour": 200,
+          "day_of_week": 150,
+          "week_of_month": 100,
+          "temperature": 15
+        },
+        "explanation": "Afternoon period shows moderate consumption with balanced feature contributions"
+      },
+      {
+        "hour": 3,
+        "prediction_mw": 2900,
+        "feature_contributions": {
+          "hour": -400,
+          "day_of_week": 50,
+          "week_of_month": 25,
+          "temperature": 10
+        },
+        "explanation": "Early morning low-demand period with negative hour contribution reducing prediction"
+      }
+    ],
+    "interpretation_guidelines": [
+      "Positive SHAP values increase prediction above baseline",
+      "Negative SHAP values decrease prediction below baseline", 
+      "Magnitude indicates strength of feature influence",
+      "Local explanations vary by specific time and conditions"
+    ]
+  },
+  "model_performance_context": {
+    "training_metrics": {
+      "mae_mw": "Mean Absolute Error in megawatts",
+      "rmse_mw": "Root Mean Square Error in megawatts", 
+      "r2_score": "Coefficient of determination"
+    },
+    "feature_engineering": {
+      "temperature": "Standardized weather forecast temperature",
+      "hour": "Hour of day (0-23) as categorical feature",
+      "day_of_week": "Day of week (0-6) with Monday=0",
+      "week_of_month": "Week within month (1-4/5)"
+    },
+    "model_limitations": [
+      "Winter-only training data limits temperature generalization",
+      "Regional grid data may not apply to other systems",
+      "Short-term prediction focus (24-hour horizon)",
+      "Limited extreme weather scenario coverage"
+    ]
+  },
+  "usage_instructions": {
+    "for_participants": [
+      "Review feature importance rankings to understand model priorities",
+      "Use SHAP dependence patterns to inform prediction adjustments",
+      "Consider LIME local explanations for specific time periods",
+      "Note temperature limitations when making temperature-based decisions"
+    ],
+    "for_researchers": [
+      "SHAP values represent additive feature contributions to predictions",
+      "TreeExplainer provides exact SHAP values for tree-based models",
+      "Feature importance calculated as mean absolute SHAP values",
+      "Local explanations complement global feature importance analysis"
+    ]
+  },
+  "data_quality_notes": {
+    "shap_computation": "Exact TreeExplainer values for XGBoost model",
+    "background_data": "Complete training set used as SHAP background",
+    "lime_sampling": "Local perturbation around prediction instances",
+    "feature_scaling": "StandardScaler applied to all input features"
+  }
+}

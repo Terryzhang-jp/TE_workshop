@@ -1,0 +1,381 @@
+{
+  "metadata": {
+    "title": "AI Baseline Predictions for User Adjustment",
+    "description": "Initial AI model predictions for January 7, 2022 power consumption with confidence intervals",
+    "target_date": "2022-01-07",
+    "prediction_type": "Hourly power consumption forecast",
+    "model_source": "XGBoost Regressor trained on historical winter data",
+    "confidence_level": "95% prediction intervals",
+    "total_hours": 24
+  },
+  "baseline_predictions": [
+    {
+      "hour": 0,
+      "time_label": "00:00",
+      "predicted_power_mw": 2583,
+      "confidence_interval": {
+        "lower_bound_mw": 2450,
+        "upper_bound_mw": 2750,
+        "interval_width_mw": 300
+      },
+      "period_type": "overnight_low",
+      "consumption_context": "Minimum daily consumption period with primarily residential base load"
+    },
+    {
+      "hour": 1,
+      "time_label": "01:00", 
+      "predicted_power_mw": 2583,
+      "confidence_interval": {
+        "lower_bound_mw": 2450,
+        "upper_bound_mw": 2750,
+        "interval_width_mw": 300
+      },
+      "period_type": "overnight_low",
+      "consumption_context": "Continued low consumption with minimal commercial activity"
+    },
+    {
+      "hour": 2,
+      "time_label": "02:00",
+      "predicted_power_mw": 2583,
+      "confidence_interval": {
+        "lower_bound_mw": 2450,
+        "upper_bound_mw": 2750,
+        "interval_width_mw": 300
+      },
+      "period_type": "overnight_low",
+      "consumption_context": "Deepest overnight low with minimal industrial operations"
+    },
+    {
+      "hour": 3,
+      "time_label": "03:00",
+      "predicted_power_mw": 2608,
+      "confidence_interval": {
+        "lower_bound_mw": 2470,
+        "upper_bound_mw": 2780,
+        "interval_width_mw": 310
+      },
+      "period_type": "overnight_low",
+      "consumption_context": "Slight increase as some early industrial processes begin"
+    },
+    {
+      "hour": 4,
+      "time_label": "04:00",
+      "predicted_power_mw": 3142,
+      "confidence_interval": {
+        "lower_bound_mw": 3000,
+        "upper_bound_mw": 3300,
+        "interval_width_mw": 300
+      },
+      "period_type": "early_morning_rise",
+      "consumption_context": "Early morning ramp-up with industrial and commercial preparation"
+    },
+    {
+      "hour": 5,
+      "time_label": "05:00",
+      "predicted_power_mw": 3608,
+      "confidence_interval": {
+        "lower_bound_mw": 3450,
+        "upper_bound_mw": 3800,
+        "interval_width_mw": 350
+      },
+      "period_type": "early_morning_rise",
+      "consumption_context": "Continued ramp-up with early commuter and business activity"
+    },
+    {
+      "hour": 6,
+      "time_label": "06:00",
+      "predicted_power_mw": 4016,
+      "confidence_interval": {
+        "lower_bound_mw": 3850,
+        "upper_bound_mw": 4200,
+        "interval_width_mw": 350
+      },
+      "period_type": "morning_ramp",
+      "consumption_context": "Morning activity increases with residential and commercial demand"
+    },
+    {
+      "hour": 7,
+      "time_label": "07:00",
+      "predicted_power_mw": 4435,
+      "confidence_interval": {
+        "lower_bound_mw": 4250,
+        "upper_bound_mw": 4650,
+        "interval_width_mw": 400
+      },
+      "period_type": "morning_peak_approach",
+      "consumption_context": "Approaching morning peak with high residential and commercial activity"
+    },
+    {
+      "hour": 8,
+      "time_label": "08:00",
+      "predicted_power_mw": 4627,
+      "confidence_interval": {
+        "lower_bound_mw": 4400,
+        "upper_bound_mw": 4850,
+        "interval_width_mw": 450
+      },
+      "period_type": "morning_peak",
+      "consumption_context": "Morning peak hour with maximum business and industrial activity"
+    },
+    {
+      "hour": 9,
+      "time_label": "09:00",
+      "predicted_power_mw": 4713,
+      "confidence_interval": {
+        "lower_bound_mw": 4500,
+        "upper_bound_mw": 4950,
+        "interval_width_mw": 450
+      },
+      "period_type": "morning_peak",
+      "consumption_context": "Peak morning consumption with full business operations"
+    },
+    {
+      "hour": 10,
+      "time_label": "10:00",
+      "predicted_power_mw": 4772,
+      "confidence_interval": {
+        "lower_bound_mw": 4550,
+        "upper_bound_mw": 5000,
+        "interval_width_mw": 450
+      },
+      "period_type": "morning_peak",
+      "consumption_context": "Sustained high consumption with full economic activity"
+    },
+    {
+      "hour": 11,
+      "time_label": "11:00",
+      "predicted_power_mw": 4790,
+      "confidence_interval": {
+        "lower_bound_mw": 4570,
+        "upper_bound_mw": 5020,
+        "interval_width_mw": 450
+      },
+      "period_type": "midday_high",
+      "consumption_context": "Peak daily consumption with maximum industrial and commercial load"
+    },
+    {
+      "hour": 12,
+      "time_label": "12:00",
+      "predicted_power_mw": 4789,
+      "confidence_interval": {
+        "lower_bound_mw": 4570,
+        "upper_bound_mw": 5020,
+        "interval_width_mw": 450
+      },
+      "period_type": "midday_high",
+      "consumption_context": "Noon peak with lunch-time commercial activity"
+    },
+    {
+      "hour": 13,
+      "time_label": "13:00",
+      "predicted_power_mw": 4778,
+      "confidence_interval": {
+        "lower_bound_mw": 4560,
+        "upper_bound_mw": 5010,
+        "interval_width_mw": 450
+      },
+      "period_type": "midday_high",
+      "consumption_context": "Sustained afternoon consumption with continued business activity"
+    },
+    {
+      "hour": 14,
+      "time_label": "14:00",
+      "predicted_power_mw": 4761,
+      "confidence_interval": {
+        "lower_bound_mw": 4540,
+        "upper_bound_mw": 4990,
+        "interval_width_mw": 450
+      },
+      "period_type": "afternoon_high",
+      "consumption_context": "Afternoon business hours with high industrial activity"
+    },
+    {
+      "hour": 15,
+      "time_label": "15:00",
+      "predicted_power_mw": 4741,
+      "confidence_interval": {
+        "lower_bound_mw": 4520,
+        "upper_bound_mw": 4970,
+        "interval_width_mw": 450
+      },
+      "period_type": "afternoon_high",
+      "consumption_context": "Late afternoon with continued commercial and industrial demand"
+    },
+    {
+      "hour": 16,
+      "time_label": "16:00",
+      "predicted_power_mw": 4691,
+      "confidence_interval": {
+        "lower_bound_mw": 4470,
+        "upper_bound_mw": 4920,
+        "interval_width_mw": 450
+      },
+      "period_type": "afternoon_decline",
+      "consumption_context": "Beginning of afternoon decline as some businesses reduce activity"
+    },
+    {
+      "hour": 17,
+      "time_label": "17:00",
+      "predicted_power_mw": 4601,
+      "confidence_interval": {
+        "lower_bound_mw": 4380,
+        "upper_bound_mw": 4830,
+        "interval_width_mw": 450
+      },
+      "period_type": "afternoon_decline",
+      "consumption_context": "End of business day with reduced commercial activity"
+    },
+    {
+      "hour": 18,
+      "time_label": "18:00",
+      "predicted_power_mw": 4563,
+      "confidence_interval": {
+        "lower_bound_mw": 4340,
+        "upper_bound_mw": 4790,
+        "interval_width_mw": 450
+      },
+      "period_type": "evening_transition",
+      "consumption_context": "Evening transition with increased residential, decreased commercial"
+    },
+    {
+      "hour": 19,
+      "time_label": "19:00",
+      "predicted_power_mw": 4293,
+      "confidence_interval": {
+        "lower_bound_mw": 4070,
+        "upper_bound_mw": 4520,
+        "interval_width_mw": 450
+      },
+      "period_type": "evening_peak",
+      "consumption_context": "Evening residential peak with dinner preparation and lighting"
+    },
+    {
+      "hour": 20,
+      "time_label": "20:00",
+      "predicted_power_mw": 3909,
+      "confidence_interval": {
+        "lower_bound_mw": 3700,
+        "upper_bound_mw": 4120,
+        "interval_width_mw": 420
+      },
+      "period_type": "evening_decline",
+      "consumption_context": "Evening wind-down with reduced overall activity"
+    },
+    {
+      "hour": 21,
+      "time_label": "21:00",
+      "predicted_power_mw": 3708,
+      "confidence_interval": {
+        "lower_bound_mw": 3500,
+        "upper_bound_mw": 3920,
+        "interval_width_mw": 420
+      },
+      "period_type": "evening_decline",
+      "consumption_context": "Late evening with primarily residential consumption"
+    },
+    {
+      "hour": 22,
+      "time_label": "22:00",
+      "predicted_power_mw": 3509,
+      "confidence_interval": {
+        "lower_bound_mw": 3300,
+        "upper_bound_mw": 3720,
+        "interval_width_mw": 420
+      },
+      "period_type": "night_transition",
+      "consumption_context": "Transition to night-time with reduced residential activity"
+    },
+    {
+      "hour": 23,
+      "time_label": "23:00",
+      "predicted_power_mw": 3009,
+      "confidence_interval": {
+        "lower_bound_mw": 2800,
+        "upper_bound_mw": 3220,
+        "interval_width_mw": 420
+      },
+      "period_type": "night_transition",
+      "consumption_context": "Late night with minimal activity, approaching overnight low"
+    }
+  ],
+  "prediction_patterns": {
+    "daily_cycle": {
+      "minimum_hour": 0,
+      "minimum_consumption_mw": 2583,
+      "maximum_hour": 11,
+      "maximum_consumption_mw": 4790,
+      "peak_to_valley_ratio": 1.85,
+      "total_daily_variation_mw": 2207
+    },
+    "consumption_periods": {
+      "overnight_low": {
+        "hours": [0, 1, 2, 3],
+        "average_consumption_mw": 2589,
+        "characteristics": "Minimum daily consumption with base load only"
+      },
+      "morning_ramp": {
+        "hours": [4, 5, 6, 7],
+        "average_consumption_mw": 3800,
+        "characteristics": "Rapid increase as economic activity begins"
+      },
+      "morning_peak": {
+        "hours": [8, 9, 10],
+        "average_consumption_mw": 4704,
+        "characteristics": "Peak business and industrial activity"
+      },
+      "midday_high": {
+        "hours": [11, 12, 13],
+        "average_consumption_mw": 4786,
+        "characteristics": "Sustained high consumption throughout midday"
+      },
+      "afternoon_high": {
+        "hours": [14, 15, 16, 17],
+        "average_consumption_mw": 4698,
+        "characteristics": "Continued high consumption with gradual decline"
+      },
+      "evening_transition": {
+        "hours": [18, 19],
+        "average_consumption_mw": 4428,
+        "characteristics": "Shift from commercial to residential peak"
+      },
+      "evening_decline": {
+        "hours": [20, 21],
+        "average_consumption_mw": 3809,
+        "characteristics": "Rapid decline as activity winds down"
+      },
+      "night_transition": {
+        "hours": [22, 23],
+        "average_consumption_mw": 3259,
+        "characteristics": "Transition to overnight low consumption"
+      }
+    }
+  },
+  "confidence_intervals": {
+    "methodology": "95% prediction intervals based on model uncertainty",
+    "average_interval_width_mw": 390,
+    "narrowest_interval": {
+      "hours": [0, 1, 2],
+      "width_mw": 300,
+      "reason": "Lower uncertainty during stable overnight period"
+    },
+    "widest_interval": {
+      "hours": [8, 9, 10, 11, 12, 13, 14, 15],
+      "width_mw": 450,
+      "reason": "Higher uncertainty during peak consumption periods"
+    }
+  },
+  "usage_instructions": {
+    "for_participants": [
+      "Use baseline predictions as starting point for adjustments",
+      "Consider confidence intervals when making modifications",
+      "Reference consumption context for each time period",
+      "Account for daily cycle patterns in decision-making"
+    ],
+    "for_researchers": [
+      "Baseline represents AI model output without human intervention",
+      "Confidence intervals reflect model uncertainty estimates",
+      "Consumption patterns based on historical winter data",
+      "Adjustments track human expert modifications to AI predictions"
+    ]
+  }
+}

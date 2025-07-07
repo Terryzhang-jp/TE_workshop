@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "title": "Power Consumption and Weather Data for Analysis",
+    "description": "Hourly power consumption and temperature data used in the Data Analysis Information module",
+    "time_period": "2021-12-17 to 2022-01-07",
+    "total_records": 528,
+    "data_frequency": "Hourly",
+    "geographic_scope": "Regional power grid system"
+  },
+  "data_summary": {
+    "predicted_power": {
+      "unit": "MW",
+      "min": 2610.7249,
+      "max": 5312.8433,
+      "mean": 3519.809079545455,
+      "std": 519.723398075528
+    },
+    "actual_power": {
+      "unit": "MW",
+      "min": 2596.0,
+      "max": 5374.0,
+      "mean": 3557.345238095238,
+      "std": 565.5824562064595,
+      "records_with_data": 504
+    },
+    "predicted_temperature": {
+      "unit": "Celsius",
+      "min": -5.585244445074683,
+      "max": 18.80618597291744,
+      "mean": 5.519639981582004,
+      "std": 4.23984842701865
+    }
+  }
+}

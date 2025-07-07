@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "title": "2022年1月7日东京大雪低温高需日案例分析",
+    "description": "四年来首次大雪后的低温高需日电力系统应急响应案例",
+    "data_source": "东京电力公司(TEPCO)实际运行数据及气象厅官方记录",
+    "language": "Chinese",
+    "last_updated": "2025-01-07",
+    "case_type": "极端天气电力系统应急案例"
+  },
+  "experiment_context": {
+    "scenario_type": "冬季极端天气电力需求预测与应急响应",
+    "prediction_target": "2022年1月7日 - 四年来首次大雪后的低温高需日",
+    "data_period": "2022年1月6日-7日 (大雪警报期间)",
+    "geographic_scope": "东京都及东京电力管辖区域",
+    "weather_conditions": "四年来首次大雪，最低气温-3.5°C，积雪最高10cm",
+    "prediction_challenge": "高需求+低供给+可再生出力骤降的三重叠加冲击下的电力平衡预测"
+  },
+  "case_overview": {
+    "event_name": "2022年1月7日东京四年来首次大雪后的低温高需日",
+    "event_description": "一连串'高需求 + 低供给 + 可再生出力骤降'的叠加，使1月7日的电力负荷曲线和可用容量预测都出现异动，成为训练/预测模型中的典型异常点。",
+    "key_characteristics": [
+      "四年来首次大雪警报",
+      "取暖负荷创东日本大震灾后冬季最高纪录",
+      "可再生能源出力大幅衰减",
+      "火电机组因极端低温受限",
+      "紧急跨区域融通最大274万kW"
+    ]
+  },
+  "detailed_timeline": {
+    "2022-01-06": {
+      "weather_events": {
+        "16:00": "气象厅向东京23区发布大雪警报，为2018年1月22日以来首次",
+        "evening": "东京23区被时隔四年的大雪警报笼罩，市区积雪最高达10cm"
+      },
+      "power_system_impact": {
+        "17:00": "需求冲至5,374万kW，刷新东日本大震灾后的冬季最高纪录",
+        "peak_without_dr": "若无需量响应与电压调节，峰值可达5,469万kW",
+        "snow_contribution": "降雪因素单独贡献了+406万kW",
+        "emergency_purchase": "接受最高122万kW的跨区域购电并呼吁节电"
+      }
+    },
+    "2022-01-07": {
+      "weather_conditions": {
+        "morning_temp": "清晨气温降至-3.5℃",
+        "snow_status": "积雪仍未消融",
+        "impact": "取暖负荷飙升，云层与积雪覆盖显著压低太阳光伏出力"
+      },
+      "supply_constraints": {
+        "thermal_plants": "多台火电机组因寒潮启停受限",
+        "renewable_reduction": "PV预测下调达-136万kW"
+      },
+      "emergency_response": {
+        "time_period": "0:00-9:00",
+        "emergency_purchase": "TEPCO向中部电力、关西电力等三家公司紧急购电",
+        "max_capacity": "最大融通约274万kW",
+        "coordination": "按广域机构指示执行跨区域融通"
+      }
+    }
+  },
+  "impact_analysis": {
+    "demand_side_shock": {
+      "peak_demand": "5,374万kW (1月6日17时)",
+      "potential_peak": "5,469万kW (若无需量响应)",
+      "snow_impact": "+406万kW (降雪因素单独贡献)",
+      "temperature_impact": "清晨-3.5℃维持高取暖负荷",
+      "record_significance": "刷新东日本大震灾后冬季最高纪录"
+    },
+    "supply_side_constraints": {
+      "renewable_reduction": "-136万kW (光伏预测下调)",
+      "thermal_limitations": "火电机组因极端低温与输煤、输气调度受限",
+      "weather_factors": [
+        "降雪和厚云层令白天光伏出力大幅衰减",
+        "部分火电容量被迫降功率或停机"
+      ]
+    },
+    "system_response": {
+      "emergency_procurement": {
+        "jan_6": "最高122万kW跨区域购电",
+        "jan_7": "最大274万kW紧急融通 (0:00-9:00)",
+        "source_companies": ["东北电力", "中部电力", "关西电力"]
+      },
+      "operational_measures": [
+        "需量响应与电压调节",
+        "官方节电呼吁",
+        "广域机构协调跨区域融通"
+      ]
+    }
+  },
+  "lessons_learned": {
+    "prediction_challenges": [
+      "极端天气下的需求预测误差显著扩大",
+      "多重因素叠加(高需求+低供给+可再生出力骤降)难以准确预测",
+      "传统预测模型在异常天气下的局限性暴露",
+      "需要考虑天气对供需两侧的同时冲击"
+    ],
+    "system_vulnerabilities": [
+      "可再生能源在极端天气下的脆弱性",
+      "火电机组在极端低温下的运行限制",
+      "单一区域电网在极端情况下的供需平衡困难",
+      "需量响应和电压调节的重要性"
+    ],
+    "emergency_response_effectiveness": [
+      "跨区域融通机制的关键作用",
+      "广域机构协调的重要性",
+      "官方节电呼吁的实际效果",
+      "多层次应急措施的必要性"
+    ]
+  },
+  "modeling_implications": {
+    "for_ai_agents": [
+      "需要识别极端天气下的多重冲击模式",
+      "考虑供需两侧的同时约束",
+      "评估跨区域支援的可能性和限制",
+      "预测模型需要包含异常天气的非线性响应"
+    ],
+    "for_human_experts": [
+      "历史异常事件提供重要的决策参考",
+      "需要平衡保守预测与经济性考虑",
+      "应急预案的提前准备至关重要",
+      "跨区域协调机制需要持续完善"
+    ],
+    "prediction_adjustments": [
+      "极端低温下取暖负荷的非线性增长",
+      "降雪对可再生能源出力的显著影响",
+      "火电机组在极端天气下的可用性降低",
+      "需量响应等调节措施的效果评估"
+    ]
+  }
+}

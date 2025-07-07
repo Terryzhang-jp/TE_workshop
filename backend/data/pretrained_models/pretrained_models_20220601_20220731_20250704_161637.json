@@ -1,0 +1,2644 @@
+{
+  "metadata": {
+    "start_date": "2022-06-01",
+    "end_date": "2022-07-31",
+    "total_days": 61,
+    "weeks_before": 3,
+    "generated_at": "2025-07-04T16:16:22.190853",
+    "version": "2.0",
+    "data_leakage_fixed": true,
+    "improvements": [
+      "特征缩放仅在训练集上拟合",
+      "异常值处理仅基于训练集统计",
+      "消除了验证集信息泄漏到训练过程"
+    ],
+    "successful_models": 61,
+    "failed_models": 0,
+    "success_rate": 100.0
+  },
+  "models": {
+    "2022-06-01": {
+      "target_date": "2022-06-01",
+      "training_data_range": {
+        "start_date": "2022-05-11",
+        "end_date": "2022-05-31",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.4605256398518955,
+          "rmse": 8.832344087653121,
+          "r2_score": 0.9995989860717893,
+          "mape": 0.2241606258216524
+        },
+        "validation_metrics": {
+          "mae": 110.22169076192009,
+          "rmse": 150.8911465915164,
+          "r2_score": 0.9030642786764013,
+          "mape": 3.6678402183658054
+        },
+        "cross_validation": {
+          "scores": [
+            261.23820266723635,
+            181.2511344909667,
+            76.82650299072263,
+            48.91728820800774,
+            84.95460535685218
+          ],
+          "mean": 130.63754674275714,
+          "std": 79.09364931647495,
+          "min": 48.91728820800774,
+          "max": 261.23820266723635
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:24.308792"
+    },
+    "2022-06-02": {
+      "target_date": "2022-06-02",
+      "training_data_range": {
+        "start_date": "2022-05-12",
+        "end_date": "2022-06-01",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.937979804144977,
+          "rmse": 8.184836167897585,
+          "r2_score": 0.9996655196999028,
+          "mape": 0.20677349988918273
+        },
+        "validation_metrics": {
+          "mae": 99.97079776095357,
+          "rmse": 138.68440574925793,
+          "r2_score": 0.910914403064861,
+          "mape": 3.361352645095092
+        },
+        "cross_validation": {
+          "scores": [
+            144.2182840983073,
+            35.67664922078453,
+            86.54407221476237,
+            53.73032430013016,
+            82.10334523518877
+          ],
+          "mean": 80.45453501383463,
+          "std": 36.94552538573793,
+          "min": 35.67664922078453,
+          "max": 144.2182840983073
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:25.074628"
+    },
+    "2022-06-03": {
+      "target_date": "2022-06-03",
+      "training_data_range": {
+        "start_date": "2022-05-13",
+        "end_date": "2022-06-02",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.777590560913075,
+          "rmse": 9.79325661534762,
+          "r2_score": 0.9995088376111747,
+          "mape": 0.2351409820390895
+        },
+        "validation_metrics": {
+          "mae": 88.81392742563357,
+          "rmse": 134.83074704352,
+          "r2_score": 0.9252089894571752,
+          "mape": 2.8758228262478096
+        },
+        "cross_validation": {
+          "scores": [
+            71.44461288452149,
+            46.45346857706706,
+            87.80522588094072,
+            69.07001597086585,
+            69.7983169555664
+          ],
+          "mean": 68.91432805379232,
+          "std": 13.180017037770169,
+          "min": 46.45346857706706,
+          "max": 87.80522588094072
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:25.871965"
+    },
+    "2022-06-04": {
+      "target_date": "2022-06-04",
+      "training_data_range": {
+        "start_date": "2022-05-14",
+        "end_date": "2022-06-03",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.342241032918306,
+          "rmse": 8.878897051475883,
+          "r2_score": 0.9995951869658656,
+          "mape": 0.22043419958514016
+        },
+        "validation_metrics": {
+          "mae": 80.06791119657429,
+          "rmse": 121.18845814096962,
+          "r2_score": 0.9456775661387976,
+          "mape": 2.403528206275371
+        },
+        "cross_validation": {
+          "scores": [
+            161.69514134724932,
+            222.14178670247395,
+            62.6493743896484,
+            79.38904927571613,
+            112.3928952534993
+          ],
+          "mean": 127.65364939371743,
+          "std": 58.09431861513515,
+          "min": 62.6493743896484,
+          "max": 222.14178670247395
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:26.061553"
+    },
+    "2022-06-05": {
+      "target_date": "2022-06-05",
+      "training_data_range": {
+        "start_date": "2022-05-15",
+        "end_date": "2022-06-04",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.504244189792204,
+          "rmse": 9.381291152492414,
+          "r2_score": 0.9995917562068877,
+          "mape": 0.22316040134580448
+        },
+        "validation_metrics": {
+          "mae": 74.90305553318298,
+          "rmse": 116.87213726861428,
+          "r2_score": 0.944942959079396,
+          "mape": 2.2500875114859786
+        },
+        "cross_validation": {
+          "scores": [
+            92.85719579060876,
+            230.38274383544916,
+            75.3198412577311,
+            60.902924092610654,
+            148.96680196126297
+          ],
+          "mean": 121.68590138753252,
+          "std": 62.02374903446329,
+          "min": 60.902924092610654,
+          "max": 230.38274383544916
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:26.296619"
+    },
+    "2022-06-06": {
+      "target_date": "2022-06-06",
+      "training_data_range": {
+        "start_date": "2022-05-16",
+        "end_date": "2022-06-05",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.135580825805676,
+          "rmse": 9.055581164523646,
+          "r2_score": 0.999613938610004,
+          "mape": 0.20742242283614104
+        },
+        "validation_metrics": {
+          "mae": 71.11299633537372,
+          "rmse": 113.66928469027383,
+          "r2_score": 0.9501266316763824,
+          "mape": 2.166451670941222
+        },
+        "cross_validation": {
+          "scores": [
+            64.95245437622073,
+            264.6843640645345,
+            95.14332275390623,
+            96.40538406372067,
+            116.27862574259433
+          ],
+          "mean": 127.4928302001953,
+          "std": 70.52870889669924,
+          "min": 64.95245437622073,
+          "max": 264.6843640645345
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:27.086382"
+    },
+    "2022-06-07": {
+      "target_date": "2022-06-07",
+      "training_data_range": {
+        "start_date": "2022-05-17",
+        "end_date": "2022-06-06",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.054748831854947,
+          "rmse": 9.029431956230857,
+          "r2_score": 0.9996167082752385,
+          "mape": 0.20258951723927296
+        },
+        "validation_metrics": {
+          "mae": 79.84812892638526,
+          "rmse": 121.37920870430624,
+          "r2_score": 0.941108124318286,
+          "mape": 2.512628204725094
+        },
+        "cross_validation": {
+          "scores": [
+            153.27125040690106,
+            125.04185434977212,
+            95.99340667724607,
+            126.58873799641921,
+            73.34492416381838
+          ],
+          "mean": 114.84803471883137,
+          "std": 27.553971620296792,
+          "min": 73.34492416381838,
+          "max": 153.27125040690106
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:27.860174"
+    },
+    "2022-06-08": {
+      "target_date": "2022-06-08",
+      "training_data_range": {
+        "start_date": "2022-05-18",
+        "end_date": "2022-06-07",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.436712307400183,
+          "rmse": 9.281850440638513,
+          "r2_score": 0.9996185778682447,
+          "mape": 0.21700147994984184
+        },
+        "validation_metrics": {
+          "mae": 66.15103193460047,
+          "rmse": 96.87136279589974,
+          "r2_score": 0.9553342667554006,
+          "mape": 2.1959923202944243
+        },
+        "cross_validation": {
+          "scores": [
+            266.76589024861653,
+            109.03721135457351,
+            126.85187428792315,
+            138.12317047119137,
+            61.6855038960775
+          ],
+          "mean": 140.49273005167643,
+          "std": 68.31782680316843,
+          "min": 61.6855038960775,
+          "max": 266.76589024861653
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:28.072393"
+    },
+    "2022-06-09": {
+      "target_date": "2022-06-09",
+      "training_data_range": {
+        "start_date": "2022-05-19",
+        "end_date": "2022-06-08",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.258107842339412,
+          "rmse": 9.493529035265878,
+          "r2_score": 0.9996145802243763,
+          "mape": 0.208287803520983
+        },
+        "validation_metrics": {
+          "mae": 51.08776645725941,
+          "rmse": 62.40904433821564,
+          "r2_score": 0.9769237828441618,
+          "mape": 1.820917916173913
+        },
+        "cross_validation": {
+          "scores": [
+            177.51712468465166,
+            77.17662709554034,
+            177.76375427246091,
+            103.58214747110998,
+            94.17453562418618
+          ],
+          "mean": 126.0428378295898,
+          "std": 42.97123049964156,
+          "min": 77.17662709554034,
+          "max": 177.76375427246091
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:28.300512"
+    },
+    "2022-06-10": {
+      "target_date": "2022-06-10",
+      "training_data_range": {
+        "start_date": "2022-05-20",
+        "end_date": "2022-06-09",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.9785059611002405,
+          "rmse": 8.551767231107036,
+          "r2_score": 0.9996825223489635,
+          "mape": 0.20547409451216903
+        },
+        "validation_metrics": {
+          "mae": 52.749184184385705,
+          "rmse": 69.60905097905143,
+          "r2_score": 0.9732443707055534,
+          "mape": 1.841052834912756
+        },
+        "cross_validation": {
+          "scores": [
+            105.01675338745113,
+            122.08974049886064,
+            181.7330518086751,
+            56.88946965535483,
+            90.45566304524733
+          ],
+          "mean": 111.23693567911782,
+          "std": 41.25938628975557,
+          "min": 56.88946965535483,
+          "max": 181.7330518086751
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:28.475954"
+    },
+    "2022-06-11": {
+      "target_date": "2022-06-11",
+      "training_data_range": {
+        "start_date": "2022-05-21",
+        "end_date": "2022-06-10",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.055916892157664,
+          "rmse": 9.284587671354123,
+          "r2_score": 0.9996242935964588,
+          "mape": 0.20853579188839844
+        },
+        "validation_metrics": {
+          "mae": 60.20566506926542,
+          "rmse": 82.03212040112503,
+          "r2_score": 0.9622176927506284,
+          "mape": 1.976010741194925
+        },
+        "cross_validation": {
+          "scores": [
+            153.34357986450192,
+            398.34387944539384,
+            141.28927637735995,
+            61.49865900675458,
+            56.06633478800451
+          ],
+          "mean": 162.10834589640297,
+          "std": 124.64726174798697,
+          "min": 56.06633478800451,
+          "max": 398.34387944539384
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:28.657189"
+    },
+    "2022-06-12": {
+      "target_date": "2022-06-12",
+      "training_data_range": {
+        "start_date": "2022-05-22",
+        "end_date": "2022-06-11",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 7.0611775292290355,
+          "rmse": 10.609152114527015,
+          "r2_score": 0.9995244971210655,
+          "mape": 0.24321080303705223
+        },
+        "validation_metrics": {
+          "mae": 63.180227126288685,
+          "rmse": 94.13576640441384,
+          "r2_score": 0.9481869839225767,
+          "mape": 2.0270506305416167
+        },
+        "cross_validation": {
+          "scores": [
+            145.60014979044595,
+            306.9388712565104,
+            87.34875869750974,
+            80.42273737589515,
+            54.93103841145829
+          ],
+          "mean": 135.0483111063639,
+          "std": 90.92379661871121,
+          "min": 54.93103841145829,
+          "max": 306.9388712565104
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:28.840287"
+    },
+    "2022-06-13": {
+      "target_date": "2022-06-13",
+      "training_data_range": {
+        "start_date": "2022-05-23",
+        "end_date": "2022-06-12",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.870518281724696,
+          "rmse": 9.011530371088027,
+          "r2_score": 0.999651958027999,
+          "mape": 0.19681810715091297
+        },
+        "validation_metrics": {
+          "mae": 59.36825853065936,
+          "rmse": 87.09963102278964,
+          "r2_score": 0.953635963367005,
+          "mape": 1.9237306188332188
+        },
+        "cross_validation": {
+          "scores": [
+            82.66393839518227,
+            286.93258031209314,
+            62.84251912434895,
+            74.21388931274413,
+            73.4675498962402
+          ],
+          "mean": 116.02409540812172,
+          "std": 85.68552181526181,
+          "min": 62.84251912434895,
+          "max": 286.93258031209314
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:29.005877"
+    },
+    "2022-06-14": {
+      "target_date": "2022-06-14",
+      "training_data_range": {
+        "start_date": "2022-05-24",
+        "end_date": "2022-06-13",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.629290601942245,
+          "rmse": 8.35035956241934,
+          "r2_score": 0.9996933354328086,
+          "mape": 0.1901393194816849
+        },
+        "validation_metrics": {
+          "mae": 65.99985234106529,
+          "rmse": 85.40013301655225,
+          "r2_score": 0.9551656026424424,
+          "mape": 2.3027020557650055
+        },
+        "cross_validation": {
+          "scores": [
+            266.64817403157554,
+            92.71771265665686,
+            74.12838923136394,
+            106.8356928507487,
+            38.640552520751896
+          ],
+          "mean": 115.79410425821939,
+          "std": 78.81424453217068,
+          "min": 38.640552520751896,
+          "max": 266.64817403157554
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:29.178134"
+    },
+    "2022-06-15": {
+      "target_date": "2022-06-15",
+      "training_data_range": {
+        "start_date": "2022-05-25",
+        "end_date": "2022-06-14",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.229599761962863,
+          "rmse": 7.4178083468192115,
+          "r2_score": 0.9997536230658912,
+          "mape": 0.17569002153316507
+        },
+        "validation_metrics": {
+          "mae": 77.97729710320021,
+          "rmse": 96.5302091099608,
+          "r2_score": 0.9500376327490951,
+          "mape": 2.748165793299903
+        },
+        "cross_validation": {
+          "scores": [
+            286.44298121134443,
+            79.32040913899738,
+            88.24389673868812,
+            69.17451858520505,
+            48.77214202880855
+          ],
+          "mean": 114.3907895406087,
+          "std": 87.02398095215224,
+          "min": 48.77214202880855,
+          "max": 286.44298121134443
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:29.360881"
+    },
+    "2022-06-16": {
+      "target_date": "2022-06-16",
+      "training_data_range": {
+        "start_date": "2022-05-26",
+        "end_date": "2022-06-15",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.153313869900163,
+          "rmse": 7.281231508366721,
+          "r2_score": 0.9997587097777589,
+          "mape": 0.17533234410813103
+        },
+        "validation_metrics": {
+          "mae": 60.37921197111255,
+          "rmse": 79.1891633184664,
+          "r2_score": 0.9627155667074274,
+          "mape": 2.195616611818931
+        },
+        "cross_validation": {
+          "scores": [
+            115.59600728352862,
+            76.28490931193033,
+            101.16390279134113,
+            39.76021931966141,
+            52.67374674479168
+          ],
+          "mean": 77.09575709025064,
+          "std": 28.469560398735798,
+          "min": 39.76021931966141,
+          "max": 115.59600728352862
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:29.535881"
+    },
+    "2022-06-17": {
+      "target_date": "2022-06-17",
+      "training_data_range": {
+        "start_date": "2022-05-27",
+        "end_date": "2022-06-16",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.13563995361326,
+          "rmse": 7.590212918056639,
+          "r2_score": 0.9997276597826337,
+          "mape": 0.17657235780774458
+        },
+        "validation_metrics": {
+          "mae": 40.01954500912802,
+          "rmse": 55.10649180203521,
+          "r2_score": 0.9840862086391777,
+          "mape": 1.4619522816566008
+        },
+        "cross_validation": {
+          "scores": [
+            92.21416295369465,
+            77.93230743408199,
+            104.57319717407226,
+            33.99320373535149,
+            72.51105626424157
+          ],
+          "mean": 76.24478551228839,
+          "std": 23.914449816514814,
+          "min": 33.99320373535149,
+          "max": 104.57319717407226
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:29.761559"
+    },
+    "2022-06-18": {
+      "target_date": "2022-06-18",
+      "training_data_range": {
+        "start_date": "2022-05-28",
+        "end_date": "2022-06-17",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 4.753161027696376,
+          "rmse": 6.982641420532287,
+          "r2_score": 0.9997644412669199,
+          "mape": 0.16527568622185423
+        },
+        "validation_metrics": {
+          "mae": 49.22203893497642,
+          "rmse": 68.8265001518124,
+          "r2_score": 0.9753374522374204,
+          "mape": 1.678055484569955
+        },
+        "cross_validation": {
+          "scores": [
+            325.80304768880205,
+            272.6478055318196,
+            58.24480183919268,
+            53.02395807902019,
+            80.4199208577474
+          ],
+          "mean": 158.02790679931636,
+          "std": 116.86891447273777,
+          "min": 53.02395807902019,
+          "max": 325.80304768880205
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:29.980425"
+    },
+    "2022-06-19": {
+      "target_date": "2022-06-19",
+      "training_data_range": {
+        "start_date": "2022-05-29",
+        "end_date": "2022-06-18",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.909954410129111,
+          "rmse": 8.500471828396469,
+          "r2_score": 0.9996682097076142,
+          "mape": 0.20502700038424465
+        },
+        "validation_metrics": {
+          "mae": 42.87162230186858,
+          "rmse": 56.358028505815,
+          "r2_score": 0.9823940594373997,
+          "mape": 1.4183476946910099
+        },
+        "cross_validation": {
+          "scores": [
+            114.31409784952795,
+            205.6958424886068,
+            53.56272099812822,
+            72.21631088256838,
+            94.79100138346357
+          ],
+          "mean": 108.11599472045899,
+          "std": 52.92002568738699,
+          "min": 53.56272099812822,
+          "max": 205.6958424886068
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:30.169961"
+    },
+    "2022-06-20": {
+      "target_date": "2022-06-20",
+      "training_data_range": {
+        "start_date": "2022-05-30",
+        "end_date": "2022-06-19",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.707003106011274,
+          "rmse": 8.21525723464073,
+          "r2_score": 0.9996877085564024,
+          "mape": 0.197484504418787
+        },
+        "validation_metrics": {
+          "mae": 54.72589232978956,
+          "rmse": 74.1692546994624,
+          "r2_score": 0.9683751280872925,
+          "mape": 1.8399198459956438
+        },
+        "cross_validation": {
+          "scores": [
+            111.85419591267902,
+            326.3428039550781,
+            46.52831802368162,
+            51.07432734171554,
+            56.59648488362635
+          ],
+          "mean": 118.47922602335612,
+          "std": 106.58422513089927,
+          "min": 46.52831802368162,
+          "max": 326.3428039550781
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:30.377353"
+    },
+    "2022-06-21": {
+      "target_date": "2022-06-21",
+      "training_data_range": {
+        "start_date": "2022-05-31",
+        "end_date": "2022-06-20",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 5.799018817477738,
+          "rmse": 8.581710156550546,
+          "r2_score": 0.9996339309487691,
+          "mape": 0.1998337174413708
+        },
+        "validation_metrics": {
+          "mae": 96.27977156491626,
+          "rmse": 140.25842308418726,
+          "r2_score": 0.8908679325375185,
+          "mape": 3.1955291379554684
+        },
+        "cross_validation": {
+          "scores": [
+            200.73836669921872,
+            85.44036839803059,
+            77.69656295776369,
+            53.494046020507845,
+            40.83802897135418
+          ],
+          "mean": 91.641474609375,
+          "std": 56.87048890156771,
+          "min": 40.83802897135418,
+          "max": 200.73836669921872
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:30.563408"
+    },
+    "2022-06-22": {
+      "target_date": "2022-06-22",
+      "training_data_range": {
+        "start_date": "2022-06-01",
+        "end_date": "2022-06-21",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.013050036960167,
+          "rmse": 8.819641053762048,
+          "r2_score": 0.9996137642395807,
+          "mape": 0.20479660908565536
+        },
+        "validation_metrics": {
+          "mae": 173.68104545881658,
+          "rmse": 240.67005603433734,
+          "r2_score": 0.8136617516610193,
+          "mape": 5.382003225742168
+        },
+        "cross_validation": {
+          "scores": [
+            351.81643244425453,
+            65.20446395874022,
+            78.76369450887049,
+            49.477677917480534,
+            38.13707504272462
+          ],
+          "mean": 116.67986877441408,
+          "std": 118.37369813390467,
+          "min": 38.13707504272462,
+          "max": 351.81643244425453
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:30.733154"
+    },
+    "2022-06-23": {
+      "target_date": "2022-06-23",
+      "training_data_range": {
+        "start_date": "2022-06-02",
+        "end_date": "2022-06-22",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.713565699259445,
+          "rmse": 9.501865352284277,
+          "r2_score": 0.9995550617833969,
+          "mape": 0.229554018269614
+        },
+        "validation_metrics": {
+          "mae": 235.05543569453388,
+          "rmse": 294.43005844039635,
+          "r2_score": 0.7720245870281085,
+          "mape": 7.073381213905766
+        },
+        "cross_validation": {
+          "scores": [
+            141.22819010416666,
+            117.92460784912112,
+            39.55500793457029,
+            45.50854644775393,
+            49.591358693440746
+          ],
+          "mean": 78.76154220581054,
+          "std": 42.260244847449826,
+          "min": 39.55500793457029,
+          "max": 141.22819010416666
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:30.903276"
+    },
+    "2022-06-24": {
+      "target_date": "2022-06-24",
+      "training_data_range": {
+        "start_date": "2022-06-03",
+        "end_date": "2022-06-23",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.772356711493612,
+          "rmse": 10.03304318458685,
+          "r2_score": 0.9994599882560359,
+          "mape": 0.23223570885657252
+        },
+        "validation_metrics": {
+          "mae": 265.56294415136375,
+          "rmse": 319.51654733567,
+          "r2_score": 0.7493617320675434,
+          "mape": 7.771734182137949
+        },
+        "cross_validation": {
+          "scores": [
+            112.6567660013834,
+            130.5759023030599,
+            63.15590489705404,
+            30.61626383463544,
+            75.35141550699873
+          ],
+          "mean": 82.4712505086263,
+          "std": 35.60319406831875,
+          "min": 30.61626383463544,
+          "max": 130.5759023030599
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:31.101508"
+    },
+    "2022-06-25": {
+      "target_date": "2022-06-25",
+      "training_data_range": {
+        "start_date": "2022-06-04",
+        "end_date": "2022-06-24",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 6.86855070326063,
+          "rmse": 9.710033101444978,
+          "r2_score": 0.9994697092503234,
+          "mape": 0.24004940091376506
+        },
+        "validation_metrics": {
+          "mae": 297.8749288552405,
+          "rmse": 336.45237483406515,
+          "r2_score": 0.7027789774947248,
+          "mape": 8.730003834203263
+        },
+        "cross_validation": {
+          "scores": [
+            245.32952397664388,
+            226.98571090698238,
+            60.54738413492843,
+            36.89318008422852,
+            138.80943018595372
+          ],
+          "mean": 141.7130458577474,
+          "std": 84.36978348913058,
+          "min": 36.89318008422852,
+          "max": 245.32952397664388
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:31.285231"
+    },
+    "2022-06-26": {
+      "target_date": "2022-06-26",
+      "training_data_range": {
+        "start_date": "2022-06-05",
+        "end_date": "2022-06-25",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 7.431864759657118,
+          "rmse": 11.157474924911087,
+          "r2_score": 0.9994253456634363,
+          "mape": 0.25217404347573874
+        },
+        "validation_metrics": {
+          "mae": 285.554769383591,
+          "rmse": 334.93030281245404,
+          "r2_score": 0.7250154152849492,
+          "mape": 8.237468947536334
+        },
+        "cross_validation": {
+          "scores": [
+            75.4108912150065,
+            164.21497650146483,
+            52.968024190266966,
+            60.52414016723626,
+            221.3885261535644
+          ],
+          "mean": 114.9013116455078,
+          "std": 66.51836825115166,
+          "min": 52.968024190266966,
+          "max": 221.3885261535644
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:31.461403"
+    },
+    "2022-06-27": {
+      "target_date": "2022-06-27",
+      "training_data_range": {
+        "start_date": "2022-06-06",
+        "end_date": "2022-06-26",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 7.940219200981975,
+          "rmse": 11.730090888545337,
+          "r2_score": 0.9994297598068357,
+          "mape": 0.2685093359852146
+        },
+        "validation_metrics": {
+          "mae": 326.89199185191154,
+          "rmse": 445.6686129056315,
+          "r2_score": 0.5431065083871947,
+          "mape": 8.761928789570698
+        },
+        "cross_validation": {
+          "scores": [
+            94.97897440592448,
+            282.2468516031901,
+            37.30670115153,
+            90.85177739461254,
+            288.4789360046386
+          ],
+          "mean": 158.77264811197915,
+          "std": 105.36266302784956,
+          "min": 37.30670115153,
+          "max": 288.4789360046386
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:31.640393"
+    },
+    "2022-06-28": {
+      "target_date": "2022-06-28",
+      "training_data_range": {
+        "start_date": "2022-06-07",
+        "end_date": "2022-06-27",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.772091420491533,
+          "rmse": 13.894266615240488,
+          "r2_score": 0.9992404779252809,
+          "mape": 0.3278302827508518
+        },
+        "validation_metrics": {
+          "mae": 347.59008470253434,
+          "rmse": 480.17424367634214,
+          "r2_score": 0.48512186892321973,
+          "mape": 9.047854640009074
+        },
+        "cross_validation": {
+          "scores": [
+            158.8571594238281,
+            82.07369715372721,
+            45.16744715372719,
+            137.2336944580078,
+            341.47424825032556
+          ],
+          "mean": 152.96124928792318,
+          "std": 102.4341909141493,
+          "min": 45.16744715372719,
+          "max": 341.47424825032556
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:31.812940"
+    },
+    "2022-06-29": {
+      "target_date": "2022-06-29",
+      "training_data_range": {
+        "start_date": "2022-06-08",
+        "end_date": "2022-06-28",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 8.489776314629443,
+          "rmse": 12.344954553469204,
+          "r2_score": 0.999429541708285,
+          "mape": 0.2807857790215198
+        },
+        "validation_metrics": {
+          "mae": 401.1219105723796,
+          "rmse": 516.421337927323,
+          "r2_score": 0.5582799489198793,
+          "mape": 10.198283759491517
+        },
+        "cross_validation": {
+          "scores": [
+            295.7026402791342,
+            66.04801686604819,
+            69.98815612792963,
+            207.53114980061844,
+            230.5299087524414
+          ],
+          "mean": 173.95997436523436,
+          "std": 91.21796704529976,
+          "min": 66.04801686604819,
+          "max": 295.7026402791342
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:31.984966"
+    },
+    "2022-06-30": {
+      "target_date": "2022-06-30",
+      "training_data_range": {
+        "start_date": "2022-06-09",
+        "end_date": "2022-06-29",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.710054482354055,
+          "rmse": 14.182912448898861,
+          "r2_score": 0.9993650285048397,
+          "mape": 0.3184316749567009
+        },
+        "validation_metrics": {
+          "mae": 363.0649622127363,
+          "rmse": 457.3300489602045,
+          "r2_score": 0.7112684591497873,
+          "mape": 8.963342042740607
+        },
+        "cross_validation": {
+          "scores": [
+            127.46128641764324,
+            40.656004333496114,
+            112.9833170572916,
+            285.6031341552734,
+            257.7585395812988
+          ],
+          "mean": 164.8924563090006,
+          "std": 92.43973646132369,
+          "min": 40.656004333496114,
+          "max": 285.6031341552734
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:32.163054"
+    },
+    "2022-07-01": {
+      "target_date": "2022-07-01",
+      "training_data_range": {
+        "start_date": "2022-06-10",
+        "end_date": "2022-06-30",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.911462487114806,
+          "rmse": 14.241152315983571,
+          "r2_score": 0.999420612056367,
+          "mape": 0.326804298605903
+        },
+        "validation_metrics": {
+          "mae": 387.6483942090851,
+          "rmse": 473.6734687691041,
+          "r2_score": 0.7508207238274359,
+          "mape": 9.056119180118761
+        },
+        "cross_validation": {
+          "scores": [
+            145.12356465657552,
+            63.048533630371075,
+            182.7731931050618,
+            232.88455301920573,
+            384.63419850667316
+          ],
+          "mean": 201.69280858357746,
+          "std": 106.97732774149812,
+          "min": 63.048533630371075,
+          "max": 384.63419850667316
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:32.350129"
+    },
+    "2022-07-02": {
+      "target_date": "2022-07-02",
+      "training_data_range": {
+        "start_date": "2022-06-11",
+        "end_date": "2022-07-01",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.551578903198246,
+          "rmse": 13.264926947427073,
+          "r2_score": 0.9995164029415561,
+          "mape": 0.3147153494551024
+        },
+        "validation_metrics": {
+          "mae": 468.98583480992266,
+          "rmse": 557.3232296088519,
+          "r2_score": 0.6844168921407244,
+          "mape": 10.506725911267441
+        },
+        "cross_validation": {
+          "scores": [
+            219.27549540201818,
+            255.65794169108065,
+            236.41294250488278,
+            215.23454640706382,
+            484.5530225118001
+          ],
+          "mean": 282.2267897033691,
+          "std": 102.16804087224578,
+          "min": 215.23454640706382,
+          "max": 484.5530225118001
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:32.534505"
+    },
+    "2022-07-03": {
+      "target_date": "2022-07-03",
+      "training_data_range": {
+        "start_date": "2022-06-12",
+        "end_date": "2022-07-02",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 10.390588845147024,
+          "rmse": 14.52031865850485,
+          "r2_score": 0.9995402497530599,
+          "mape": 0.33487402713254183
+        },
+        "validation_metrics": {
+          "mae": 482.6706779558634,
+          "rmse": 550.0981397747196,
+          "r2_score": 0.6850481684362314,
+          "mape": 10.842259627471792
+        },
+        "cross_validation": {
+          "scores": [
+            64.77117538452147,
+            274.32876663208003,
+            302.4813537597656,
+            239.03124542236324,
+            413.44150034586585
+          ],
+          "mean": 258.81080830891926,
+          "std": 113.22648519117517,
+          "min": 64.77117538452147,
+          "max": 413.44150034586585
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:32.702866"
+    },
+    "2022-07-04": {
+      "target_date": "2022-07-04",
+      "training_data_range": {
+        "start_date": "2022-06-13",
+        "end_date": "2022-07-03",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.181151284111857,
+          "rmse": 13.066727221182205,
+          "r2_score": 0.999679021947804,
+          "mape": 0.28709735756215266
+        },
+        "validation_metrics": {
+          "mae": 456.38450604730457,
+          "rmse": 523.5979108917379,
+          "r2_score": 0.6875204770241862,
+          "mape": 10.460902112893931
+        },
+        "cross_validation": {
+          "scores": [
+            69.84569753011067,
+            299.18054758707683,
+            250.8312082926432,
+            364.2112655639648,
+            403.8582516988118
+          ],
+          "mean": 277.58539413452144,
+          "std": 116.4360724314899,
+          "min": 69.84569753011067,
+          "max": 403.8582516988118
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:32.864516"
+    },
+    "2022-07-05": {
+      "target_date": "2022-07-05",
+      "training_data_range": {
+        "start_date": "2022-06-14",
+        "end_date": "2022-07-04",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.868083487616644,
+          "rmse": 16.418689442603718,
+          "r2_score": 0.9995542432770832,
+          "mape": 0.36198947796023695
+        },
+        "validation_metrics": {
+          "mae": 411.36302536377804,
+          "rmse": 502.91772590958004,
+          "r2_score": 0.6883131126579084,
+          "mape": 9.64027916970609
+        },
+        "cross_validation": {
+          "scores": [
+            155.21828053792314,
+            264.1400751749674,
+            248.0726328531901,
+            336.82355041503905,
+            473.8536801656087
+          ],
+          "mean": 295.6216438293457,
+          "std": 106.23498285984826,
+          "min": 155.21828053792314,
+          "max": 473.8536801656087
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:33.032870"
+    },
+    "2022-07-06": {
+      "target_date": "2022-07-06",
+      "training_data_range": {
+        "start_date": "2022-06-15",
+        "end_date": "2022-07-05",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.299292458428274,
+          "rmse": 15.658557565002331,
+          "r2_score": 0.9996475163586098,
+          "mape": 0.3453151202650486
+        },
+        "validation_metrics": {
+          "mae": 356.684688607442,
+          "rmse": 453.41291656672973,
+          "r2_score": 0.6783989319904474,
+          "mape": 8.698558678404543
+        },
+        "cross_validation": {
+          "scores": [
+            213.8565592447917,
+            342.8524360656738,
+            287.6770479838053,
+            299.0989807128906,
+            450.63054122924814
+          ],
+          "mean": 318.82311304728194,
+          "std": 77.88158019855577,
+          "min": 213.8565592447917,
+          "max": 450.63054122924814
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:33.209741"
+    },
+    "2022-07-07": {
+      "target_date": "2022-07-07",
+      "training_data_range": {
+        "start_date": "2022-06-16",
+        "end_date": "2022-07-06",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 14.271635733710378,
+          "rmse": 19.576592033678068,
+          "r2_score": 0.9995029342058229,
+          "mape": 0.41231077217935996
+        },
+        "validation_metrics": {
+          "mae": 199.03711709353522,
+          "rmse": 239.3743013008059,
+          "r2_score": 0.8705482405119356,
+          "mape": 5.413050925455932
+        },
+        "cross_validation": {
+          "scores": [
+            242.43053690592444,
+            281.2890487670898,
+            412.13998794555664,
+            357.08192876180004,
+            522.637116241455
+          ],
+          "mean": 363.11572372436524,
+          "std": 99.14371274734113,
+          "min": 242.43053690592444,
+          "max": 522.637116241455
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:33.373859"
+    },
+    "2022-07-08": {
+      "target_date": "2022-07-08",
+      "training_data_range": {
+        "start_date": "2022-06-17",
+        "end_date": "2022-07-07",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.560342025756817,
+          "rmse": 17.399791283673142,
+          "r2_score": 0.9996088218079182,
+          "mape": 0.3614870934254893
+        },
+        "validation_metrics": {
+          "mae": 179.65815681378865,
+          "rmse": 220.26046633748123,
+          "r2_score": 0.8888693313969123,
+          "mape": 5.011699978022883
+        },
+        "cross_validation": {
+          "scores": [
+            275.76223246256507,
+            286.69961776733396,
+            411.73645706176757,
+            350.8840667724609,
+            525.7021799723308
+          ],
+          "mean": 370.15691080729164,
+          "std": 91.83692830763151,
+          "min": 275.76223246256507,
+          "max": 525.7021799723308
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:33.542106"
+    },
+    "2022-07-09": {
+      "target_date": "2022-07-09",
+      "training_data_range": {
+        "start_date": "2022-06-18",
+        "end_date": "2022-07-08",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.63087526957195,
+          "rmse": 16.0830199363416,
+          "r2_score": 0.9996601744525027,
+          "mape": 0.32834136069797504
+        },
+        "validation_metrics": {
+          "mae": 163.0102092729811,
+          "rmse": 198.53142145315496,
+          "r2_score": 0.9170642646530204,
+          "mape": 4.543575823304996
+        },
+        "cross_validation": {
+          "scores": [
+            368.29668019612626,
+            664.9025370279948,
+            392.7949811299642,
+            353.6840927124024,
+            444.61262791951503
+          ],
+          "mean": 444.8581837972006,
+          "std": 114.28432392696185,
+          "min": 353.6840927124024,
+          "max": 664.9025370279948
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:33.718233"
+    },
+    "2022-07-10": {
+      "target_date": "2022-07-10",
+      "training_data_range": {
+        "start_date": "2022-06-19",
+        "end_date": "2022-07-09",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.398686981201186,
+          "rmse": 16.89857299127978,
+          "r2_score": 0.999613294941187,
+          "mape": 0.3466610455926738
+        },
+        "validation_metrics": {
+          "mae": 101.5612628530391,
+          "rmse": 127.90595727907389,
+          "r2_score": 0.9657892242397796,
+          "mape": 2.7443892655105904
+        },
+        "cross_validation": {
+          "scores": [
+            160.5738204956055,
+            606.8148986816407,
+            456.0472633361816,
+            436.3426879882813,
+            206.99231618245443
+          ],
+          "mean": 373.3541973368327,
+          "std": 166.28972094585282,
+          "min": 160.5738204956055,
+          "max": 606.8148986816407
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:33.890339"
+    },
+    "2022-07-11": {
+      "target_date": "2022-07-11",
+      "training_data_range": {
+        "start_date": "2022-06-20",
+        "end_date": "2022-07-10",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.809546322292755,
+          "rmse": 17.26056159891999,
+          "r2_score": 0.9995809706737985,
+          "mape": 0.3501686894829023
+        },
+        "validation_metrics": {
+          "mae": 205.97240036377787,
+          "rmse": 283.94793705206695,
+          "r2_score": 0.8195316075003188,
+          "mape": 6.082010893011811
+        },
+        "cross_validation": {
+          "scores": [
+            116.6375467936198,
+            311.81409454345703,
+            471.5663571675618,
+            377.9243034362793,
+            222.82525914510092
+          ],
+          "mean": 300.15351221720374,
+          "std": 122.65756955812968,
+          "min": 116.6375467936198,
+          "max": 471.5663571675618
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:34.066200"
+    },
+    "2022-07-12": {
+      "target_date": "2022-07-12",
+      "training_data_range": {
+        "start_date": "2022-06-21",
+        "end_date": "2022-07-11",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.764994769626192,
+          "rmse": 16.233344837969888,
+          "r2_score": 0.9996228069429792,
+          "mape": 0.32335298296564013
+        },
+        "validation_metrics": {
+          "mae": 230.05213904102234,
+          "rmse": 291.70033200779244,
+          "r2_score": 0.7866816326129634,
+          "mape": 7.102425090382863
+        },
+        "cross_validation": {
+          "scores": [
+            211.66361363728842,
+            400.06203918457027,
+            529.3578051249186,
+            230.37700958251958,
+            173.11856994628914
+          ],
+          "mean": 308.91580749511724,
+          "std": 134.88478904888737,
+          "min": 173.11856994628914,
+          "max": 529.3578051249186
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:34.235912"
+    },
+    "2022-07-13": {
+      "target_date": "2022-07-13",
+      "training_data_range": {
+        "start_date": "2022-06-22",
+        "end_date": "2022-07-12",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.3905219607883,
+          "rmse": 17.166669471173897,
+          "r2_score": 0.9995776786426869,
+          "mape": 0.3330238596490892
+        },
+        "validation_metrics": {
+          "mae": 238.41434556888962,
+          "rmse": 296.88809324467496,
+          "r2_score": 0.8359835929620041,
+          "mape": 7.259400388241836
+        },
+        "cross_validation": {
+          "scores": [
+            252.4554842631022,
+            486.8102231343587,
+            515.8784253438314,
+            219.54079335530594,
+            101.72653121948238
+          ],
+          "mean": 315.28229146321615,
+          "std": 160.23753940161225,
+          "min": 101.72653121948238,
+          "max": 515.8784253438314
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:34.414424"
+    },
+    "2022-07-14": {
+      "target_date": "2022-07-14",
+      "training_data_range": {
+        "start_date": "2022-06-23",
+        "end_date": "2022-07-13",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.143821801079646,
+          "rmse": 16.99463603865955,
+          "r2_score": 0.9995863123644749,
+          "mape": 0.32062216199398585
+        },
+        "validation_metrics": {
+          "mae": 152.3473644558097,
+          "rmse": 203.62832855648438,
+          "r2_score": 0.9219193091484765,
+          "mape": 4.502024467799496
+        },
+        "cross_validation": {
+          "scores": [
+            306.5266108194986,
+            447.43055572509775,
+            386.60732879638675,
+            179.1164588928222,
+            149.00223948160806
+          ],
+          "mean": 293.73663874308266,
+          "std": 115.32233134345915,
+          "min": 149.00223948160806,
+          "max": 447.43055572509775
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:34.584545"
+    },
+    "2022-07-15": {
+      "target_date": "2022-07-15",
+      "training_data_range": {
+        "start_date": "2022-06-24",
+        "end_date": "2022-07-14",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.7773922390408,
+          "rmse": 15.9898332434664,
+          "r2_score": 0.9996341312410518,
+          "mape": 0.3098223163438246
+        },
+        "validation_metrics": {
+          "mae": 89.06165666612972,
+          "rmse": 120.78825298333383,
+          "r2_score": 0.972187950827175,
+          "mape": 2.4409961316342472
+        },
+        "cross_validation": {
+          "scores": [
+            355.14054285685216,
+            591.8893427530925,
+            189.19163436889653,
+            190.66727828979492,
+            288.90767313639316
+          ],
+          "mean": 323.1592942810058,
+          "std": 148.26549225430446,
+          "min": 189.19163436889653,
+          "max": 591.8893427530925
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:34.769986"
+    },
+    "2022-07-16": {
+      "target_date": "2022-07-16",
+      "training_data_range": {
+        "start_date": "2022-06-25",
+        "end_date": "2022-07-15",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.526904975043399,
+          "rmse": 15.78283094382799,
+          "r2_score": 0.9996407148134011,
+          "mape": 0.309769472902598
+        },
+        "validation_metrics": {
+          "mae": 77.83766460615334,
+          "rmse": 104.98788328544615,
+          "r2_score": 0.978363119846416,
+          "mape": 2.117816515425802
+        },
+        "cross_validation": {
+          "scores": [
+            352.0464012145996,
+            584.7343187967937,
+            211.6924860636393,
+            187.74548009236653,
+            228.76275202433268
+          ],
+          "mean": 312.99628763834636,
+          "std": 147.24943631446104,
+          "min": 187.74548009236653,
+          "max": 584.7343187967937
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:34.945977"
+    },
+    "2022-07-17": {
+      "target_date": "2022-07-17",
+      "training_data_range": {
+        "start_date": "2022-06-26",
+        "end_date": "2022-07-16",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.71129336886934,
+          "rmse": 15.67243613310205,
+          "r2_score": 0.9996577660602236,
+          "mape": 0.314601021859186
+        },
+        "validation_metrics": {
+          "mae": 70.11714202775988,
+          "rmse": 89.13350703894297,
+          "r2_score": 0.9771944137296247,
+          "mape": 2.042597825390397
+        },
+        "cross_validation": {
+          "scores": [
+            219.51985346476238,
+            448.5831237792969,
+            216.92695795694985,
+            211.51134541829424,
+            212.65888188680012
+          ],
+          "mean": 261.8400325012207,
+          "std": 93.4161937546574,
+          "min": 211.51134541829424,
+          "max": 448.5831237792969
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:35.124617"
+    },
+    "2022-07-18": {
+      "target_date": "2022-07-18",
+      "training_data_range": {
+        "start_date": "2022-06-27",
+        "end_date": "2022-07-17",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.309198040432394,
+          "rmse": 17.18565788732285,
+          "r2_score": 0.9995839138794494,
+          "mape": 0.32270791905456775
+        },
+        "validation_metrics": {
+          "mae": 93.72255389551117,
+          "rmse": 126.6883522795829,
+          "r2_score": 0.947235538059515,
+          "mape": 2.8273128358332547
+        },
+        "cross_validation": {
+          "scores": [
+            166.41094309488932,
+            475.62535247802737,
+            133.50544738769526,
+            309.2437713623047,
+            110.5492174784342
+          ],
+          "mean": 239.06694636027018,
+          "std": 136.9843770545539,
+          "min": 110.5492174784342,
+          "max": 475.62535247802737
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:35.316356"
+    },
+    "2022-07-19": {
+      "target_date": "2022-07-19",
+      "training_data_range": {
+        "start_date": "2022-06-28",
+        "end_date": "2022-07-18",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.097142791748027,
+          "rmse": 16.75109685766849,
+          "r2_score": 0.9995777812535251,
+          "mape": 0.32176634091828904
+        },
+        "validation_metrics": {
+          "mae": 112.34501231609751,
+          "rmse": 159.33338530035135,
+          "r2_score": 0.9094493564980332,
+          "mape": 3.5655008699339676
+        },
+        "cross_validation": {
+          "scores": [
+            204.0673838297526,
+            276.27225138346347,
+            164.55859807332354,
+            289.99500681559243,
+            87.25301996866862
+          ],
+          "mean": 204.4292520141601,
+          "std": 74.56940968486778,
+          "min": 87.25301996866862,
+          "max": 289.99500681559243
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:35.503648"
+    },
+    "2022-07-20": {
+      "target_date": "2022-07-20",
+      "training_data_range": {
+        "start_date": "2022-06-29",
+        "end_date": "2022-07-19",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.461296674940321,
+          "rmse": 16.99199969956661,
+          "r2_score": 0.9995385638671167,
+          "mape": 0.33411530514134963
+        },
+        "validation_metrics": {
+          "mae": 222.93307409122642,
+          "rmse": 324.2887294260689,
+          "r2_score": 0.6558933024818194,
+          "mape": 6.7442365592991065
+        },
+        "cross_validation": {
+          "scores": [
+            402.3918538411458,
+            313.2365025838216,
+            266.0353945414225,
+            140.8731018066406,
+            61.20079142252607
+          ],
+          "mean": 236.74752883911128,
+          "std": 121.78254995171295,
+          "min": 61.20079142252607,
+          "max": 402.3918538411458
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:35.693238"
+    },
+    "2022-07-21": {
+      "target_date": "2022-07-21",
+      "training_data_range": {
+        "start_date": "2022-06-30",
+        "end_date": "2022-07-20",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 10.903338199191623,
+          "rmse": 14.943645161891832,
+          "r2_score": 0.9996148773761374,
+          "mape": 0.29582307789451834
+        },
+        "validation_metrics": {
+          "mae": 241.25257161458336,
+          "rmse": 337.6845121948562,
+          "r2_score": 0.7052457733182611,
+          "mape": 7.3150729441233535
+        },
+        "cross_validation": {
+          "scores": [
+            362.64291915893557,
+            104.83172658284514,
+            344.53904927571614,
+            125.85414962768556,
+            64.15467859903971
+          ],
+          "mean": 200.40450464884444,
+          "std": 126.76907867234775,
+          "min": 64.15467859903971,
+          "max": 362.64291915893557
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:35.857049"
+    },
+    "2022-07-22": {
+      "target_date": "2022-07-22",
+      "training_data_range": {
+        "start_date": "2022-07-01",
+        "end_date": "2022-07-21",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 10.893011432223844,
+          "rmse": 14.866174440595696,
+          "r2_score": 0.9995739597185644,
+          "mape": 0.2992867499918139
+        },
+        "validation_metrics": {
+          "mae": 228.19251453098158,
+          "rmse": 334.2569390194651,
+          "r2_score": 0.8043943819686172,
+          "mape": 6.6163389432882385
+        },
+        "cross_validation": {
+          "scores": [
+            230.22001953125005,
+            187.1898857116699,
+            290.2293958028157,
+            76.43348490397139,
+            106.31012496948242
+          ],
+          "mean": 178.0765821838379,
+          "std": 78.56460725796495,
+          "min": 76.43348490397139,
+          "max": 290.2293958028157
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:36.033796"
+    },
+    "2022-07-23": {
+      "target_date": "2022-07-23",
+      "training_data_range": {
+        "start_date": "2022-07-02",
+        "end_date": "2022-07-22",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 10.258873282538518,
+          "rmse": 14.273194200740472,
+          "r2_score": 0.9995492226577346,
+          "mape": 0.2935739025603077
+        },
+        "validation_metrics": {
+          "mae": 258.54291522363616,
+          "rmse": 327.6581339239292,
+          "r2_score": 0.8261662782563992,
+          "mape": 6.788279637485553
+        },
+        "cross_validation": {
+          "scores": [
+            203.60791829427086,
+            259.0651540120442,
+            232.52680486043295,
+            71.14453786214193,
+            161.89592564900718
+          ],
+          "mean": 185.64806813557942,
+          "std": 65.70458643202227,
+          "min": 71.14453786214193,
+          "max": 259.0651540120442
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:36.286748"
+    },
+    "2022-07-24": {
+      "target_date": "2022-07-24",
+      "training_data_range": {
+        "start_date": "2022-07-03",
+        "end_date": "2022-07-23",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.82406980726453,
+          "rmse": 14.231138161175043,
+          "r2_score": 0.9995435689983253,
+          "mape": 0.2743323445570092
+        },
+        "validation_metrics": {
+          "mae": 389.09548700601374,
+          "rmse": 494.5602389305432,
+          "r2_score": 0.6057279319273086,
+          "mape": 9.171853186214483
+        },
+        "cross_validation": {
+          "scores": [
+            91.33623555501302,
+            226.00537439982094,
+            135.82942021687828,
+            70.48283487955727,
+            331.4461641947429
+          ],
+          "mean": 171.02000584920248,
+          "std": 96.39040029814018,
+          "min": 70.48283487955727,
+          "max": 331.4461641947429
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:36.463330"
+    },
+    "2022-07-25": {
+      "target_date": "2022-07-25",
+      "training_data_range": {
+        "start_date": "2022-07-04",
+        "end_date": "2022-07-24",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 8.857511138916031,
+          "rmse": 12.468483908788057,
+          "r2_score": 0.9996601308747332,
+          "mape": 0.2518283769900682
+        },
+        "validation_metrics": {
+          "mae": 336.3746447795854,
+          "rmse": 405.84885444275716,
+          "r2_score": 0.7345188720171867,
+          "mape": 8.21223638816629
+        },
+        "cross_validation": {
+          "scores": [
+            116.2539512634277,
+            347.8430824279785,
+            84.84522450764973,
+            108.52835235595703,
+            246.47861277262376
+          ],
+          "mean": 180.78984466552734,
+          "std": 100.81048898561956,
+          "min": 84.84522450764973,
+          "max": 347.8430824279785
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:36.680432"
+    },
+    "2022-07-26": {
+      "target_date": "2022-07-26",
+      "training_data_range": {
+        "start_date": "2022-07-05",
+        "end_date": "2022-07-25",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 9.772812779744465,
+          "rmse": 13.769374819439658,
+          "r2_score": 0.9996081186940644,
+          "mape": 0.2795791783700982
+        },
+        "validation_metrics": {
+          "mae": 277.73123389175254,
+          "rmse": 345.1524298454281,
+          "r2_score": 0.7854223299106674,
+          "mape": 7.0760148665862115
+        },
+        "cross_validation": {
+          "scores": [
+            274.89540939331056,
+            138.45890223185222,
+            70.99309921264648,
+            186.51802368164064,
+            233.14015935262051
+          ],
+          "mean": 180.80111877441408,
+          "std": 71.38131150273648,
+          "min": 70.99309921264648,
+          "max": 274.89540939331056
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:36.870373"
+    },
+    "2022-07-27": {
+      "target_date": "2022-07-27",
+      "training_data_range": {
+        "start_date": "2022-07-06",
+        "end_date": "2022-07-26",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.68565724690754,
+          "rmse": 16.858246125638487,
+          "r2_score": 0.9994342565084534,
+          "mape": 0.331963021306996
+        },
+        "validation_metrics": {
+          "mae": 327.9253948198561,
+          "rmse": 420.6098869725865,
+          "r2_score": 0.7326801484857335,
+          "mape": 8.056022147838751
+        },
+        "cross_validation": {
+          "scores": [
+            482.69435017903646,
+            159.50077311197919,
+            77.42774810791015,
+            270.85543746948247,
+            385.09695460001626
+          ],
+          "mean": 275.1150526936849,
+          "std": 146.73122356941616,
+          "min": 77.42774810791015,
+          "max": 482.69435017903646
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:37.053332"
+    },
+    "2022-07-28": {
+      "target_date": "2022-07-28",
+      "training_data_range": {
+        "start_date": "2022-07-07",
+        "end_date": "2022-07-27",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.697989357842323,
+          "rmse": 18.55675314224233,
+          "r2_score": 0.9993370478024793,
+          "mape": 0.3577038761858403
+        },
+        "validation_metrics": {
+          "mae": 275.0212232871564,
+          "rmse": 372.28257924715683,
+          "r2_score": 0.771637852422,
+          "mape": 6.775708289428294
+        },
+        "cross_validation": {
+          "scores": [
+            277.2387049357097,
+            94.67059173583982,
+            141.62785110473635,
+            267.00615641276045,
+            306.1677136739095
+          ],
+          "mean": 217.34220357259113,
+          "std": 83.33673601991521,
+          "min": 94.67059173583982,
+          "max": 306.1677136739095
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:37.238312"
+    },
+    "2022-07-29": {
+      "target_date": "2022-07-29",
+      "training_data_range": {
+        "start_date": "2022-07-08",
+        "end_date": "2022-07-28",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.987661446465387,
+          "rmse": 16.49745062704796,
+          "r2_score": 0.9994736036127911,
+          "mape": 0.34233606678214845
+        },
+        "validation_metrics": {
+          "mae": 232.49036810701244,
+          "rmse": 318.6826266482539,
+          "r2_score": 0.8592395949072431,
+          "mape": 5.621193307945924
+        },
+        "cross_validation": {
+          "scores": [
+            206.79522145589192,
+            134.99427439371746,
+            281.025569152832,
+            315.5230066935221,
+            344.70550740559895
+          ],
+          "mean": 256.6087158203125,
+          "std": 76.28837089317506,
+          "min": 134.99427439371746,
+          "max": 344.70550740559895
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:37.421387"
+    },
+    "2022-07-30": {
+      "target_date": "2022-07-30",
+      "training_data_range": {
+        "start_date": "2022-07-09",
+        "end_date": "2022-07-29",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 12.026555803087033,
+          "rmse": 17.39941503292791,
+          "r2_score": 0.9994060557885301,
+          "mape": 0.3352273073258489
+        },
+        "validation_metrics": {
+          "mae": 237.82461910706618,
+          "rmse": 326.5628826017227,
+          "r2_score": 0.8649219029964504,
+          "mape": 5.483877922347989
+        },
+        "cross_validation": {
+          "scores": [
+            358.6893442789713,
+            198.41829452514648,
+            306.8915423075359,
+            292.3824490865071,
+            400.27101186116533
+          ],
+          "mean": 311.3305284118652,
+          "std": 68.23660880432622,
+          "min": 198.41829452514648,
+          "max": 400.27101186116533
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:37.608357"
+    },
+    "2022-07-31": {
+      "target_date": "2022-07-31",
+      "training_data_range": {
+        "start_date": "2022-07-10",
+        "end_date": "2022-07-30",
+        "days": 21
+      },
+      "model_performance": {
+        "training_metrics": {
+          "mae": 11.755740780300561,
+          "rmse": 16.26561624824105,
+          "r2_score": 0.9995359163740213,
+          "mape": 0.32807820442617347
+        },
+        "validation_metrics": {
+          "mae": 133.0017695580971,
+          "rmse": 176.96044079852564,
+          "r2_score": 0.9590458872176143,
+          "mape": 3.209405192966496
+        },
+        "cross_validation": {
+          "scores": [
+            440.6715405782063,
+            238.0373021443685,
+            303.10882898966474,
+            332.24315134684235,
+            383.9319071451823
+          ],
+          "mean": 339.59854604085285,
+          "std": 69.11075846051232,
+          "min": 238.0373021443685,
+          "max": 440.6715405782063
+        }
+      },
+      "training_info": {
+        "training_time": 0,
+        "training_samples": 384,
+        "validation_samples": 97,
+        "feature_count": 4
+      },
+      "model_available": true,
+      "trained_at": "2025-07-04T16:16:37.793310"
+    }
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "experiment_metadata": {
+    "title": "AI-Human Collaborative Power Consumption Prediction Experiment",
+    "version": "1.0",
+    "date_created": "2024-01-07",
+    "experiment_type": "Human-AI Interaction Study",
+    "domain": "Energy Management & Prediction",
+    "language": "Chinese/English"
+  },
+
+  "experiment_overview": {
+    "purpose": "研究人工智能与人类专家在电力消费预测任务中的协作模式，探索决策透明度和可解释性对预测准确性的影响",
+    "research_questions": [
+      "人类专家如何利用AI预测基线进行决策调整？",
+      "模型可解释性信息如何影响用户的预测决策？",
+      "结构化决策流程是否提高预测质量和决策可追溯性？",
+      "用户在不同信息模块间的交互模式是什么？"
+    ],
+    "expected_duration": "15-30分钟",
+    "target_participants": "电力系统专家、数据分析师、决策制定者"
+  },
+
+  "background_and_limitations": {
+    "data_scope": {
+      "description": "本实验使用的数据集具有明确的时间和范围限制",
+      "limitations": [
+        {
+          "type": "时间范围限制",
+          "details": "数据仅覆盖2021年12月17日至2022年1月7日（3周冬季数据）",
+          "impact": "限制了温度变化范围，可能影响温度特征的重要性评估"
+        },
+        {
+          "type": "季节性偏差",
+          "details": "仅包含冬季极寒天气数据，缺乏夏季制冷需求数据",
+          "impact": "模型可解释性分析中温度重要性可能被低估"
+        },
+        {
+          "type": "地理范围",
+          "details": "数据来源于特定地区的电力系统",
+          "impact": "预测模式可能不适用于其他气候条件或电网结构"
+        },
+        {
+          "type": "数据粒度",
+          "details": "小时级数据，共530个观测点",
+          "impact": "适合短期预测分析，但长期趋势分析能力有限"
+        }
+      ],
+      "data_quality": {
+        "completeness": "数据完整性良好，无缺失值",
+        "accuracy": "基于历史实际电力消费和天气预报数据",
+        "representativeness": "代表冬季极端天气条件下的电力消费模式"
+      }
+    },
+    "model_context": {
+      "baseline_model": "XGBoost回归模型",
+      "prediction_scenario": "2022年1月7日冬季极寒天气电力需求预测",
+      "uncertainty_acknowledgment": "预测结果仅供实验研究使用，不应用于实际电力调度决策"
+    }
+  },
+
+  "model_training_methodology": {
+    "algorithm": {
+      "name": "XGBoost (Extreme Gradient Boosting)",
+      "type": "集成学习 - 梯度提升决策树",
+      "version": "适用于回归任务的XGBRegressor"
+    },
+    "hyperparameters": {
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "objective": "reg:squarederror",
+      "random_state": 42
+    },
+    "feature_engineering": {
+      "input_features": [
+        {
+          "name": "temperature",
+          "description": "预测温度（°C）",
+          "type": "连续变量",
+          "source": "天气预报数据"
+        },
+        {
+          "name": "hour",
+          "description": "小时（0-23）",
+          "type": "分类变量",
+          "source": "时间戳提取"
+        },
+        {
+          "name": "day_of_week",
+          "description": "星期几（0-6，周一=0）",
+          "type": "分类变量",
+          "source": "时间戳提取"
+        },
+        {
+          "name": "week_of_month",
+          "description": "月内第几周（1-4/5）",
+          "type": "分类变量",
+          "source": "日期计算"
+        }
+      ],
+      "target_variable": {
+        "name": "actual_power",
+        "description": "实际电力消费（MW）",
+        "unit": "兆瓦",
+        "range": "2610-4417 MW"
+      },
+      "preprocessing": {
+        "scaling": "StandardScaler标准化处理",
+        "encoding": "数值编码，无需独热编码"
+      }
+    },
+    "training_process": {
+      "training_data": "历史电力消费数据（包含实际功率值的时段）",
+      "validation_method": "时间序列分割验证",
+      "performance_metrics": [
+        "Mean Absolute Error (MAE)",
+        "Root Mean Square Error (RMSE)",
+        "R² Score"
+      ],
+      "model_selection": "基于验证集性能选择最优超参数"
+    },
+    "explainability_methods": {
+      "shap_analysis": {
+        "method": "TreeExplainer",
+        "purpose": "计算特征对预测结果的贡献度",
+        "background_data": "完整训练集作为背景样本"
+      },
+      "lime_analysis": {
+        "method": "局部线性近似",
+        "purpose": "解释单个预测实例的特征影响",
+        "perturbation_strategy": "特征值扰动分析"
+      }
+    }
+  },
+
+  "user_responsibilities": {
+    "primary_tasks": [
+      {
+        "task": "信息理解",
+        "description": "仔细阅读和理解各个信息模块提供的数据和分析结果",
+        "importance": "为后续决策提供知识基础"
+      },
+      {
+        "task": "决策制定",
+        "description": "基于AI预测基线和可解释性信息，制定有理有据的预测调整决策",
+        "importance": "体现人类专业判断在AI辅助决策中的价值"
+      },
+      {
+        "task": "预测调整",
+        "description": "通过拖拽交互方式调整特定时段的电力消费预测值",
+        "importance": "实现人机协作的预测优化"
+      },
+      {
+        "task": "决策记录",
+        "description": "为每次调整提供清晰的理由说明，确保决策可追溯性",
+        "importance": "支持后续分析和学习"
+      }
+    ],
+    "behavioral_expectations": [
+      "认真分析提供的数据和模型解释信息",
+      "基于专业知识和经验进行理性决策",
+      "详细记录决策理由和调整依据",
+      "充分利用系统提供的各种信息模块",
+      "保持决策的一致性和逻辑性"
+    ],
+    "ethical_considerations": [
+      "实验数据仅用于研究目的",
+      "参与者的决策过程将被记录用于分析",
+      "个人身份信息将被匿名化处理",
+      "可随时退出实验，无需承担任何后果"
+    ]
+  },
+
+  "system_components": {
+    "contextual_information": {
+      "purpose": "提供实验背景和数据概览",
+      "content": [
+        "实验场景描述",
+        "数据时间范围和特征",
+        "预测任务说明",
+        "系统使用指导"
+      ],
+      "user_interaction": "被动信息获取，无需交互操作"
+    },
+    "data_analysis_information": {
+      "purpose": "展示历史数据分析和模式识别结果",
+      "content": [
+        "电力消费时间序列分析",
+        "温度数据分析",
+        "数据过滤和范围选择",
+        "统计特征展示"
+      ],
+      "user_interaction": [
+        "选择数据类型（电力/温度）",
+        "调整时间范围过滤器",
+        "查看动态Y轴缩放结果"
+      ]
+    },
+    "model_interpretability": {
+      "purpose": "提供AI模型的可解释性分析，帮助理解预测依据",
+      "content": [
+        "SHAP特征重要性排名",
+        "LIME局部解释分析",
+        "特征依赖关系可视化",
+        "模型决策过程透明化"
+      ],
+      "user_interaction": [
+        "选择解释方法（SHAP/LIME）",
+        "查看不同特征的依赖图",
+        "分析特征对预测的影响方向和强度"
+      ]
+    },
+    "user_prediction": {
+      "purpose": "提供交互式预测调整界面，实现人机协作预测",
+      "content": [
+        "AI基线预测曲线",
+        "用户可调整的预测曲线",
+        "置信区间显示",
+        "实时调整反馈"
+      ],
+      "user_interaction": [
+        "点击选择要调整的时段",
+        "拖拽调整预测值",
+        "查看调整前后对比",
+        "重置到原始预测"
+      ],
+      "interaction_constraints": "需要先在决策区域创建并激活决策才能进行调整"
+    },
+    "decision_making_area": {
+      "purpose": "管理结构化决策流程，确保每次调整都有明确的决策上下文",
+      "content": [
+        "决策创建和管理",
+        "决策理由记录",
+        "调整统计信息",
+        "决策历史追踪"
+      ],
+      "user_interaction": [
+        "创建新决策并填写理由",
+        "激活/完成决策状态管理",
+        "查看调整统计和影响范围",
+        "浏览历史决策记录"
+      ],
+      "workflow": [
+        "点击'新建决策'按钮",
+        "填写决策标题和详细理由",
+        "决策自动激活，解锁预测调整功能",
+        "进行预测调整操作",
+        "完成决策或创建新决策继续"
+      ]
+    }
+  },
+
+  "experimental_design": {
+    "study_type": "Within-subjects design",
+    "independent_variables": [
+      "AI预测基线的存在/缺失",
+      "模型可解释性信息的详细程度",
+      "决策结构化程度"
+    ],
+    "dependent_variables": [
+      "预测调整的准确性",
+      "决策制定时间",
+      "用户信心水平",
+      "决策理由的质量",
+      "系统各模块的使用频率"
+    ],
+    "data_collection": {
+      "interaction_logs": "记录用户在各模块间的交互行为",
+      "decision_records": "保存所有决策及其理由",
+      "adjustment_data": "记录预测调整的详细信息",
+      "time_stamps": "记录操作时间戳用于行为分析"
+    }
+  },
+
+  "usage_instructions": {
+    "getting_started": [
+      "仔细阅读Context Information了解实验背景",
+      "浏览Data Analysis Information熟悉数据特征",
+      "查看Model Interpretability理解AI模型的决策依据",
+      "在Decision-Making Area创建第一个决策",
+      "使用User Prediction进行预测调整"
+    ],
+    "best_practices": [
+      "充分利用所有信息模块进行综合分析",
+      "为每个决策提供详细且有逻辑的理由",
+      "考虑温度、时间等因素对电力消费的影响",
+      "参考SHAP/LIME分析结果进行调整",
+      "保持决策的一致性和可解释性"
+    ],
+    "common_workflows": [
+      {
+        "scenario": "基于温度影响的调整",
+        "steps": [
+          "在Data Analysis中查看温度数据",
+          "在Model Interpretability中分析温度特征重要性",
+          "创建决策：'基于温度变化调整预测'",
+          "在相应时段进行预测调整"
+        ]
+      },
+      {
+        "scenario": "基于时间模式的调整",
+        "steps": [
+          "分析Data Analysis中的时间序列模式",
+          "查看SHAP分析中小时特征的影响",
+          "创建决策：'调整特定时段的用电模式'",
+          "针对高峰/低谷时段进行调整"
+        ]
+      }
+    ]
+  },
+
+  "technical_specifications": {
+    "system_requirements": {
+      "browser": "现代浏览器（Chrome, Firefox, Safari, Edge）",
+      "javascript": "启用JavaScript支持",
+      "screen_resolution": "最小1280x720像素",
+      "internet_connection": "稳定的网络连接"
+    },
+    "data_formats": {
+      "input_data": "CSV格式的时间序列数据",
+      "output_data": "JSON格式的决策和调整记录",
+      "visualization": "基于Recharts的交互式图表"
+    },
+    "performance_considerations": {
+      "response_time": "拖拽操作即时响应（<50ms）",
+      "data_loading": "初始数据加载时间<3秒",
+      "memory_usage": "优化的状态管理，避免内存泄漏"
+    }
+  },
+
+  "research_applications": {
+    "academic_value": [
+      "人机协作决策模式研究",
+      "可解释AI在专业领域的应用效果",
+      "决策透明度对用户信任的影响",
+      "交互设计对决策质量的影响"
+    ],
+    "practical_implications": [
+      "电力系统预测决策支持工具设计",
+      "专家知识与AI预测的融合方法",
+      "决策可追溯性在关键系统中的重要性",
+      "用户界面设计对专业决策的影响"
+    ],
+    "future_extensions": [
+      "扩展到多季节数据集",
+      "增加更多特征维度",
+      "实现实时数据流处理",
+      "集成更多解释性AI方法"
+    ]
+  },
+
+  "disclaimer": {
+    "experimental_nature": "本系统仅用于研究目的，不应用于实际电力系统运营决策",
+    "data_limitations": "数据集的时间和地理范围限制可能影响结果的普适性",
+    "model_accuracy": "AI模型预测结果仅供参考，实际应用需要更全面的验证",
+    "user_responsibility": "参与者应基于自己的专业判断进行决策，系统仅提供辅助信息"
+  }
+}

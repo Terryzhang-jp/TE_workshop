@@ -1,0 +1,180 @@
+{
+  "metadata": {
+    "title": "LIME Local Interpretability Analysis",
+    "description": "Local Interpretable Model-agnostic Explanations for individual prediction instances",
+    "method": "LIME Tabular Explainer",
+    "target_date": "2022-01-07",
+    "model_type": "XGBoost Regressor",
+    "explanation_scope": "Local explanations for specific time points"
+  },
+  "lime_explanations": {
+    "explanation_instances": [
+      {
+        "instance_id": "hour_00",
+        "hour": 0,
+        "prediction_mw": 2850,
+        "baseline_mw": 3502.63,
+        "feature_values": {
+          "temperature": 8.5,
+          "hour": 0,
+          "day_of_week": 4,
+          "week_of_month": 1
+        },
+        "feature_contributions": {
+          "temperature": 12.5,
+          "hour": -580.2,
+          "day_of_week": 45.8,
+          "week_of_month": -30.1
+        },
+        "explanation": "Midnight hour strongly reduces prediction due to low demand period"
+      },
+      {
+        "instance_id": "hour_08",
+        "hour": 8,
+        "prediction_mw": 4200,
+        "baseline_mw": 3502.63,
+        "feature_values": {
+          "temperature": 9.2,
+          "hour": 8,
+          "day_of_week": 4,
+          "week_of_month": 1
+        },
+        "feature_contributions": {
+          "temperature": 25.8,
+          "hour": 650.4,
+          "day_of_week": 180.2,
+          "week_of_month": 120.5
+        },
+        "explanation": "Morning peak hour (8 AM) significantly increases prediction with strong weekday effect"
+      },
+      {
+        "instance_id": "hour_14",
+        "hour": 14,
+        "prediction_mw": 3800,
+        "baseline_mw": 3502.63,
+        "feature_values": {
+          "temperature": 10.1,
+          "hour": 14,
+          "day_of_week": 4,
+          "week_of_month": 1
+        },
+        "feature_contributions": {
+          "temperature": 18.2,
+          "hour": 220.5,
+          "day_of_week": 150.8,
+          "week_of_month": 95.3
+        },
+        "explanation": "Afternoon period shows moderate increase with balanced feature contributions"
+      },
+      {
+        "instance_id": "hour_19",
+        "hour": 19,
+        "prediction_mw": 4100,
+        "baseline_mw": 3502.63,
+        "feature_values": {
+          "temperature": 7.8,
+          "hour": 19,
+          "day_of_week": 4,
+          "week_of_month": 1
+        },
+        "feature_contributions": {
+          "temperature": 8.5,
+          "hour": 580.2,
+          "day_of_week": 165.4,
+          "week_of_month": 110.8
+        },
+        "explanation": "Evening peak hour (7 PM) drives high consumption with strong temporal effects"
+      }
+    ],
+    "feature_impact_patterns": {
+      "temperature": {
+        "typical_range": [5, 15],
+        "contribution_range": [-20, 40],
+        "pattern": "Generally small positive contributions, limited by winter data range",
+        "interpretation": "Temperature has minimal impact due to constrained seasonal variation"
+      },
+      "hour": {
+        "peak_hours": [7, 8, 9, 18, 19, 20],
+        "low_hours": [0, 1, 2, 3, 4, 5],
+        "contribution_range": [-600, 700],
+        "pattern": "Strong positive contributions during peak hours, negative during low-demand periods",
+        "interpretation": "Hour is the dominant feature with clear daily consumption cycles"
+      },
+      "day_of_week": {
+        "weekday_contribution": [100, 200],
+        "weekend_contribution": [-50, 50],
+        "pattern": "Positive contributions on weekdays, neutral to negative on weekends",
+        "interpretation": "Clear weekday vs weekend consumption distinction"
+      },
+      "week_of_month": {
+        "contribution_range": [-50, 150],
+        "pattern": "Moderate positive contributions with monthly variation",
+        "interpretation": "Captures monthly consumption cycles and billing period effects"
+      }
+    }
+  },
+  "interpretation_guidelines": {
+    "reading_contributions": [
+      "Positive values increase prediction above baseline",
+      "Negative values decrease prediction below baseline",
+      "Magnitude indicates strength of local influence",
+      "Sum of contributions plus baseline equals final prediction"
+    ],
+    "feature_analysis": [
+      "Hour dominates local explanations with largest contribution magnitudes",
+      "Day of week provides consistent weekday/weekend differentiation",
+      "Temperature contributions are small but consistently positive",
+      "Week of month adds moderate monthly cycle adjustments"
+    ],
+    "decision_support": [
+      "Use hour contributions to understand time-based prediction drivers",
+      "Consider day of week effects when adjusting weekday vs weekend predictions",
+      "Temperature adjustments should be modest given limited historical impact",
+      "Monthly patterns can inform week-of-month based adjustments"
+    ]
+  },
+  "comparison_with_shap": {
+    "consistency": "LIME local explanations align with SHAP global importance rankings",
+    "differences": [
+      "LIME provides instance-specific explanations vs SHAP global patterns",
+      "LIME uses local linear approximation vs SHAP exact attribution",
+      "LIME explanations vary by instance vs SHAP consistent methodology"
+    ],
+    "complementary_insights": [
+      "SHAP reveals global feature importance hierarchy",
+      "LIME explains specific prediction instances",
+      "Together provide comprehensive model interpretability"
+    ]
+  },
+  "technical_details": {
+    "lime_configuration": {
+      "mode": "tabular",
+      "num_features": 4,
+      "num_samples": 1000,
+      "distance_metric": "euclidean",
+      "kernel_width": "auto"
+    },
+    "perturbation_strategy": {
+      "temperature": "Gaussian noise around actual value",
+      "hour": "Discrete sampling from 0-23 range",
+      "day_of_week": "Discrete sampling from 0-6 range", 
+      "week_of_month": "Discrete sampling from 1-4 range"
+    },
+    "local_model": "Linear regression on perturbed samples",
+    "explanation_fidelity": "R² score of local linear model fit"
+  },
+  "usage_notes": {
+    "for_experiment": [
+      "LIME explanations help understand individual hour predictions",
+      "Use to validate intuition about specific time period adjustments",
+      "Compare feature contributions across different hours",
+      "Consider local context when making prediction modifications"
+    ],
+    "limitations": [
+      "Local explanations may not generalize to other instances",
+      "Perturbation quality affects explanation reliability",
+      "Linear approximation may miss complex feature interactions",
+      "Explanation stability depends on local data density"
+    ]
+  }
+}

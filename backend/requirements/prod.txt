@@ -1,0 +1,13 @@
+# 生产依赖
+# Production dependencies
+
+-r base.txt
+
+# 生产服务器
+gunicorn==21.2.0
+
+# 监控
+prometheus-client==0.19.0
+
+# 安全
+python-multipart==0.0.6

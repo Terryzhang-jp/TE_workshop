@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试SHAP数据加载</title>
+</head>
+<body>
+    <h1>SHAP数据测试</h1>
+    <div id="result"></div>
+    
+    <script>
+        async function testDataLoad() {
+            try {
+                const response = await fetch('/data/shap_data_complete.json');
+                const data = await response.json();
+                
+                document.getElementById('result').innerHTML = `
+                    <h2>数据加载成功！</h2>
+                    <p>特征数量: ${data.feature_importance.length}</p>
+                    <p>基准预测: ${data.metadata.base_prediction.toFixed(1)} MW</p>
+                    <p>分析日期: ${data.metadata.date}</p>
+                    <h3>特征重要性:</h3>
+                    <ul>
+                        ${data.feature_importance.map(item => 
+                            `<li>${item.feature_chinese}: ${item.importance.toFixed(1)} MW</li>`
+                        ).join('')}
+                    </ul>
+                    <h3>可用特征依赖数据:</h3>
+                    <ul>
+                        ${Object.keys(data.feature_dependence).map(key => 
+                            `<li>${key}: ${data.feature_dependence[key].total_points} 个数据点</li>`
+                        ).join('')}
+                    </ul>
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <h2 style="color: red;">数据加载失败</h2>
+                    <p>错误: ${error.message}</p>
+                `;
+            }
+        }
+        
+        testDataLoad();
+    </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+{
+  "experiment_metadata": {
+    "title": "AI-Human Collaborative Power Consumption Prediction Experiment",
+    "version": "1.0",
+    "date_created": "2024-01-07",
+    "experiment_type": "Human-AI Interaction Study",
+    "domain": "Energy Management & Prediction",
+    "language": "English",
+    "estimated_duration": "15-30 minutes"
+  },
+
+  "experiment_overview": {
+    "purpose": "To investigate collaborative patterns between artificial intelligence and human experts in power consumption prediction tasks, exploring the impact of decision transparency and explainability on prediction accuracy.",
+    "research_questions": [
+      "How do human experts utilize AI prediction baselines to make decision adjustments?",
+      "How does model explainability information influence user prediction decisions?",
+      "Does structured decision-making process improve prediction quality and decision traceability?",
+      "What are the interaction patterns between users across different information modules?"
+    ],
+    "target_participants": "Power system experts, data analysts, decision makers",
+    "study_significance": "This research contributes to understanding human-AI collaboration in critical infrastructure prediction and decision-making processes."
+  },
+
+  "background_and_limitations": {
+    "data_scope": {
+      "description": "The dataset used in this experiment has explicit temporal and scope limitations that participants must understand.",
+      "critical_limitations": [
+        {
+          "type": "Temporal Range Constraint",
+          "details": "Data covers only December 17, 2021 to January 7, 2022 (3 weeks of winter data)",
+          "impact": "Limited temperature variation range may affect the assessment of temperature feature importance in model explainability analysis"
+        },
+        {
+          "type": "Seasonal Bias",
+          "details": "Contains only winter extreme cold weather data, lacking summer cooling demand patterns",
+          "impact": "Temperature importance may be underestimated in SHAP/LIME analysis due to limited seasonal variation"
+        },
+        {
+          "type": "Geographic Scope",
+          "details": "Data sourced from a specific regional power system",
+          "impact": "Prediction patterns may not generalize to other climate conditions or grid structures"
+        },
+        {
+          "type": "Data Granularity",
+          "details": "Hourly data with 530 observation points",
+          "impact": "Suitable for short-term prediction analysis but limited long-term trend analysis capability"
+        }
+      ],
+      "data_quality": {
+        "completeness": "Good data integrity with no missing values",
+        "accuracy": "Based on historical actual power consumption and weather forecast data",
+        "representativeness": "Representative of power consumption patterns during winter extreme weather conditions"
+      }
+    },
+    "model_context": {
+      "baseline_model": "XGBoost Regression Model",
+      "prediction_scenario": "Power demand prediction for January 7, 2022 winter extreme cold weather",
+      "uncertainty_acknowledgment": "Prediction results are for experimental research purposes only and should not be used for actual power dispatch decisions"
+    }
+  },
+
+  "model_training_methodology": {
+    "algorithm": {
+      "name": "XGBoost (Extreme Gradient Boosting)",
+      "type": "Ensemble Learning - Gradient Boosting Decision Trees",
+      "implementation": "XGBRegressor for regression tasks"
+    },
+    "hyperparameters": {
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "objective": "reg:squarederror",
+      "random_state": 42,
+      "rationale": "Selected through cross-validation for optimal performance on time series data"
+    },
+    "feature_engineering": {
+      "input_features": [
+        {
+          "name": "temperature",
+          "description": "Predicted temperature (°C)",
+          "type": "Continuous variable",
+          "source": "Weather forecast data",
+          "range": "2.8°C to 14.6°C"
+        },
+        {
+          "name": "hour",
+          "description": "Hour of day (0-23)",
+          "type": "Categorical variable",
+          "source": "Timestamp extraction",
+          "significance": "Captures daily consumption patterns"
+        },
+        {
+          "name": "day_of_week",
+          "description": "Day of week (0-6, Monday=0)",
+          "type": "Categorical variable",
+          "source": "Timestamp extraction",
+          "significance": "Captures weekday vs weekend patterns"
+        },
+        {
+          "name": "week_of_month",
+          "description": "Week within month (1-4/5)",
+          "type": "Categorical variable",
+          "source": "Date calculation",
+          "significance": "Captures monthly consumption cycles"
+        }
+      ],
+      "target_variable": {
+        "name": "actual_power",
+        "description": "Actual power consumption (MW)",
+        "unit": "Megawatts",
+        "range": "2610-4417 MW",
+        "characteristics": "Hourly power demand with clear daily and weekly patterns"
+      },
+      "preprocessing": {
+        "scaling": "StandardScaler normalization",
+        "encoding": "Numerical encoding without one-hot encoding",
+        "validation": "Time series split validation to prevent data leakage"
+      }
+    },
+    "training_process": {
+      "training_data": "Historical power consumption data (periods with actual power values)",
+      "validation_method": "Time series cross-validation",
+      "performance_metrics": [
+        "Mean Absolute Error (MAE)",
+        "Root Mean Square Error (RMSE)",
+        "R² Score (Coefficient of Determination)"
+      ],
+      "model_selection": "Optimal hyperparameters selected based on validation set performance"
+    },
+    "explainability_methods": {
+      "shap_analysis": {
+        "method": "TreeExplainer",
+        "purpose": "Calculate feature contributions to prediction results",
+        "background_data": "Complete training set as background samples",
+        "interpretation": "Mean absolute SHAP values for feature importance ranking"
+      },
+      "lime_analysis": {
+        "method": "Local Linear Approximation",
+        "purpose": "Explain individual prediction instances",
+        "perturbation_strategy": "Feature value perturbation analysis",
+        "scope": "Local explanations for specific time points"
+      }
+    }
+  },
+
+  "user_responsibilities": {
+    "primary_tasks": [
+      {
+        "task": "Information Comprehension",
+        "description": "Carefully read and understand data and analysis results provided by each information module",
+        "importance": "Provides knowledge foundation for subsequent decision-making",
+        "time_allocation": "5-8 minutes"
+      },
+      {
+        "task": "Decision Making",
+        "description": "Make evidence-based prediction adjustment decisions using AI baseline and explainability information",
+        "importance": "Demonstrates value of human professional judgment in AI-assisted decision-making",
+        "time_allocation": "8-12 minutes"
+      },
+      {
+        "task": "Prediction Adjustment",
+        "description": "Adjust power consumption predictions for specific time periods through drag-and-drop interaction",
+        "importance": "Realizes human-AI collaborative prediction optimization",
+        "time_allocation": "5-8 minutes"
+      },
+      {
+        "task": "Decision Documentation",
+        "description": "Provide clear reasoning for each adjustment to ensure decision traceability",
+        "importance": "Supports subsequent analysis and learning",
+        "time_allocation": "2-3 minutes per decision"
+      }
+    ],
+    "behavioral_expectations": [
+      "Thoroughly analyze provided data and model explanation information",
+      "Make rational decisions based on professional knowledge and experience",
+      "Document decision reasoning and adjustment rationale in detail",
+      "Fully utilize all information modules provided by the system",
+      "Maintain consistency and logic in decision-making"
+    ],
+    "ethical_considerations": [
+      "Experimental data is used solely for research purposes",
+      "Participant decision processes will be recorded for analysis",
+      "Personal identity information will be anonymized",
+      "Participants may withdraw from the experiment at any time without consequences"
+    ]
+  },
+
+  "system_components": {
+    "contextual_information": {
+      "purpose": "Provide experimental background and data overview",
+      "content": [
+        "Experimental scenario description",
+        "Data time range and characteristics",
+        "Prediction task explanation",
+        "System usage guidance"
+      ],
+      "user_interaction": "Passive information acquisition, no interactive operations required",
+      "design_rationale": "Establishes context and sets expectations for the experimental task"
+    },
+    "data_analysis_information": {
+      "purpose": "Display historical data analysis and pattern recognition results",
+      "content": [
+        "Power consumption time series analysis",
+        "Temperature data analysis",
+        "Data filtering and range selection",
+        "Statistical feature display"
+      ],
+      "user_interaction": [
+        "Select data type (electricity/temperature)",
+        "Adjust time range filters",
+        "View dynamic Y-axis scaling results"
+      ],
+      "design_rationale": "Provides empirical foundation for understanding consumption patterns"
+    },
+    "model_interpretability": {
+      "purpose": "Provide AI model explainability analysis to help understand prediction rationale",
+      "content": [
+        "SHAP feature importance ranking",
+        "LIME local explanation analysis",
+        "Feature dependency relationship visualization",
+        "Model decision process transparency"
+      ],
+      "user_interaction": [
+        "Select explanation method (SHAP/LIME)",
+        "View dependency plots for different features",
+        "Analyze feature impact direction and intensity on predictions"
+      ],
+      "design_rationale": "Enhances trust and understanding of AI decision-making process"
+    },
+    "user_prediction": {
+      "purpose": "Provide interactive prediction adjustment interface for human-AI collaborative prediction",
+      "content": [
+        "AI baseline prediction curve",
+        "User-adjustable prediction curve",
+        "Confidence interval display",
+        "Real-time adjustment feedback"
+      ],
+      "user_interaction": [
+        "Click to select time period for adjustment",
+        "Drag to adjust prediction values",
+        "View before/after comparison",
+        "Reset to original prediction"
+      ],
+      "interaction_constraints": "Requires creating and activating a decision in the decision area before adjustments",
+      "design_rationale": "Enables direct manipulation of predictions while maintaining decision context"
+    },
+    "decision_making_area": {
+      "purpose": "Manage structured decision-making process, ensuring each adjustment has clear decision context",
+      "content": [
+        "Decision creation and management",
+        "Decision reasoning documentation",
+        "Adjustment statistics information",
+        "Decision history tracking"
+      ],
+      "user_interaction": [
+        "Create new decisions and document reasoning",
+        "Activate/complete decision status management",
+        "View adjustment statistics and impact scope",
+        "Browse historical decision records"
+      ],
+      "workflow": [
+        "Click 'Create New Decision' button",
+        "Fill in decision title and detailed reasoning",
+        "Decision automatically activates, unlocking prediction adjustment functionality",
+        "Perform prediction adjustment operations",
+        "Complete decision or create new decision to continue"
+      ],
+      "design_rationale": "Ensures accountability and traceability in the decision-making process"
+    }
+  },
+
+  "experimental_design": {
+    "study_type": "Within-subjects experimental design",
+    "independent_variables": [
+      "Presence/absence of AI prediction baseline",
+      "Level of detail in model explainability information",
+      "Degree of decision structure"
+    ],
+    "dependent_variables": [
+      "Accuracy of prediction adjustments",
+      "Decision-making time",
+      "User confidence level",
+      "Quality of decision reasoning",
+      "Usage frequency of system modules"
+    ],
+    "data_collection": {
+      "interaction_logs": "Record user interaction behaviors across modules",
+      "decision_records": "Save all decisions and their reasoning",
+      "adjustment_data": "Record detailed prediction adjustment information",
+      "time_stamps": "Record operation timestamps for behavioral analysis",
+      "user_feedback": "Collect post-experiment feedback and insights"
+    }
+  },
+
+  "usage_instructions": {
+    "getting_started": [
+      "Carefully read Context Information to understand experimental background",
+      "Browse Data Analysis Information to familiarize yourself with data characteristics",
+      "Review Model Interpretability to understand AI model decision rationale",
+      "Create your first decision in the Decision-Making Area",
+      "Use User Prediction to make prediction adjustments"
+    ],
+    "best_practices": [
+      "Fully utilize all information modules for comprehensive analysis",
+      "Provide detailed and logical reasoning for each decision",
+      "Consider the impact of temperature, time, and other factors on power consumption",
+      "Reference SHAP/LIME analysis results when making adjustments",
+      "Maintain consistency and explainability in decisions"
+    ],
+    "common_workflows": [
+      {
+        "scenario": "Temperature-based adjustments",
+        "description": "Making adjustments based on temperature impact analysis",
+        "steps": [
+          "Review temperature data in Data Analysis module",
+          "Analyze temperature feature importance in Model Interpretability",
+          "Create decision: 'Adjust predictions based on temperature changes'",
+          "Make adjustments in corresponding time periods"
+        ]
+      },
+      {
+        "scenario": "Time pattern-based adjustments",
+        "description": "Making adjustments based on temporal consumption patterns",
+        "steps": [
+          "Analyze time series patterns in Data Analysis",
+          "Review hour feature impact in SHAP analysis",
+          "Create decision: 'Adjust specific time period consumption patterns'",
+          "Target peak/off-peak periods for adjustments"
+        ]
+      }
+    ]
+  },
+
+  "technical_specifications": {
+    "system_requirements": {
+      "browser": "Modern browsers (Chrome, Firefox, Safari, Edge)",
+      "javascript": "JavaScript support enabled",
+      "screen_resolution": "Minimum 1280x720 pixels",
+      "internet_connection": "Stable network connection required"
+    },
+    "data_formats": {
+      "input_data": "CSV format time series data",
+      "output_data": "JSON format decision and adjustment records",
+      "visualization": "Interactive charts based on Recharts library"
+    },
+    "performance_considerations": {
+      "response_time": "Drag operations respond instantly (<50ms)",
+      "data_loading": "Initial data loading time <3 seconds",
+      "memory_usage": "Optimized state management to prevent memory leaks"
+    }
+  },
+
+  "research_applications": {
+    "academic_value": [
+      "Human-AI collaborative decision-making pattern research",
+      "Effectiveness of explainable AI in professional domains",
+      "Impact of decision transparency on user trust",
+      "Influence of interaction design on decision quality"
+    ],
+    "practical_implications": [
+      "Design of power system prediction decision support tools",
+      "Methods for integrating expert knowledge with AI predictions",
+      "Importance of decision traceability in critical systems",
+      "Impact of user interface design on professional decision-making"
+    ],
+    "future_extensions": [
+      "Extension to multi-seasonal datasets",
+      "Addition of more feature dimensions",
+      "Implementation of real-time data stream processing",
+      "Integration of additional explainable AI methods"
+    ]
+  },
+
+  "participant_instructions": {
+    "pre_experiment": [
+      "Ensure you have 15-30 minutes of uninterrupted time",
+      "Read through this documentation carefully",
+      "Prepare to think critically about power consumption patterns",
+      "Consider your professional experience with energy systems"
+    ],
+    "during_experiment": [
+      "Take your time to understand each information module",
+      "Document your reasoning clearly for each decision",
+      "Feel free to explore different features and interactions",
+      "Ask questions if any part of the system is unclear"
+    ],
+    "post_experiment": [
+      "Reflect on your decision-making process",
+      "Consider how the AI information influenced your choices",
+      "Think about the usefulness of different system components",
+      "Provide feedback on the experimental experience"
+    ]
+  },
+
+  "disclaimer": {
+    "experimental_nature": "This system is designed solely for research purposes and should not be used for actual power system operational decisions",
+    "data_limitations": "The temporal and geographic scope limitations of the dataset may affect the generalizability of results",
+    "model_accuracy": "AI model predictions are for reference only; actual applications require more comprehensive validation",
+    "user_responsibility": "Participants should make decisions based on their professional judgment; the system provides only auxiliary information",
+    "research_ethics": "This study has been designed to meet ethical standards for human subjects research"
+  }
+}

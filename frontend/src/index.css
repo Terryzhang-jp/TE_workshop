@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* 防止页面滚动 */
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 图表容器样式 */
+.chart-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+/* 优化的模块样式 - 统一设计 */
+.module-box {
+  background: white;
+  border: 2px solid #666666;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 4px;
+  font-family: 'Inter', Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+  height: 100%; /* 改为100%以充分利用网格空间 */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.module-box:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.module-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #3498db;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 优化的响应式布局网格 */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-rows 现在由JavaScript动态设置 */
+  gap: 6px;
+  width: 100%;
+  height: 100vh; /* 改为固定高度以确保空间分配 */
+  padding: 8px;
+  margin: 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  box-sizing: border-box; /* 确保padding包含在总高度内 */
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 6px;
+  grid-column: 1 / -1;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .main-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .bottom-grid {
+    grid-template-columns: 1fr;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .module-box {
+    padding: 12px;
+    margin: 0;
+    height: auto; /* 移动端使用自动高度 */
+    min-height: 150px;
+  }
+
+  .module-title {
+    font-size: 14px;
+  }
+}
+
+/* 输入框样式 */
+.input {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* 优化的按钮样式 */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #ee82e9 0%, #f3455a 100%);
+}
+
+/* 新增样式 */
+.status-message {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+.status-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 图表内容区域优化 */
+.chart-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* 允许flex子元素收缩 */
+}
+
+.chart-wrapper {
+  flex: 1;
+  min-height: 150px; /* 减少最小高度，适应更紧凑的布局 */
+  max-height: 100%; /* 限制最大高度，防止溢出 */
+  position: relative;
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 3D可视化容器优化 */
+.plotly-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 250px;
+}
+
+/* 模块内容区域 */
+.module-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

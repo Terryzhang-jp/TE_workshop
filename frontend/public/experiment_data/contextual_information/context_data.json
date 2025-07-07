@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "title": "Contextual Information for Power Consumption Prediction Experiment",
+    "description": "Background context and scenario information for the AI-Human collaborative prediction experiment",
+    "data_source": "Historical power consumption scenarios and weather data",
+    "language": "English",
+    "last_updated": "2024-01-07",
+    "total_scenarios": 7
+  },
+  "experiment_context": {
+    "scenario_type": "Winter Extreme Cold Weather Power Demand Prediction",
+    "prediction_target": "January 7, 2022 - Winter extreme cold day power consumption",
+    "data_period": "December 17, 2021 to January 7, 2022 (3 weeks)",
+    "geographic_scope": "Regional power grid system",
+    "weather_conditions": "Winter extreme cold with temperatures ranging from 2.8°C to 14.6°C",
+    "prediction_challenge": "Accurate hourly power demand forecasting during extreme weather conditions"
+  },
+  "historical_scenarios": [
+    {
+      "scenario_id": "scenario_001",
+      "date": "2022-06-24",
+      "day_of_week": "Friday",
+      "temperature_celsius": 32.6,
+      "demand_estimate": "≈ 49 GW",
+      "increase_percentage": "+ ≈ 20%",
+      "reserve_rate": "",
+      "special_notes": "Heat wave precursor, approximately 8 GW above normal annual average",
+      "scenario_type": "Summer High Temperature",
+      "significance": "Early indicator of extreme heat impact on power demand"
+    },
+    {
+      "scenario_id": "scenario_002", 
+      "date": "2022-06-25",
+      "day_of_week": "Saturday",
+      "temperature_celsius": 35.4,
+      "demand_estimate": "≈ 51 GW",
+      "increase_percentage": "+ ≈ 25%",
+      "reserve_rate": "",
+      "special_notes": "First entry into 'extreme heat day' category",
+      "scenario_type": "Summer Extreme Heat",
+      "significance": "Threshold crossing for extreme weather classification"
+    },
+    {
+      "scenario_id": "scenario_003",
+      "date": "2022-06-26", 
+      "day_of_week": "Sunday",
+      "temperature_celsius": 36.2,
+      "demand_estimate": "≈ 52.5 GW",
+      "increase_percentage": "+ ≈ 28%",
+      "reserve_rate": "",
+      "special_notes": "Demand sets new June weekend record for the year",
+      "scenario_type": "Summer Peak Weekend",
+      "significance": "Record-breaking weekend demand during extreme heat"
+    },
+    {
+      "scenario_id": "scenario_004",
+      "date": "2022-06-27",
+      "day_of_week": "Monday", 
+      "temperature_celsius": 37.1,
+      "demand_estimate": "≈ 54 GW",
+      "increase_percentage": "+ ≈ 32%",
+      "reserve_rate": "< 3%",
+      "special_notes": "Peak demand approaches system capacity limits",
+      "scenario_type": "Summer Critical Peak",
+      "significance": "System stress test under extreme conditions"
+    },
+    {
+      "scenario_id": "scenario_005",
+      "date": "2022-06-28",
+      "day_of_week": "Tuesday",
+      "temperature_celsius": 39.5,
+      "demand_estimate": "≈ 55.1 GW", 
+      "increase_percentage": "+ ≈ 35%",
+      "reserve_rate": "< 1%",
+      "special_notes": "Historical peak demand record, emergency protocols activated",
+      "scenario_type": "Summer Emergency Peak",
+      "significance": "System emergency conditions requiring immediate response"
+    },
+    {
+      "scenario_id": "scenario_006",
+      "date": "2022-06-29",
+      "day_of_week": "Wednesday",
+      "temperature_celsius": 38.2,
+      "demand_estimate": "≈ 53.8 GW",
+      "increase_percentage": "+ ≈ 31%", 
+      "reserve_rate": "< 2%",
+      "special_notes": "Sustained high demand continues, grid stability concerns",
+      "scenario_type": "Summer Sustained Peak",
+      "significance": "Extended period of high system stress"
+    },
+    {
+      "scenario_id": "scenario_007",
+      "date": "2022-06-30",
+      "day_of_week": "Thursday",
+      "temperature_celsius": 35.8,
+      "demand_estimate": "≈ 51.2 GW",
+      "increase_percentage": "+ ≈ 25%",
+      "reserve_rate": "≈ 5%",
+      "special_notes": "Gradual recovery as heat wave subsides, system stabilization",
+      "scenario_type": "Summer Recovery",
+      "significance": "Return to manageable system conditions"
+    }
+  ],
+  "data_characteristics": {
+    "temperature_range": {
+      "minimum_celsius": 32.6,
+      "maximum_celsius": 39.5,
+      "average_celsius": 36.4,
+      "variation_description": "Extreme summer heat wave conditions"
+    },
+    "demand_patterns": {
+      "baseline_demand": "≈ 41 GW",
+      "peak_demand": "≈ 55.1 GW", 
+      "average_increase": "≈ 28%",
+      "demand_drivers": [
+        "Air conditioning load",
+        "Industrial cooling requirements",
+        "Commercial building HVAC systems",
+        "Residential cooling demand"
+      ]
+    },
+    "system_stress_indicators": [
+      "Reserve rate below 3% indicates high system stress",
+      "Reserve rate below 1% triggers emergency protocols", 
+      "Sustained high demand creates grid stability concerns",
+      "Temperature above 37°C correlates with critical demand levels"
+    ]
+  },
+  "experimental_relevance": {
+    "learning_objectives": [
+      "Understand the relationship between extreme weather and power demand",
+      "Recognize patterns in demand escalation during heat waves",
+      "Appreciate the criticality of accurate demand forecasting",
+      "Learn about system reserve requirements and emergency protocols"
+    ],
+    "decision_context": [
+      "Historical scenarios provide context for prediction adjustments",
+      "Temperature-demand relationships inform adjustment decisions", 
+      "System stress indicators guide conservative vs aggressive predictions",
+      "Weekend vs weekday patterns influence time-based adjustments"
+    ],
+    "prediction_insights": [
+      "Extreme weather creates non-linear demand responses",
+      "System capacity constraints become critical factors",
+      "Reserve margins require careful consideration in predictions",
+      "Historical precedents inform future scenario planning"
+    ]
+  },
+  "usage_instructions": {
+    "for_participants": [
+      "Review historical scenarios to understand demand-temperature relationships",
+      "Consider day-of-week effects on demand patterns",
+      "Note the progression from normal to emergency conditions",
+      "Use reserve rate information to assess system stress levels"
+    ],
+    "for_researchers": [
+      "Data represents realistic power system scenarios",
+      "Temperature-demand correlations are based on actual patterns",
+      "Reserve rate thresholds reflect industry standards",
+      "Scenario progression demonstrates escalating system stress"
+    ]
+  }
+}
